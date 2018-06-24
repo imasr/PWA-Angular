@@ -1,4 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
+import { NgForm } from "@angular/forms";
+import { ApiService } from '../api.service';
 
 declare const FB: any;
 declare const gapi: any;
@@ -12,7 +14,19 @@ declare const gapi: any;
 export class LoginComponent implements AfterViewInit {
   public auth2: any;
 
-  constructor(){
+  constructor(private api: ApiService){
+  }
+
+  login(form:NgForm){
+    if(!form.value.username){
+      this.api.loginApi(form.value, 'login').subscribe(res=>{
+        console.log(res)
+      })
+    }else{
+      this.api.loginApi(form.value, 'register').subscribe(res=>{
+        console.log(res)
+      })
+    }
   }
 
   googleInit(){
