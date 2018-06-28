@@ -1,6 +1,7 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { ApiService } from '../api.service';
+import { timeout } from 'q';
 
 declare const FB: any;
 declare const gapi: any;
@@ -13,19 +14,35 @@ declare const gapi: any;
 
 export class LoginComponent implements AfterViewInit {
   private auth2: any;
+  errAlert:boolean= false;
+  successAlert:boolean=false;
+  errorMessage: String;
+  signup: boolean;
   message: any;
   constructor(private api: ApiService){
     this.message= "Login with Social Media or Manually";
   }
 
   login(form:NgForm){
+    this.errAlert=false;
     if(!form.value.username){
       this.api.loginApi(form.value, 'login').subscribe(res=>{
         console.log(res)
+      },err=>{
+        this.message=err.error.message;
+        this.errAlert=true;                        
       })
     }else{
       this.api.loginApi(form.value, 'register').subscribe(res=>{
-        console.log(res)
+        this.message=res.success;
+        this.successAlert=true;  
+        setTimeout(()=>{
+          this.successAlert=false;  
+          this.signup=false;
+        }, 5000)
+      },err=>{
+        this.message=err.error.message;
+        this.errAlert=true;                        
       })
     }
   }
