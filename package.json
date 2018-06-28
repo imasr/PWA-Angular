@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -17,8 +17,10 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^6.0.3",
+    "@angular/cli": "~6.0.8",
     "@angular/common": "^6.0.3",
     "@angular/compiler": "^6.0.3",
+    "@angular/compiler-cli": "^6.0.3",
     "@angular/core": "^6.0.3",
     "@angular/forms": "^6.0.3",
     "@angular/http": "^6.0.3",
@@ -27,11 +29,13 @@
     "@angular/router": "^6.0.3",
     "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
+    "express": "^4.16.3",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "npm": "^6.1.0",
     "popper.js": "^1.14.3",
     "rxjs": "^6.0.0",
+    "typescript": "~2.7.2",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
