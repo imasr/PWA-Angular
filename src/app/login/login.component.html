@@ -1,45 +1,37 @@
-
 <div class="container">
-    <div class="row">
-      <h2 style="text-align:center" *ngIf="!signup">Login with Social Media or Manually</h2>
-      <h2 style="text-align:center" *ngIf="signup">Sign Up with Social Media or Manually</h2>
-      <div class="vl">
-        <span class="vl-innertext">or</span>
+  <div class="d-flex justify-content align-items-center">
+    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-2">
+      <h5 class="text-center p-3 font-weight-bold text-white" *ngIf="!signup">Login</h5>
+      <h5 class="text-center p-3 font-weight-bold text-white" *ngIf="signup">Sign Up</h5>
+      <form #loginForm="ngForm" (submit)="login(loginForm)">
+        <input *ngIf="signup" type="text" name="username" autoComplete="off" ngModel placeholder="Username" required>
+        <input type="email" name="email" autoComplete="off" ngModel placeholder="Email" required>
+        <input type="password" name="password" autoComplete="off" ngModel placeholder="Password" required>
+        <input type="submit" value="Submit">
+      </form>
+      <div class="text-center text-white">
+        <a href="#" style="color:white">Forgot password?</a>
+      </div>
+      <div class="text-center text-white">
+        <a style="color:white" class="btn" *ngIf="!signup" (click)="signup=!signup">Register New User</a>
+        <a style="color:white" class="btn" *ngIf="signup" (click)="signup=!signup">Already User! Login</a>
       </div>
 
-      <div class="col">
-        <a  class="fb btn" (click)="loginFb()">
+      <div *ngIf="!signup">
+        <div class="vl mt-3 mb-3">
+          <span class="vl-innertext">OR</span>
+        </div>
+        <a class="fb btn" (click)="loginFb()">
           <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-         </a>
+        </a>
         <a href="#" class="twitter btn">
           <i class="fa fa-twitter fa-fw"></i> Login with Twitter
         </a>
-        <a (click)="onSignInGoogle($event)" class="google btn" id="googleBtn"><i class="fa fa-google fa-fw">
+        <a (click)="onSignInGoogle($event)" class="google btn" id="googleBtn">
+          <i class="fa fa-google fa-fw">
           </i> Login with Google+
         </a>
       </div>
-
-      <form #loginForm="ngForm" class="col" (submit)="login(loginForm)">
-        <div class="hide-md-lg">
-          <p>Or sign in manually:</p>
-        </div>
-        <input *ngIf="signup" type="text" name="username" autoComplete="off" ngModel placeholder="username" required>
-        <input type="email" name="email" autoComplete="off" ngModel placeholder="email" required>
-        <input type="password" name="password" autoComplete="off" ngModel placeholder="Password" required>
-        <input type="submit" value="Submit" [disabled]="loginForm.invalid">
-      </form>
-      
-    </div>
-</div>
-
-<div class="bottom-container">
-  <div class="row">
-    <div class="col">
-      <a style="color:white" class="btn" *ngIf="!signup" (click)="signup=!signup">Sign up</a>
-      <a style="color:white" class="btn" *ngIf="signup"  (click)="signup=!signup">Login</a>
-    </div>
-    <div class="col">
-      <a href="#" style="color:white" class="btn">Forgot password?</a>
     </div>
   </div>
 </div>

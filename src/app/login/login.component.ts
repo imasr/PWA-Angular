@@ -12,9 +12,10 @@ declare const gapi: any;
 })
 
 export class LoginComponent implements AfterViewInit {
-  public auth2: any;
-
+  private auth2: any;
+  message: any;
   constructor(private api: ApiService){
+    this.message= "Login with Social Media or Manually";
   }
 
   login(form:NgForm){
