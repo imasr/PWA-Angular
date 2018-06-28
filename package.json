@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "nng build --aot --prod --output-hashing none"
+    "postinstall": "ng build --aot --prod --output-hashing none"
   },
   "engines": {
     "node": "8.11.3",
