@@ -4,19 +4,19 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { FormsModule  } from "@angular/forms";
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { IntercepterHttp } from './http.interceptor';
-import { ApiService } from './api.service';
+import { AppRoutingModule } from './app-routing.module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule ,
     HttpClientModule,
+    AppRoutingModule
     
   ],
   providers: [
@@ -24,8 +24,7 @@ import { ApiService } from './api.service';
       provide: HTTP_INTERCEPTORS,
       useClass: IntercepterHttp,
       multi: true
-    },
-    ApiService
+    }
   ],
   bootstrap: [AppComponent]
 })
