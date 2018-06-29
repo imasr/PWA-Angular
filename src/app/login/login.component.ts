@@ -1,6 +1,8 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import { ApiService } from '../api.service';
+import { ApiService } from '../services/api.service';
+import { LocalStorageService } from '../services/local-storage.service';
+import { Router } from '@angular/router';
 
 declare const FB: any;
 declare const gapi: any;
@@ -17,17 +19,24 @@ export class LoginComponent implements AfterViewInit {
   successAlert:boolean=false;
   errorMessage: String;
   message: any;
-  constructor(private api: ApiService){
-  }
+  constructor(
+    private api: ApiService, 
+    private storageService:LocalStorageService,
+    private _router:Router
+  ){}
 
   login(form:NgForm){
     this.errAlert=false;
-    if(!form.value){
+    if(form.value){
       this.api.loginApi(form.value, 'login').subscribe(res=>{
-        console.log(res)
+        if(res.token){
+          this.storageService.setLocalStorage('accessToken', res.token)
+          this.storageService.setLocalStorage('login', res.success)
+          this._router.navigate(['/dashboard']);
+        }
       },err=>{
-        this.message=err.error.message;
         this.errAlert=true;                        
+        this.message=err.error.message;
       })
     }
   }

@@ -5,8 +5,8 @@ import { FormsModule  } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { IntercepterHttp } from './http.interceptor';
-import { ApiService } from './api.service';
 import { AppRoutingModule } from './app-routing.module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
       provide: HTTP_INTERCEPTORS,
       useClass: IntercepterHttp,
       multi: true
-    },
-    ApiService
+    }
   ],
   bootstrap: [AppComponent]
 })
