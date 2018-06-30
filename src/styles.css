@@ -1,44 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    height: 91vh;
-    background: url('./assets/bg.jpg') no-repeat center center fixed;
-    border-radius: 0;
-    height: 100%;
-    background-size: cover;
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  html, body, .container-table {
-    height: 100%;
-    min-height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  height: 91vh;
+  background: url('./assets/bg.jpg') no-repeat center center fixed;
+  border-radius: 0;
+  height: 100%;
+  background-size: cover;
 }
-  /* style the container */
-  .loaderBody{
-    width: 50px;
-    margin: auto;
-    padding: 8px;
-  }
-  .loader {
-    border: 5px solid #f3f3f3;
-    border-radius: 50%;
-    border-top: 5px solid #3498db;
-    width: 35px;
-    height: 35px;
-    -webkit-animation: spin 2s linear infinite; /* Safari */
-    animation: spin 2s linear infinite;
-  }
-  
+
+* {
+  box-sizing: border-box;
+}
+
+/* style the container */
+
+.loaderBody {
+  width: 50px;
+  margin: auto;
+  padding: 8px;
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #3498db;
+  width: 35px;
+  height: 35px;
+  -webkit-animation: spin 2s linear infinite;
   /* Safari */
-  @-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
   }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
   }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

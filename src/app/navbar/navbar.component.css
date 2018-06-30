@@ -1,7 +1,8 @@
-li{
-    list-style: none;
+li {
+  list-style: none;
 }
-li a{
-    padding: 0.6rem 1rem;
-    display: block;
+
+li a {
+  padding: 0.6rem 1rem;
+  display: block;
 }

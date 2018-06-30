@@ -1,18 +1,25 @@
 <nav class="navbar navbar-light bg-light navbar-expand-lg">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="d-flex justify-content-between w-100">
       <li>
-        <a href="#"><i class="fa fa-bars" style="font-size:28px"></i><span class="sr-only">(current)</span></a>
+        <a href="#">
+          <i class="fa fa-bars" style="font-size:28px"></i>
+          <span class="sr-only">(current)</span>
+        </a>
       </li>
-      <li >
+      <li>
         <img src="./../../assets/app_icon.png" height="50" alt="">
       </li>
-      <li  (logout)="logout()">
-        <a href="#"><i class="fa fa-sign-out" style="font-size:28px"></i> <span class="sr-only">(current)</span></a>
+      <li>
+        <a [routerLink]="" data-toggle="tooltip" data-placement="bottom" title="Logout" (click)="logout()">
+          <i class="fa fa-sign-out" style="font-size:28px"></i>
+          <span class="sr-only">(current)</span>
+        </a>
       </li>
     </div>
   </div>

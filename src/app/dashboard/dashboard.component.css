@@ -1,15 +1,37 @@
-.side{
-    flex: 20%;
-    background-color: #f1f1f1;
-    padding: 20px;
+.fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
-.main{
-    flex: 80%;
-    background-color: white;
-    padding: 20px;
+
+.mainbody {
+  margin-top: 67px;
 }
+
+.side {
+  flex: 20%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+.main {
+  flex: 80%;
+  background-color: white;
+  padding: 20px;
+}
+
+.nav-link:hover {
+  background: white;
+}
+
+.nav-link.active,
+.nav-link:active {
+  background: #007bff !important;
+  color: white !important;
+}
+
 @media screen and (max-width: 700px) {
-    .mainbody {   
-        flex-direction: column;
-    }
+  .mainbody {
+    flex-direction: column;
+  }
 }
