@@ -1,0 +1,13 @@
+<app-navbar class="fixed"></app-navbar>
+
+<div class="d-flex flex-wrap mainbody">
+  <div class="p-2 side">
+    <nav class="nav flex-column">
+      <a class="nav-link" [ngClass]="{'active':id+1==activeId}" (click)="active(id+1)" [routerLink]="" *ngFor="let item of items;let id=index">{{item}}</a>
+
+    </nav>
+  </div>
+  <div class="p-2 main">Flex item
+
+  </div>
+</div>
