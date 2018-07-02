@@ -53,15 +53,22 @@ export class LoginComponent implements AfterViewInit {
       });
     });
   }
-  onSignInGoogle(googleUser) {
-    gapi.auth2.getAuthInstance().signIn().then(
-      function(res) {
-        console.log(res)
-      },
-      function(error) {
+  onSignInGoogle(event) {
+      let googleAuth=gapi.auth2.getAuthInstance()
+      googleAuth.signIn().then(googleUser => {
+        let profile = googleUser.getBasicProfile();
+        let googleData={
+          "token": googleUser.getAuthResponse().id_token,
+          "id": profile.getId(),
+          "name": profile.getName(),
+          "image url": profile.getImageUrl(),
+          "email":   profile.getEmail()
+        };
+        console.log(googleData);
+
+      }).catch(error=>{
         console.log(error) //to find the reason
-      }
-    );
+      })
   }
  
   statusChangeCallback(response: any) {
@@ -76,10 +83,10 @@ export class LoginComponent implements AfterViewInit {
         if (result.status === 'connected') {
             this.testAPIfb();
         }
-    }, { scope: 'user_friends,email' });
+    }, { scope: 'email' });
    }
   testAPIfb() {
-     FB.api('/me?fields=id,email,name,gender,picture.width(150).height(150)', (res) => {
+     FB.api('/me?fields=id,email,name,location,gender,birthday,picture.width(150).height(150)', (res) => {
       console.log('Welcome!  Fetching your information.... ',res);
      })
   }
