@@ -3,7 +3,10 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.4.1-jessie
+      environment:
+          - TERM: xterm
+      - image: node:8.6.0
     steps:
       - checkout
       - run: npm install
-      - run: npm build
+      - run: npm run build
