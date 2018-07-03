@@ -1,13 +1,25 @@
 <app-navbar class="fixed"></app-navbar>
 
-<div class="d-flex flex-wrap mainbody">
-  <div class="p-2 side">
+<div class="d-flex flex-wrap mainbody ">
+  <div class="p-2 side col-12 col-md-3 col-xl-2 bd-sidebar">
     <nav class="nav flex-column">
-      <a class="nav-link" [ngClass]="{'active':id+1==activeId}" (click)="active(id+1)" [routerLink]="" *ngFor="let item of items;let id=index">{{item}}</a>
+      <div class="w-100">
+        <a class="nav-link" [ngClass]="{'active':id+1==activeId}" (click)="active(item,id+1)" [routerLink]="" *ngFor="let item of items;let id=index">
+          {{item | titlecase}}
+        </a>
+      </div>
 
     </nav>
   </div>
-  <div class="p-2 main">Flex item
-
+  <div class="p-2 main">
+    <div class="col-md-12">
+      <h4>Users List</h4>
+      <div class="card" *ngFor="let item of users; let id=index">
+        <div class="card-body">
+          {{item.username}}
+          <br> {{item.email}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

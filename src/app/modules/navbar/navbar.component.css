@@ -5,4 +5,14 @@ li {
 li a {
   padding: 0.6rem 1rem;
   display: block;
+  color: white;
+}
+
+li.img {
+  background: white;
+  border-radius: 15%;
+}
+
+.bg-dark {
+  background: #000000 !important
 }

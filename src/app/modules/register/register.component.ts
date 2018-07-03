@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   register(form: NgForm) {
     this.errAlert = false;
     if (form.value) {
-      this.api.loginApi(form.value, 'register').subscribe(res => {
+      this.api.authApi(form.value, 'register').subscribe(res => {
         this.successAlert = true;
         this.message = res.success;
         setTimeout(() => {

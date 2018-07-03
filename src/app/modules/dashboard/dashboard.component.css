@@ -2,10 +2,11 @@
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1;
 }
 
 .mainbody {
-  margin-top: 67px;
+  margin-top: 66px;
 }
 
 .side {
@@ -14,10 +15,31 @@
   padding: 20px;
 }
 
+.bd-sidebar {
+  position: sticky;
+  top: 66px;
+  border-right: 1px solid rgba(0, 0, 0, .1);
+  z-index: 1000;
+  height: calc(100vh - 66px);
+  order: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
 .main {
   flex: 80%;
   background-color: white;
   padding: 20px;
+}
+
+.nav {
+  max-height: calc(100vh - 9rem);
+  overflow-y: auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.nav-link {
+  width: 100%;
 }
 
 .nav-link:hover {

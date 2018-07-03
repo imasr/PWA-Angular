@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,15 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  items: any = ["11111", "22222", "33333", "44444", "55555", "66666", "77777", "88888", "99999"]
+  items: any = ["users", "22222", "33333", "44444", "55555", "66666", "77777", "88888", "99999"]
   activeId = ""
-  constructor() { }
+  users: any = []
+  constructor(
+    private api: ApiService,
+  ) { }
 
   ngOnInit() {
   }
 
-  active(id) {
+  active(item, id) {
     this.activeId = id
+    this.api.allUsers(item).subscribe(res => {
+      this.users = res
+    })
   }
 
 }

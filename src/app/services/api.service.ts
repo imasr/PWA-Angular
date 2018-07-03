@@ -13,8 +13,19 @@ export class ApiService {
 
     constructor(private http: HttpClient) { }
 
-    loginApi(body, uri): Observable<any> {
+    authApi(body, uri): Observable<any> {
         return this.http.post(`${environment.baseUrl}/${uri}`, body)
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError(err => {
+                    return throwError(err || 'Server error')
+                })
+            )
+    }
+    allUsers(uri): Observable<any> {
+        return this.http.get(`${environment.baseUrl}/${uri}`)
             .pipe(
                 map(res => {
                     return res;
