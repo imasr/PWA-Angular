@@ -1,19 +1,10 @@
 version: 2
 jobs:
-  one:
+  build:
     docker:
       - image: circleci/ruby:2.4.1-jessie
     steps:
       - checkout
       - run: npm install"
-  two:
-    docker:
-      - image: circleci/ruby:2.4.1-jessie
-    steps:
-      - checkout
       - run: npm run build
-  version: 2
-  one_and_two:
-    jobs:
-      - one
-      - two
+  
