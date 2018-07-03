@@ -10,6 +10,7 @@ export class DashboardComponent implements OnInit {
   items: any = ["users", "22222", "33333", "44444", "55555", "66666", "77777", "88888", "99999"]
   activeId = ""
   users: any = []
+  usersView: any;
   constructor(
     private api: ApiService,
   ) { }
@@ -17,11 +18,25 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  active(item, id) {
+  active(id) {
     this.activeId = id
-    this.api.allUsers(item).subscribe(res => {
+    this.getUsers();
+  }
+  getUsers() {
+    this.api.allUsers().subscribe(res => {
       this.users = res
     })
+  }
+  delete(id) {
+    this.api.deleteUser({ "id": id }).subscribe(res => {
+      console.log(res);
+      this.getUsers();
+    }, err => {
+      console.log(err);
+    })
+  }
+  getusebyid(data) {
+    this.usersView = data;
   }
 
 }

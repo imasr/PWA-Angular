@@ -24,8 +24,30 @@ export class ApiService {
                 })
             )
     }
-    allUsers(uri): Observable<any> {
-        return this.http.get(`${environment.baseUrl}/${uri}`)
+    allUsers(): Observable<any> {
+        return this.http.get(`${environment.baseUrl}/users`)
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError(err => {
+                    return throwError(err || 'Server error')
+                })
+            )
+    }
+    deleteUser(body: any): Observable<any> {
+        return this.http.post(`${environment.baseUrl}/users/delete`, body)
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError(err => {
+                    return throwError(err || 'Server error')
+                })
+            )
+    }
+    getUserById(id): Observable<any> {
+        return this.http.get(`${environment.baseUrl}/users/${id}`)
             .pipe(
                 map(res => {
                     return res;
