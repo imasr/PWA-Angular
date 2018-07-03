@@ -18,9 +18,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  active(id) {
+  active(item, id) {
     this.activeId = id
-    this.getUsers();
+    if (item == 'users') {
+      this.getUsers();
+    }
   }
   getUsers() {
     this.api.allUsers().subscribe(res => {
