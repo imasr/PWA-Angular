@@ -4,11 +4,9 @@ jobs:
     docker:
       - image: circleci/ruby:2.4.1-jessie
     steps:
-      - checkout
       - run: npm install
   build:
     docker:
       - image: circleci/ruby:2.4.1-jessie
     steps:
-      - checkout
       - run: npm run build
