@@ -5,6 +5,10 @@ jobs:
       - image: circleci/ruby:2.4.1-jessie
     steps:
       - checkout
-      - run: npm install
-      - run: npm run build
+      - run:
+          name: install-npm
+          command: 'npm install'
+      - run: 
+          name: install-npm
+          command: 'npm run build'
   
