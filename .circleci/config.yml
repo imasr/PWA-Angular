@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: install-npm
+          name: install-npm & build
           command: 'npm install'
 
   
