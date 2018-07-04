@@ -53,7 +53,7 @@ export class LoginComponent implements AfterViewInit {
       });
     });
   }
-  onSignInGoogle(event) {
+  onSignInGoogle() {
     let googleAuth = gapi.auth2.getAuthInstance()
     googleAuth.signIn().then(googleUser => {
       let profile = googleUser.getBasicProfile();
