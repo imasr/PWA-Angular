@@ -3,7 +3,7 @@
 <div class="d-flex flex-wrap mainbody ">
   <div class="p-2 side col-12 col-md-3 col-xl-2 bd-sidebar">
     <nav class="nav flex-column">
-      <div class="w-100">
+      <div class="w-100" *ngIf="items">
         <a class="nav-link" [ngClass]="{'active':id+1==activeId}" (click)="active(item, id+1)" [routerLink]="" *ngFor="let item of items;let id=index">
           {{item | titlecase}}
         </a>
