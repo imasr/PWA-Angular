@@ -17,7 +17,8 @@
       <div class="card" *ngFor="let item of users; let id=index">
         <div class="card-body">
           <div class="d-flex">
-            <img class="rounded-circle border p-1 mr-5" src="assets/user.png" alt="" width=50 height=50>
+            <img class="rounded-circle border mr-5" [src]="image(item.email)" *ngIf="image(item.email)" alt="" width=60 height=60>
+            <img class="rounded-circle border mr-5" src="assets/user.png" *ngIf="!image(item.email)" alt="" width=60 height=60>
             <div (click)="getusebyid(item)" data-toggle="modal" data-target="#exampleModalCenter">
               {{item.username}}
               <br> {{item.email}}

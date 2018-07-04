@@ -24,8 +24,8 @@ export class ApiService {
                 })
             )
     }
-    loginFb(body): Observable<any> {
-        return this.http.post(`${environment.baseUrl}/fblogin`, body)
+    sociallogin(body): Observable<any> {
+        return this.http.post(`${environment.baseUrl}/sociallogin`, body)
             .pipe(
                 map(res => {
                     return res;
@@ -35,17 +35,7 @@ export class ApiService {
                 })
             )
     }
-    loginGoogle(body): Observable<any> {
-        return this.http.post(`${environment.baseUrl}/googlelogin`, body)
-            .pipe(
-                map(res => {
-                    return res;
-                }),
-                catchError(err => {
-                    return throwError(err || 'Server error')
-                })
-            )
-    }
+
     allUsers(): Observable<any> {
         return this.http.get(`${environment.baseUrl}/users`)
             .pipe(

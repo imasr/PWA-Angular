@@ -30,9 +30,7 @@ export class LoginComponent implements AfterViewInit {
     if (form.value) {
       this.api.authApi(form.value, 'login').subscribe(res => {
         if (res.token) {
-          this.storageService.setLocalStorage('accessToken', res.token)
-          this.storageService.setLocalStorage('login', res.success)
-          this._router.navigate(['/dashboard']);
+          this.navigate(res);
         }
       }, err => {
         this.errAlert = true;
@@ -63,11 +61,13 @@ export class LoginComponent implements AfterViewInit {
         "image_url": profile.getImageUrl(),
         "email": profile.getEmail()
       };
-      console.log(googleData);
-      this.api.loginGoogle(googleData).subscribe(res => {
-        console.log(res)
+      this.api.sociallogin(googleData).subscribe(res => {
+        if (res.token) {
+          this.navigate(res);
+        }
       }, err => {
-        console.log(err)
+        this.errAlert = true;
+        this.message = err.error.message;
       })
 
     }).catch(error => {
@@ -99,16 +99,22 @@ export class LoginComponent implements AfterViewInit {
         'fb_id': res.id,
         'birthday': res.birthday
       };
-      console.log(fbdata);
-
-      this.api.loginFb(fbdata).subscribe(res => {
-        console.log(res)
+      this.api.sociallogin(fbdata).subscribe(res => {
+        if (res.token) {
+          this.navigate(res);
+        }
       }, err => {
-        console.log(err)
+        this.errAlert = true;
+        this.message = err.error.message;
       })
     })
   }
-
+  navigate(res) {
+    this.storageService.setLocalStorage('accessToken', res.token)
+    this.storageService.setLocalStorage('login', res.success)
+    this.storageService.setLocalStorage('success', res)
+    this._router.navigate(['/dashboard']);
+  }
   ngAfterViewInit() {
     this.googleInit();
     FB.init({

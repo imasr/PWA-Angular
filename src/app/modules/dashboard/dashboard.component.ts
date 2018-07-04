@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-
+import { image_url } from './../../../config/config';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -9,6 +9,7 @@ import { ApiService } from '../../services/api.service';
 export class DashboardComponent implements OnInit {
   items: any = ["users", "22222", "33333", "44444", "55555", "66666", "77777", "88888", "99999"]
   activeId = ""
+  image_url = image_url;
   users: any = []
   usersView: any;
   constructor(
@@ -16,6 +17,8 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+
   }
 
   active(item, id) {
@@ -29,6 +32,15 @@ export class DashboardComponent implements OnInit {
       this.users = res
     })
   }
+  image(email) {
+    var patt = new RegExp("gmail");
+    var res = patt.exec(email)
+    if (res) {
+      return image_url + '/' + email;
+    } else {
+      return false
+    }
+  };
   delete(id) {
     this.api.deleteUser({ "id": id }).subscribe(res => {
       console.log(res);
