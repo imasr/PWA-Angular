@@ -40,11 +40,8 @@
       <div class="vl mt-3 mb-3">
         <span class="vl-innertext">OR</span>
       </div>
-      <a class="fb btn text-white" (click)="loginFb()">
+      <a class="fb btn text-white" (click)="loginFb($event)">
         <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-      </a>
-      <a href="#" class="twitter btn text-white">
-        <i class="fa fa-twitter fa-fw"></i> Login with Twitter
       </a>
       <a (click)="onSignInGoogle($event)" class="google btn text-white" id="googleBtn">
         <i class="fa fa-google fa-fw">

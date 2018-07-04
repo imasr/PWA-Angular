@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
         this.message = res.success;
         setTimeout(() => {
           this.successAlert = false;
-          this._router.navigate(['/login'])
+          // this._router.navigate(['/login'])
         }, 5000)
       }, err => {
         this.errAlert = true;

@@ -58,13 +58,17 @@ export class LoginComponent implements AfterViewInit {
     googleAuth.signIn().then(googleUser => {
       let profile = googleUser.getBasicProfile();
       let googleData = {
-        "token": googleUser.getAuthResponse().id_token,
-        "id": profile.getId(),
-        "name": profile.getName(),
-        "image url": profile.getImageUrl(),
+        "google_id": profile.getId(),
+        "username": profile.getName(),
+        "image_url": profile.getImageUrl(),
         "email": profile.getEmail()
       };
       console.log(googleData);
+      this.api.loginGoogle(googleData).subscribe(res => {
+        console.log(res)
+      }, err => {
+        console.log(err)
+      })
 
     }).catch(error => {
       console.log(error) //to find the reason
@@ -86,8 +90,22 @@ export class LoginComponent implements AfterViewInit {
     }, { scope: 'email' });
   }
   testAPIfb() {
-    FB.api('/me?fields=id,email,name,location,gender,birthday,picture.width(150).height(150)', (res) => {
-      console.log('Welcome!  Fetching your information.... ', res);
+    FB.api('/me?fields=id,email,name,gender,birthday,picture.width(150).height(150)', (res) => {
+      let fbdata = {
+        'email': res.email,
+        'username': res.name,
+        'gender': res.gender,
+        'image_url': res.picture.data.url,
+        'fb_id': res.id,
+        'birthday': res.birthday
+      };
+      console.log(fbdata);
+
+      this.api.loginFb(fbdata).subscribe(res => {
+        console.log(res)
+      }, err => {
+        console.log(err)
+      })
     })
   }
 
