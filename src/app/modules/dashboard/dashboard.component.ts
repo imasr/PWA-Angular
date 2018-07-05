@@ -7,7 +7,7 @@ import { image_url } from './../../../config/config';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  items: any;
+  items: any = ["users", "22222", "33333", "44444", "55555", "66666", "77777", "88888", "99999"]
   activeId = ""
   image_url = image_url;
   users: any = []
@@ -18,7 +18,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
 
-    this.items = ["users", "22222", "33333", "44444", "55555", "66666", "77777", "88888", "99999"]
+  }
+  ngAfterViewChecked() {
+    
+    
   }
 
   active(item, id) {
