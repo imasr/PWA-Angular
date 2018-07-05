@@ -47,9 +47,15 @@
         </button>
       </div>
       <div class="modal-body" *ngIf="usersView">
-        <p>{{usersView._id}}</p>
-        <p>{{usersView.username}}</p>
-        <p>{{usersView.email}}</p>
+        <img class="rounded-circle border mr-5" [src]="image(usersView.email)" *ngIf="image(usersView.email)" alt="" width=60 height=60>
+        <img class="rounded-circle border mr-5" src="assets/user.png" *ngIf="!image(usersView.email)" alt="" width=60 height=60>
+        <p *ngIf="usersView.username">Username: {{usersView.username}}</p>
+        <p *ngIf="usersView.gender">Gender: {{usersView.gender}}</p>
+        <p *ngIf="usersView.birthday">Birthday: {{usersView.birthday}}</p>
+        <p *ngIf="usersView.fb_id">Facebookk Id: {{usersView.fb_id}}</p>
+        <p *ngIf="usersView.google_id">Google Id: {{usersView.google_id}}</p>
+        <p *ngIf="usersView._id">Mongo Id: {{usersView._id}}</p>
+        <p *ngIf="usersView.email">Email: {{usersView.email}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
