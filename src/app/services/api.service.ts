@@ -11,21 +11,12 @@ import { environment } from "./../../environments/environment";
 
 export class ApiService {
 
-    constructor(private http: HttpClient) { }
+    constructor(
+        private http: HttpClient
+    ) { }
 
     authApi(body, uri): Observable<any> {
         return this.http.post(`${environment.baseUrl}/${uri}`, body)
-            .pipe(
-                map(res => {
-                    return res;
-                }),
-                catchError(err => {
-                    return throwError(err || 'Server error')
-                })
-            )
-    }
-    sociallogin(body): Observable<any> {
-        return this.http.post(`${environment.baseUrl}/sociallogin`, body)
             .pipe(
                 map(res => {
                     return res;
@@ -47,6 +38,7 @@ export class ApiService {
                 })
             )
     }
+
     deleteUser(body: any): Observable<any> {
         return this.http.post(`${environment.baseUrl}/users/delete`, body)
             .pipe(
@@ -58,6 +50,7 @@ export class ApiService {
                 })
             )
     }
+
     getUserById(id): Observable<any> {
         return this.http.get(`${environment.baseUrl}/users/${id}`)
             .pipe(

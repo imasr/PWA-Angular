@@ -4,19 +4,19 @@
       <h5 class="text-center p-3 font-weight-bold text-white">Sign Up</h5>
       <div *ngIf="errAlert" class="alert alert-danger">{{message}}</div>
       <div *ngIf="successAlert" class="alert alert-success">{{message}}</div>
-      <form #loginForm="ngForm" class="needs-validation" (submit)="loginForm.form.valid && register(loginForm)" novalidate>
-        <div class="form-group" >
-            <input type="text" class="form-control" [ngClass]="{'is-invalid': username.invalid && (username.dirty || username.touched),
-            'is-valid': username.valid && (username.dirty || username.touched)}"   required placeholder="Username" [(ngModel)]="loginForm.username" name="username"
-              #username="ngModel">
-              <div class="invalid-feedback" *ngIf="username.errors && (username.dirty || username.touched)">
-                <p *ngIf="username.errors.required" class="has-error">Name is required</p>
-              </div>
+      <form #registerForm="ngForm" class="needs-validation" (submit)="registerForm.form.valid && register(registerForm)" novalidate>
+        <div class="form-group">
+          <input type="text" class="form-control" [ngClass]="{'is-invalid': username.invalid && (username.dirty || username.touched),
+            'is-valid': username.valid && (username.dirty || username.touched)}" required placeholder="Username" [(ngModel)]="registerForm.username"
+            name="username" #username="ngModel">
+          <div class="invalid-feedback" *ngIf="username.errors && (username.dirty || username.touched)">
+            <p *ngIf="username.errors.required" class="has-error">Name is required</p>
+          </div>
         </div>
         <div class="form-group">
           <input type="email" [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched),
-            'is-valid': email.valid && (email.dirty || email.touched)}" class="form-control" name="email" autoComplete="off" placeholder="Email" [(ngModel)]="loginForm.email"
-          #email="ngModel" required pattern="^[a-z0-9](\.?[a-z0-9_-]){0,}@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$">
+            'is-valid': email.valid && (email.dirty || email.touched)}" class="form-control" name="email" autoComplete="off"
+            placeholder="Email" [(ngModel)]="registerForm.email" #email="ngModel" required pattern="^[a-z0-9](\.?[a-z0-9_-]){0,}@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$">
           <div class="invalid-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
             <p *ngIf="email.errors.required">Email is required</p>
             <p *ngIf="email.errors.pattern">Email is Invalid</p>
@@ -24,18 +24,17 @@
         </div>
         <div class="form-group">
           <input type="password" [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched),
-          'is-valid': password.valid && (password.dirty || password.touched)}"  class="form-control" name="password" autoComplete="off" 
-          [(ngModel)]="loginForm.password" placeholder="Password" required  minlength=3 
-          #password="ngModel">
+          'is-valid': password.valid && (password.dirty || password.touched)}" class="form-control" name="password" autoComplete="off"
+            [(ngModel)]="registerForm.password" placeholder="Password" required minlength=3 #password="ngModel">
           <div class="invalid-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
             <p *ngIf="password.errors.required">Password is required</p>
             <p *ngIf="password.errors.minlength">Password should be min 3 character long</p>
           </div>
-          
+
         </div>
-        <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid">Submit</button>
+        <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">Submit</button>
       </form>
-      
+
       <div class="text-center p-3">
         <a href="#" class="text-white" [routerLink]="['/login']">Already User! Login</a>
       </div>

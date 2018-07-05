@@ -1,16 +1,17 @@
 <app-navbar class="fixed"></app-navbar>
 
 <div class="d-flex flex-wrap mainbody ">
+  <!-- left -->
   <div class="p-2 side col-12 col-md-3 col-xl-2 bd-sidebar">
     <nav class="nav flex-column">
-      <div class="w-100" *ngIf="items">
-        <a class="nav-link" [ngClass]="{'active':id+1==activeId}" (click)="active(item, id+1)" [routerLink]="" *ngFor="let item of items;let id=index">
-          {{item | titlecase}}
+      <div class="w-100" *ngIf="sideData">
+        <a class="nav-link" [ngClass]="{'active':index+1==activeId}" (click)="active(item.title, index+1)" [routerLink]="" *ngFor="let item of sideData;let index=index">
+          {{item.title | titlecase}}
         </a>
       </div>
-
     </nav>
   </div>
+  <!-- right -->
   <div class="p-2 main">
     <div class="col-md-12">
       <h4>Users List</h4>
@@ -55,7 +56,9 @@
         <p *ngIf="usersView.fb_id">Facebookk Id: {{usersView.fb_id}}</p>
         <p *ngIf="usersView.google_id">Google Id: {{usersView.google_id}}</p>
         <p *ngIf="usersView._id">Mongo Id: {{usersView._id}}</p>
-        <p *ngIf="usersView.email">Email: {{usersView.email}}</p>
+        <p *ngIf="usersView.email">Email:
+          <a target="_blank" rel="noopener noreferrer" href="https://mail.google.com/mail/?view=cm&fs=1&to={{usersView.email}}">{{usersView.email}}</a>
+        </p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

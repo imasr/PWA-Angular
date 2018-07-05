@@ -1,28 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { ResetComponent } from './reset.component';
 import { FormsModule } from '@angular/forms';
-
-import { ForgetComponent } from './forget.component';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', component: ForgetComponent }
+  { path: '', component: ResetComponent }
 ];
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule,
     FormsModule,
-    RouterModule.forChild(routes)
+    RouterModule,
+    RouterModule.forChild(routes),
   ],
   declarations: [
-    ForgetComponent
+    ResetComponent
   ],
   exports: [
-    ForgetComponent
+    ResetComponent
   ],
   entryComponents: [
-    ForgetComponent
+    ResetComponent
   ]
 })
-export class ForgetModule { }
+export class ResetModule { }

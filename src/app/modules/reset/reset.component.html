@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="d-flex justify-content align-items-center">
+    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-2">
+      <h5 class="text-center p-3 font-weight-bold text-white">Reset Password</h5>
+      <div *ngIf="errAlert" class="alert alert-danger">{{message}}</div>
+      <div *ngIf="successAlert" class="alert alert-success">{{message}}</div>
+
+      <form #resetForm="ngForm" class="needs-validation" (submit)="resetForm.form.valid && reset(resetForm)" novalidate>
+
+        <div class="form-group">
+          <input type="password" [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched),
+              'is-valid': password.valid && (password.dirty || password.touched)}" class="form-control" name="password"
+            autoComplete="off" [(ngModel)]="resetForm.password" placeholder="Password" required minlength=3 #password="ngModel">
+          <div class="invalid-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+            <p *ngIf="password.errors.required">Password is required</p>
+            <p *ngIf="password.errors.minlength">Password should be min 3 character long</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="password" [ngClass]="{'is-invalid': confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched),
+                'is-valid': confirmPassword.valid && (confirmPassword.dirty || confirmPassword.touched)}" class="form-control"
+            name="confirmPassword" autoComplete="off" [(ngModel)]="resetForm.confirmPassword" placeholder="Confirm Password"
+            required minlength=3 #confirmPassword="ngModel">
+          <div class="invalid-feedback" *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)">
+            <p *ngIf="confirmPassword.errors.required">ConfirmPassword is required</p>
+            <p *ngIf="confirmPassword.errors.minlength">Confirm Password should be min 3 character long</p>
+          </div>
+
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="resetForm.invalid">Submit</button>
+      </form>
+
+      <div class="text-center p-3">
+        <a href="#" class="text-white" [routerLink]="['/login']"> Back to Login</a>
+      </div>
+    </div>
+  </div>
+</div>

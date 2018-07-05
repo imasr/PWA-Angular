@@ -14,8 +14,10 @@ export class RegisterComponent implements OnInit {
   successAlert: boolean = false;
   errorMessage: String;
   message: any;
-  constructor(private api: ApiService, private _router: Router) {
-  }
+
+  constructor(
+    private api: ApiService
+  ) { }
 
   register(form: NgForm) {
     this.errAlert = false;
@@ -25,7 +27,7 @@ export class RegisterComponent implements OnInit {
         this.message = res.success;
         setTimeout(() => {
           this.successAlert = false;
-          // this._router.navigate(['/login'])
+          form.reset()
         }, 5000)
       }, err => {
         this.errAlert = true;
