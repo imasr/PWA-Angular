@@ -7,7 +7,7 @@ export const appRoutes: Routes = [
   { path: 'register', loadChildren: 'src/app/modules/register/register.module#RegisterModule', data: { title: 'Registration' } },
   { path: 'login', loadChildren: 'src/app/modules/login/login.module#LoginModule', data: { title: 'Login' } },
   { path: 'forget', loadChildren: 'src/app/modules/forget/forget.module#ForgetModule', data: { title: 'Forget Password' } },
-  { path: 'reset', loadChildren: 'src/app/modules/reset/reset.module#ResetModule', data: { title: 'Reset Password' } },
+  { path: 'reset/:id', loadChildren: 'src/app/modules/reset/reset.module#ResetModule', data: { title: 'Reset Password' } },
   { path: 'dashboard', loadChildren: 'src/app/modules/dashboard/dashboard.module#DashboardModule', data: { title: 'Welcome to Dashboard' } },
   // { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

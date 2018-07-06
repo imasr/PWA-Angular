@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -13,14 +13,20 @@ export class ResetComponent implements OnInit {
   successAlert: boolean = false;
   errorMessage: String;
   message: any;
+  paramsKey:String;
   constructor(
-    private api: ApiService
+    private api: ApiService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   reset(form: NgForm) {
     this.errAlert = false;
     if (form.value) {
-      this.api.authApi(form.value, 'reset').subscribe(res => {
+      let body={
+        newPassword:form.value.confirmPassword,
+        key:this.paramsKey
+      }
+      this.api.authApi(body, 'reset').subscribe(res => {
         this.successAlert = true;
         this.message = res.success;
       }, err => {
@@ -31,6 +37,9 @@ export class ResetComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe((params: ParamMap)=>{
+      this.paramsKey=params.get('id');
+    })
   }
 
 }
