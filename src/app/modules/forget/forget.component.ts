@@ -23,7 +23,8 @@ export class ForgetComponent implements OnInit {
     if (form.value) {
       this.api.authApi(form.value, 'forget').subscribe(res => {
         this.successAlert = true;
-        this.message = res.success;
+        this.message = res.message;
+        form.resetForm()
       }, err => {
         this.errAlert = true;
         this.message = err.error.message;

@@ -16,3 +16,8 @@ li.img {
 .bg-dark {
   background: #000000 !important
 }
+
+li a.hover:hover {
+  background: white;
+  cursor: pointer;
+}

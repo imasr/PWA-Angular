@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
         this.message = res.success;
         setTimeout(() => {
           this.successAlert = false;
-          form.reset()
+          form.resetForm()
         }, 5000)
       }, err => {
         this.errAlert = true;

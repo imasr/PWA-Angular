@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService } from './services/auth-guard.service';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -8,8 +9,8 @@ export const appRoutes: Routes = [
   { path: 'login', loadChildren: 'src/app/modules/login/login.module#LoginModule', data: { title: 'Login' } },
   { path: 'forget', loadChildren: 'src/app/modules/forget/forget.module#ForgetModule', data: { title: 'Forget Password' } },
   { path: 'reset/:id', loadChildren: 'src/app/modules/reset/reset.module#ResetModule', data: { title: 'Reset Password' } },
-  { path: 'dashboard', loadChildren: 'src/app/modules/dashboard/dashboard.module#DashboardModule', data: { title: 'Welcome to Dashboard' } },
-  // { path: '**', redirectTo: '', pathMatch: 'full' }
+  { path: 'dashboard', canActivate: [AuthGuardService], loadChildren: 'src/app/modules/dashboard/dashboard.module#DashboardModule', data: { title: 'Welcome to Dashboard' } },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

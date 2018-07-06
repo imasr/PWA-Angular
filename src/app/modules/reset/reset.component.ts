@@ -13,7 +13,7 @@ export class ResetComponent implements OnInit {
   successAlert: boolean = false;
   errorMessage: String;
   message: any;
-  paramsKey:String;
+  paramsKey: String;
   constructor(
     private api: ApiService,
     private activatedRoute: ActivatedRoute
@@ -21,24 +21,28 @@ export class ResetComponent implements OnInit {
 
   reset(form: NgForm) {
     this.errAlert = false;
-    if (form.value) {
-      let body={
-        newPassword:form.value.confirmPassword,
-        key:this.paramsKey
+    if (form.value.password == form.value.confirmPassword) {
+      let body = {
+        newPassword: form.value.confirmPassword,
+        key: this.paramsKey
       }
       this.api.authApi(body, 'reset').subscribe(res => {
         this.successAlert = true;
-        this.message = res.success;
+        this.message = res.message;
+        form.resetForm()
       }, err => {
+        console.log(err.error.error);
         this.errAlert = true;
-        this.message = err.error.message;
+        this.message = err.error.error;
       })
+    } else {
+      form.form.controls['confirmPassword'].setErrors({ 'incorrect': true });;
     }
   }
 
   ngOnInit() {
-    this.activatedRoute.paramMap.subscribe((params: ParamMap)=>{
-      this.paramsKey=params.get('id');
+    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      this.paramsKey = params.get('id');
     })
   }
 

@@ -1,11 +1,11 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, NgZone } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { ApiService } from '../../services/api.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { Router } from '@angular/router';
 
 declare const FB: any;
-declare const Google: any;
+declare const gapi: any;
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,8 @@ export class LoginComponent implements AfterViewInit {
   constructor(
     private api: ApiService,
     private storageService: LocalStorageService,
-    private _router: Router
+    private router: Router,
+    private zone: NgZone
   ) { }
 
   ngAfterViewInit() {
@@ -37,8 +38,8 @@ export class LoginComponent implements AfterViewInit {
       this.statusChangeCallback(response);
     });
 
-    Google.load('auth2', () => {
-      this.auth2 = Google.auth2.init({
+    gapi.load('auth2', () => {
+      this.auth2 = gapi.auth2.init({
         client_id: "855520535176-rh8cukn0k1u3detofdrjfdm3idmg0ss8.apps.googleusercontent.com",
         scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me'
       }).then((success) => {
@@ -80,7 +81,7 @@ export class LoginComponent implements AfterViewInit {
   }
 
   onSignInGoogle() {
-    let googleAuth = Google.auth2.getAuthInstance()
+    let googleAuth = gapi.auth2.getAuthInstance()
     googleAuth.signIn().then(googleUser => {
       let profile = googleUser.getBasicProfile();
       let googleData = {
@@ -105,10 +106,12 @@ export class LoginComponent implements AfterViewInit {
   apiCall(data, Uri) {
     this.api.authApi(data, Uri).subscribe(res => {
       if (res.token) {
-        this.storageService.setLocalStorage('accessToken', res.token)
-        this.storageService.setLocalStorage('login', res.success)
-        localStorage.setItem('success', JSON.stringify(res));
-        this._router.navigate(['/dashboard']);
+        this.zone.run(() => {
+          this.storageService.setLocalStorage('accessToken', res.token)
+          this.storageService.setLocalStorage('login', res.success)
+          this.storageService.setLocalStorage('success', JSON.stringify(res));
+          this.router.navigate(['/dashboard']);
+        })
       }
     }, err => {
       this.errAlert = true;
