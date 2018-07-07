@@ -1,4 +1,4 @@
-# social-Login-angular5
+# Angular Authentication App
 
 
 ## Getting Started
