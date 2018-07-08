@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Router } from '@angular/router';
 
 @Injectable()
 export class IntercepterHttp implements HttpInterceptor {
   constructor(
-    private router: Router
   ) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let cloneReq;
@@ -27,7 +25,9 @@ export class IntercepterHttp implements HttpInterceptor {
         if (response instanceof HttpErrorResponse) {
           if ((response.status === 401 || response.status === 403) && (window.location.href.match(/\?/g) || []).length < 2) {
             window.localStorage.setItem('loginMessage', JSON.stringify('Token Expire. Please login Again.'));
-            this.router.navigate(['login'])
+            const getUrl = window.location;
+            const baseUrl = getUrl.protocol + '//' + getUrl.host + '/' + getUrl.pathname.split('/')[1];
+            window.location.replace(baseUrl);
           }
           return throwError(response);
         }
