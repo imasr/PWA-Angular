@@ -3,8 +3,10 @@
     <i class="fa fa-camera"></i>Open Camera
   </button>
   <div *ngIf="camera">
-    <video #video style="width:100%; height: 100%;" autoplay></video>
+    <!-- <video #video style="width:100%; height: 100%;" autoplay></video> -->
   </div>
+  <input #video type="file" accept="image/*" capture="camera">
+
   <canvas [hidden]="true" #canvas width="640" height="480"></canvas>
   <button *ngIf="camera" class="btn btn-default" (click)="captureImage()">
     <i class="fa fa-camera"></i>Capture
