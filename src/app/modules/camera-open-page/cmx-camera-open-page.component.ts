@@ -24,8 +24,15 @@ export class CmxCameraOpenPageComponent implements OnInit, OnDestroy {
 
   openCamera() {
     this.camera = true
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+    var browser = <any>navigator;
+    browser.getUserMedia = (browser.getUserMedia ||
+      browser.webkitGetUserMedia ||
+      browser.mozGetUserMedia ||
+      browser.msGetUserMedia);
+    console.log(browser.mediaDevices);
+
+    if (browser.getUserMedia) {
+      browser.mediaDevices.getUserMedia({ video: true, audio: false }).then(stream => {
         // this.video.nativeElement.src = window.URL.createObjectURL(stream);
         this.video.nativeElement.srcObject = stream;
         this.video.nativeElement.play();
