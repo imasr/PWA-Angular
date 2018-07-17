@@ -6,22 +6,20 @@ import { image_url } from './../../../config/config';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
+
 export class DashboardComponent implements OnInit {
   sideData: any = [{ title: 'users', id: 1 }]
   activeId = ""
   image_url = image_url;
   users: any = []
   usersView: any;
+
   constructor(
     private api: ApiService,
   ) { }
 
   ngOnInit() {
-
-  }
-  ngAfterViewChecked() {
-
-
+    this.getUsers()
   }
 
   active(item, id) {
@@ -30,11 +28,13 @@ export class DashboardComponent implements OnInit {
       this.getUsers();
     }
   }
+
   getUsers() {
     this.api.allUsers().subscribe(res => {
       this.users = res
     })
   }
+
   image(email) {
     var patt = new RegExp("gmail");
     var res = patt.exec(email)
@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
       return false
     }
   };
+
   delete(id) {
     this.api.deleteUser({ "id": id }).subscribe(res => {
       console.log(res);
@@ -52,6 +53,7 @@ export class DashboardComponent implements OnInit {
       console.log(err);
     })
   }
+
   getusebyid(data) {
     this.usersView = data;
   }
