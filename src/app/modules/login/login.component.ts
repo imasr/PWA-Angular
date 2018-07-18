@@ -40,7 +40,7 @@ export class LoginComponent implements AfterViewInit {
 
     gapi.load('auth2', () => {
       this.auth2 = gapi.auth2.init({
-        client_id: "855520535176-rh8cukn0k1u3detofdrjfdm3idmg0ss8.apps.googleusercontent.com",
+        client_id: "855520535176-5cn6c7ns61peobb5957v3d78jvsvk2dc.apps.googleusercontent.com",
         scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me'
       }).then((success) => {
         console.log('Libraries are initialized successfully');
