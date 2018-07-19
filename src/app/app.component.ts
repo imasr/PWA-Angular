@@ -42,10 +42,6 @@ export class AppComponent implements OnInit {
   }
 
   generatePush() {
-    if (this.pushData.to === "") {
-      console.log("No token available");
-      return;
-    }
     this.pushService.generatePush(this.pushData)
       .subscribe(data => { console.log("Succesfully Posted") }, err => console.log(err));
   }

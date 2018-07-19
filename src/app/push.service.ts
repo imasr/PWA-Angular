@@ -23,6 +23,7 @@ export class PushService {
 
   updateToken(token) {
     this.afAuth.authState.pipe(take(1)).subscribe(user => {
+      console.log(user)
       if (!user) return;
 
       const data = { [user.uid]: token }
@@ -33,10 +34,11 @@ export class PushService {
     this.messaging.requestPermission()
       .then(() => {
         console.log('Notification permission granted.');
+        console.log(this.messaging.getToken())
         return this.messaging.getToken()
       })
       .then(token => {
-        console.log(token)
+        console.log('tokennnnnnnnnnn', token)
         this.updateToken(token)
       })
       .catch((err) => {
