@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, ActivatedRouteSnapshot } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import * as firebase from 'firebase';
 import { PushService } from "./push.service";
+import * as firebase from 'firebase';
+
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { map } from '../../node_modules/rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,14 @@ import { map } from '../../node_modules/rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  messaging: any;
-  token: any;
-  itemsArr: any = []
-  items: AngularFireList<any>
+  messaging: any
+  token: any  // Stores the current token ID instance generated
+  items: any;
+  itemsDisplay: AngularFireList<any[]> // List observable for template view (Optional. items itself can be used)
+  itemsArr: any[] // Stores the token IDs retrieved from the firebase database 
+  hideToken: boolean = false
+
+  // Notificayion object
   pushData: any = {
     'notification': {
       "title": "Background Message Title",
@@ -27,37 +32,44 @@ export class AppComponent implements OnInit {
     private router: Router,
     private activateRoute: ActivatedRoute,
     private titleServive: Title,
-    private db: AngularFireDatabase,
+    public db: AngularFireDatabase,
     private pushService: PushService
   ) {
+    this.itemsDisplay = db.list('/items')
+
+    // Declaring the property value of messaging
     this.messaging = firebase.messaging();
 
-    this.messaging.onTokenRefresh(() => {
+    // Check for token refresh
+    this.messaging.onTokenRefresh(function () {
       this.messaging.getToken()
-        .then(refreshedToken => {
+        .then(function (refreshedToken) {
           console.log('Token refreshed.');
         })
-        .catch(err => {
+        .catch(function (err) {
           console.log('Unable to retrieve refreshed token ', err);
         });
     });
 
+    // Obtaining the firebase data and retrieving token ID values separately
     this.itemsArr = []  // Reinitialize the array to prevent data duplication
-    this.db.list('items').snapshotChanges()
-      .pipe(
-        map(actions =>
-          actions.map(a => ({ key: a.key, ...a.payload.val() }))
-        )
-      ).subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
-          console.log('>>>>>>>>>>>>>>>>>>>...', snapshot.key);
-          this.itemsArr.push(snapshot.key);
-        });
+    this.items = this.db.list('items').snapshotChanges().pipe(
+      map(actions => actions)
+    )
+    this.items.subscribe(snapshots => {
+      snapshots.forEach(snapshot => {
+        console.log(snapshot.val().tokenID);
+        this.itemsArr.push(snapshot.val().tokenID);
       });
-
+    });
+    // console.log(this.itemsArr)
   }
 
+  // Check for duplicates in token subscription
   checkToken(token, arr) {
+    console.log("Inside check token function")
+    console.log(arr)
+    console.log(token)
     let counter: number = 0
     for (var i = 0; i < arr.length; i++) {
       if (arr[i] === token) {
@@ -68,7 +80,6 @@ export class AppComponent implements OnInit {
     return counter
   }
 
-
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -77,16 +88,17 @@ export class AppComponent implements OnInit {
       }
     })
 
-    // this.items = this.db.list('/items')
+    this.items = this.db.list('/items')
     this.messaging.requestPermission()
-      .then((res) => {
-        console.log('Notification permission granted.', res);
+      .then(function () {
+        console.log('Notification permission granted.');
         this.messaging.getToken()
-          .then(currentToken => {
+          .then(function (currentToken) {
             if (currentToken) {
               this.token = currentToken
               this.pushData.to = this.token
               console.log(this.pushData.to)
+
               // Set a timeout so as to enable all the data to be loaded
               setTimeout(() => {
                 if (this.checkToken(this.token, this.itemsArr) === 0) {
@@ -98,20 +110,24 @@ export class AppComponent implements OnInit {
               }, 6500)
               // Displays the current token data
               console.log("currentToken: ", currentToken);
+              console.log("Stored token: ", this.token);
             } else {
               // Show permission request.
               console.log('No Instance ID token available. Request permission to generate one.');
             }
           })
-          .catch((err) => {
+          .catch(function (err) {
             console.log('An error occurred while retrieving token.', err);
           });
       })
-      .catch((err) => {
+      .catch(function (err) {
         console.log('Unable to get permission to notify. ', err);
       })
 
-    this.messaging.onMessage(payload => {
+    // Handle incoming messages. Called when:
+    // - a message is received while the app has focus
+    // - the user clicks on an app notification created by a sevice worker `messaging.setBackgroundMessageHandler` handler.
+    this.messaging.onMessage(function (payload) {
       console.log("Message received. ", payload);
     });
   }

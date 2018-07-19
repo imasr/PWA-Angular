@@ -12,7 +12,7 @@ export class IntercepterHttp implements HttpInterceptor {
     if (request.urlWithParams.indexOf('fcm') > 0) {
       cloneReq = request.clone({
         headers: request.headers.set('Content-Type', 'application/json')
-          .set('Authorization', 'key=AAAA54rdffY:APA91bFbd_y9KjhwvVFCUCTUbfCus3-sS6lAz4LFjWr-Z0I859_HV_AVta6Qaojv0KoarTs649n-cR_chyFHM8qZxjtkbFGV-eK9XvSsgq60-kL-W-TAd0fZZyk6lNXOJwcO6jsVRDIY')
+          .set('Authorization', 'key=AAAAo8RvyOE:APA91bFBQ1gCezJqTQW__UxSy_-7-qR8PPSzGMcESAY-Vt3zcJRhnLss6uHIha3YSUDl_1jsXqgw_oZ0Fec7QhaAxv2iDuoEBL6aFXltoeqh0zenKwBODHdlksznf3_2yWcrnVeU9ZNJ2vQ7eaiZSlFECm6iEiWrCw')
       })
     } else if (request.urlWithParams.indexOf('sociallogin') > 0 || request.urlWithParams.indexOf('login') > 0 || request.urlWithParams.indexOf('register') > 0) {
       cloneReq = request.clone({

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { catchError, map } from '../../node_modules/rxjs/operators';
-
+import { take, map } from "rxjs/operators";
 @Injectable({
   providedIn: 'root'
 })
 export class PushService {
-
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+  ) { }
 
   generatePush(pushData) {
 
