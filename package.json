@@ -28,18 +28,20 @@
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/pwa": "^0.6.8",
     "@angular/router": "^6.0.3",
+    "@angular/service-worker": "^6.0.3",
     "@auth0/angular-jwt": "^2.0.0",
+    "angularfire2": "^5.0.0-rc.11",
     "bootstrap": "^4.1.1",
     "core-js": "^2.5.4",
     "express": "^4.16.3",
+    "firebase": "^5.2.0",
     "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
     "npm": "^6.1.0",
     "popper.js": "^1.14.3",
     "rxjs": "^6.0.0",
     "typescript": "~2.7.2",
-    "zone.js": "^0.8.26",
-    "@angular/service-worker": "^6.0.3"
+    "zone.js": "^0.8.26"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^6.0.3",

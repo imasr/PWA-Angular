@@ -9,7 +9,12 @@ export class IntercepterHttp implements HttpInterceptor {
   ) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let cloneReq;
-    if (request.urlWithParams.indexOf('sociallogin') > 0 || request.urlWithParams.indexOf('login') > 0 || request.urlWithParams.indexOf('register') > 0) {
+    if (request.urlWithParams.indexOf('fcm') > 0) {
+      cloneReq = request.clone({
+        headers: request.headers.set('Content-Type', 'application/json')
+          .set('Authorization', 'AAAAo8RvyOE:APA91bFBQ1gCezJqTQW__UxSy_-7-qR8PPSzGMcESAY-Vt3zcJRhnLss6uHIha3YSUDl_1jsXqgw_oZ0Fec7QhaAxv2iDuoEBL6aFXltoeqh0zenKwBODHdlksznf3_2yWcrnVeU9ZNJ2vQ7eaiZSlFECm6iEiWrCw')
+      })
+    } else if (request.urlWithParams.indexOf('sociallogin') > 0 || request.urlWithParams.indexOf('login') > 0 || request.urlWithParams.indexOf('register') > 0) {
       cloneReq = request.clone({
         headers: request.headers.set('Content-Type', 'application/json')
       })

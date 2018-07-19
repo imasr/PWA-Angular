@@ -1,6 +1,6 @@
 {
   "name": "Social Login",
-  "short_name": "Social Login",
+  "gcm_sender_id": "103953800507",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
