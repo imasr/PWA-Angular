@@ -11,13 +11,7 @@ import { PushService } from "./push.service";
 export class AppComponent implements OnInit {
 
   message: any;
-  pushData: any = {
-    'notification': {
-      "title": "Background Message Title",
-      "body": "Background Message Body"
-    },
-    "to": ""
-  }
+
 
   constructor(
     private router: Router,
@@ -42,8 +36,12 @@ export class AppComponent implements OnInit {
   }
 
   generatePush() {
-    this.pushService.generatePush(this.pushData)
-      .subscribe(data => { console.log("Succesfully Posted") }, err => console.log(err));
+    this.pushService.generatePush()
+      .subscribe(data => {
+        console.log("Succesfully Posted")
+      }, err =>
+          console.log(err)
+      );
   }
 
   private getTitle(routeSnapshot: ActivatedRouteSnapshot, title: string = '') {

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { take, map } from "rxjs/operators";
+import { take, map, catchError } from "rxjs/operators";
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -14,7 +14,13 @@ export class PushService {
 
   messaging = firebase.messaging()
   currentMessage = new BehaviorSubject(null)
-
+  pushData: any = {
+    'notification': {
+      "title": "Background Message Title",
+      "body": "Background Message Body"
+    },
+    "to": ""
+  }
   constructor(
     private http: HttpClient,
     private db: AngularFireDatabase,
@@ -23,9 +29,10 @@ export class PushService {
 
   updateToken(token) {
     this.afAuth.authState.pipe(take(1)).subscribe(user => {
-      console.log(user)
-      if (!user) return;
+      console.log('user', user)
+      this.pushData.to = token
 
+      if (!user) return;
       const data = { [user.uid]: token }
       this.db.object('fcmTokens/').update(data)
     })
@@ -54,12 +61,15 @@ export class PushService {
 
   }
 
-  generatePush(pushData) {
+  generatePush() {
 
-    return this.http.post('https://fcm.googleapis.com/fcm/send', pushData)
+    return this.http.post('https://fcm.googleapis.com/fcm/send', this.pushData)
       .pipe(
         map(data => {
-          console.log("Successfully Sent")
+          console.log("Successfully Sent", data)
+        }),
+        catchError(err => {
+          return throwError(err)
         })
       );
   }
