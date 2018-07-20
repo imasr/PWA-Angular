@@ -1,5 +1,5 @@
 <button (click)="generatePush()">generate</button>
-<div class="bg-white">{{ message | json }}
+<div class="bg-white">{{ message |async | json }}
 </div>
 
 <router-outlet></router-outlet>
