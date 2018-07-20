@@ -27,16 +27,6 @@ export class PushService {
     private afAuth: AngularFireAuth
   ) { }
 
-  updateToken(token) {
-    this.afAuth.authState.pipe(take(1)).subscribe(user => {
-      console.log('user', user)
-      this.pushData.to = token
-
-      if (!user) return;
-      const data = { [user.uid]: token }
-      this.db.object('fcmTokens/').update(data)
-    })
-  }
   getPermission() {
     this.messaging.requestPermission()
       .then(() => {
@@ -46,7 +36,7 @@ export class PushService {
       })
       .then(token => {
         console.log('tokennnnnnnnnnn', token)
-        this.updateToken(token)
+        this.pushData.to = token
       })
       .catch((err) => {
         console.log('Unable to get permission to notify.', err);
