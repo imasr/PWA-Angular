@@ -14,10 +14,12 @@ export class PushService {
 
   messaging = firebase.messaging()
   currentMessage = new BehaviorSubject(null)
+  showtoken = new BehaviorSubject(null)
   pushData: any = {
     'notification': {
       "title": "Background Message Title",
-      "body": "Background Message Body"
+      "body": "Background Message Body",
+      "icon": "assets/logo.png"
     },
     "to": ""
   }
@@ -36,6 +38,7 @@ export class PushService {
       })
       .then(token => {
         console.log('tokennnnnnnnnnn', token)
+        this.showtoken.next(this.pushData)
         this.pushData.to = token
       })
       .catch((err) => {

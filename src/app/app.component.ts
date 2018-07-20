@@ -11,6 +11,7 @@ import { PushService } from "./push.service";
 export class AppComponent implements OnInit {
 
   message: any;
+  showtoken: any;
 
 
   constructor(
@@ -26,6 +27,7 @@ export class AppComponent implements OnInit {
     this.pushService.getPermission()
     this.pushService.receiveMessage()
     this.message = this.pushService.currentMessage
+    this.showtoken = this.pushService.showtoken
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
