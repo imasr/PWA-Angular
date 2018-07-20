@@ -16,13 +16,16 @@ export class PushService {
   currentMessage = new BehaviorSubject(null)
   showtoken = new BehaviorSubject(null)
   pushData: any = {
-    'notification': {
-      "title": "Background Message Title",
-      "body": "Background Message Body",
-      "icon": "assets/logo.png"
+    "notification": {
+      "title": "Hello Angular",
+      "body": "Its Push Notification Body",
+      "icon": "assets/logo.png",
+      "click_action": "login"
     },
     "to": ""
   }
+  pushNotice = [];
+
   constructor(
     private http: HttpClient,
     private db: AngularFireDatabase,
@@ -33,13 +36,12 @@ export class PushService {
     this.messaging.requestPermission()
       .then(() => {
         console.log('Notification permission granted.');
-        console.log(this.messaging.getToken())
         return this.messaging.getToken()
       })
       .then(token => {
         console.log('tokennnnnnnnnnn', token)
-        this.showtoken.next(this.pushData)
         this.pushData.to = token
+        this.showtoken.next(token)
       })
       .catch((err) => {
         console.log('Unable to get permission to notify.', err);
@@ -49,7 +51,8 @@ export class PushService {
   receiveMessage() {
     this.messaging.onMessage((payload) => {
       console.log("Message received. ", payload);
-      this.currentMessage.next(payload)
+      this.pushNotice.push(payload)
+      this.currentMessage.next(this.pushNotice)
     });
 
   }

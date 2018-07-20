@@ -13,7 +13,9 @@ body {
 * {
   box-sizing: border-box;
 }
-
+.mainbody {
+  margin-top: 66px;
+}
 /* style the container */
 
 .loaderBody {

@@ -1,6 +1,9 @@
-<button (click)="generatePush()">generate</button>
-<div class="bg-white">{{ message |async | json }}
-</div>
+<app-navbar class="fixed" [home]="true"></app-navbar>
 
-<div class="bg-white">{{showtoken|async|json}}</div>
 <router-outlet></router-outlet>
+<div class="mainbody">
+    <button (click)="generatePush()">generate</button>
+    <pre class="bg-white">{{ message._value  | json }}</pre>
+
+    <div class="bg-white">{{showtoken|async|json}}</div>
+</div>

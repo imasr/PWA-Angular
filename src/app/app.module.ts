@@ -8,6 +8,8 @@ import { IntercepterHttp } from './http.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { NavbarComponent } from './modules/navbar/navbar.component';
+
 import { firebaseConfig } from '../environments/firebase.config';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -16,6 +18,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
