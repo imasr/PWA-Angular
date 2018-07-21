@@ -20,7 +20,7 @@
           <i class="fa fa-sign-out" style="font-size:28px"></i>
           <span class="sr-only">(current)</span>
         </a>
-        <a *ngIf="home" class="hover" data-toggle="tooltip" data-placement="bottom" title="Notification">
+        <a *ngIf="home" class="hover" data-toggle="modal" data-target="#notification">
           <i class=" fa fa-bell " style="font-size:28px "></i>
           <span class="badge badge-secondary " *ngIf="message?._value?.length!=0 ">{{message?._value?.length}}</span>
           <span class="sr-only ">(current)</span>
@@ -29,3 +29,25 @@
     </div>
   </div>
 </nav>
+
+<div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="notificationModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" *ngIf="usersView" id="notificationModalCenterTitle">Push Notification</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <button class="btn btn-secondary" (click)="generatePush()">Generate Push</button>
+        <br>
+        <div class="alert alert-info" style="word-wrap: break-word;">{{showtoken|async}}</div>
+        <pre *ngIf="message?._value?.length!=0 ">{{message?._value | json}}</pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

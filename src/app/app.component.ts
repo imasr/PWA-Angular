@@ -8,26 +8,19 @@ import { PushService } from "./push.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit {
-
-  message: any;
-  showtoken: any;
-
 
   constructor(
     private router: Router,
     private activateRoute: ActivatedRoute,
     private titleServive: Title,
     private pushService: PushService
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     this.pushService.getPermission()
     this.pushService.receiveMessage()
-    this.message = this.pushService.currentMessage
-    this.showtoken = this.pushService.showtoken
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
@@ -35,15 +28,6 @@ export class AppComponent implements OnInit {
         this.titleServive.setTitle(title)
       }
     })
-  }
-
-  generatePush() {
-    this.pushService.generatePush()
-      .subscribe(data => {
-        console.log("Succesfully Posted")
-      }, err =>
-          console.log(err)
-      );
   }
 
   private getTitle(routeSnapshot: ActivatedRouteSnapshot, title: string = '') {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { image_url } from './../../../config/config';
+import { CommonService } from '../../services/common.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -16,10 +17,15 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private api: ApiService,
+    private commonService: CommonService,
   ) { }
 
   ngOnInit() {
+    this.commonService.dashboard(true);
     this.getUsers()
+  }
+  ngOnDestroy() {
+    this.commonService.dashboard(false);
   }
 
   active(item, id) {
