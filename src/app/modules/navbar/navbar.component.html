@@ -30,7 +30,7 @@
   </div>
 </nav>
 
-<div id="mySidenav" class="sidenav" [ngClass]="sideNav ? 'open' : 'close' ">
+<div *ngIf="!home" id="mySidenav" class="sidenav" [ngClass]="sideNav ? 'open' : 'close' ">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
   <a href="#" (click)="about()">About</a>
   <a href="#" (click)="services()">Services</a>
