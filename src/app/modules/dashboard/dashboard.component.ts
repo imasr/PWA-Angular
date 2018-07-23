@@ -10,7 +10,7 @@ import { CommonService } from '../../services/common.service';
 
 export class DashboardComponent implements OnInit {
   sideData: any = [{ title: 'users', id: 1 }]
-  activeId = ""
+  activeId = 1
   image_url = image_url;
   users: any = []
   usersView: any;

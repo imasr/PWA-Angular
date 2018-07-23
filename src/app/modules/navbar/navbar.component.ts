@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   home: boolean = true;
   message: any;
   showtoken: any;
+  sideNav: boolean = false;
   constructor(
     private localStorage: LocalStorageService,
     private router: Router,
@@ -47,5 +48,14 @@ export class NavbarComponent implements OnInit {
     this.localStorage.clearLocalStorage();
     this.router.navigate(['/login'])
   }
+
+  closeNav() {
+    this.sideNav = !this.sideNav
+  }
+  about() {
+
+  }
+  contact() { }
+  services() { }
 
 }
