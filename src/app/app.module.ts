@@ -15,24 +15,24 @@ import 'firebase/messaging';
 
 firebase.initializeApp(firebaseConfig);
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: IntercepterHttp,
-      multi: true
-    }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavbarComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: IntercepterHttp,
+            multi: true
+        }
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

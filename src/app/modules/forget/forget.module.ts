@@ -6,23 +6,23 @@ import { FormsModule } from '@angular/forms';
 import { ForgetComponent } from './forget.component';
 
 const routes: Routes = [
-  { path: '', component: ForgetComponent }
+    { path: '', component: ForgetComponent }
 ];
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    FormsModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [
-    ForgetComponent
-  ],
-  exports: [
-    ForgetComponent
-  ],
-  entryComponents: [
-    ForgetComponent
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        FormsModule,
+        RouterModule.forChild(routes)
+    ],
+    declarations: [
+        ForgetComponent
+    ],
+    exports: [
+        ForgetComponent
+    ],
+    entryComponents: [
+        ForgetComponent
+    ]
 })
 export class ForgetModule { }

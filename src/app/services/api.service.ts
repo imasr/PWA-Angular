@@ -14,7 +14,6 @@ export class ApiService {
     constructor(
         private http: HttpClient
     ) { }
-
     authApi(body, uri): Observable<any> {
         return this.http.post(`${environment.baseUrl}/${uri}`, body)
             .pipe(
@@ -26,7 +25,6 @@ export class ApiService {
                 })
             )
     }
-
     allUsers(): Observable<any> {
         return this.http.get(`${environment.baseUrl}/users`)
             .pipe(
@@ -38,7 +36,6 @@ export class ApiService {
                 })
             )
     }
-
     deleteUser(body: any): Observable<any> {
         return this.http.post(`${environment.baseUrl}/users/delete`, body)
             .pipe(
@@ -50,7 +47,6 @@ export class ApiService {
                 })
             )
     }
-
     getUserById(id): Observable<any> {
         return this.http.get(`${environment.baseUrl}/users/${id}`)
             .pipe(

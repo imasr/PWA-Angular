@@ -5,22 +5,22 @@ import { RouterModule, Routes } from '../../../../node_modules/@angular/router';
 import { CmxCameraOpenPageComponent } from './cmx-camera-open-page.component';
 
 const routes: Routes = [
-  { path: '', component: CmxCameraOpenPageComponent }
+    { path: '', component: CmxCameraOpenPageComponent }
 ];
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [
-    CmxCameraOpenPageComponent
-  ],
-  exports: [
-    CmxCameraOpenPageComponent
-  ],
-  entryComponents: [
-    CmxCameraOpenPageComponent
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        RouterModule.forChild(routes)
+    ],
+    declarations: [
+        CmxCameraOpenPageComponent
+    ],
+    exports: [
+        CmxCameraOpenPageComponent
+    ],
+    entryComponents: [
+        CmxCameraOpenPageComponent
+    ]
 })
 export class CmxCameraOpenPageModule { }

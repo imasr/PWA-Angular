@@ -1,120 +1,112 @@
 /* You can add global styles to this file, and also import other style files */
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  height: 91vh;
-  background: url('./assets/bg.png') no-repeat center center fixed;
-  border-radius: 0;
-  height: 100%;
-  background-size: cover;
-}
-
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    height: 91vh;
+    background: url('./assets/bg.png') no-repeat center center fixed;
+    border-radius: 0;
+    height: 100%;
+    background-size: cover;
 }
 .mainbody {
-  margin-top: 66px;
+    margin-top: 66px;
 }
-/* style the container */
-
 .loaderBody {
-  width: 50px;
-  margin: auto;
-  padding: 8px;
+    width: 50px;
+    margin: auto;
+    padding: 8px;
 }
 @media screen and (max-width: 650px) {
-  .justify-content-local {
-    justify-content: center !important;
-  }
+    .justify-content-local {
+        justify-content: center !important;
+    }
 }
 .justify-content-local{
-  justify-content: flex-end;
-  height: 90vh;
+    justify-content: flex-end;
+    height: 90vh;
 }
-
-
 .loader {
-  border: 5px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 5px solid #3498db;
-  width: 35px;
-  height: 35px;
-  -webkit-animation: spin 2s linear infinite;
-  /* Safari */
-  animation: spin 2s linear infinite;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 35px;
+    height: 35px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
 }
 
 /* Safari */
-
 @-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
-
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 
 /* toogle checkox button */
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-  z-index: 99999999;
-  margin: 0 !important;
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    z-index: 99999999;
+    margin: 0 !important;
 }
 .switch input {display:none;}
 .switch .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 .switch .slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 .switch input:checked + .slider {
-  background-color: #2196F3;
+    background-color: #2196F3;
 }
 
 .switch input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+     box-shadow: 0 0 1px #2196F3;
 }
 .switch input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
 }
 /* Rounded sliders */
 .switch .slider.round {
-  border-radius: 34px;
+    border-radius: 34px;
 }
 .switch .slider.round:before {
-  border-radius: 50%;
+     border-radius: 50%;
 }
 /* toogle checkox button END*/

@@ -1,102 +1,102 @@
 <div class="navbar-light bg-dark p-2">
-  <div class="d-flex justify-content-between w-100 ">
-    <li *ngIf="!home" class="d-bar">
-      <a (click)="closeNav()" class="hover">
-        <i class="fa fa-bars" style="font-size:28px"></i>
-        <span class="sr-only">(current)</span>
-      </a>
-    </li>
-    <li *ngIf="!home" class="d-profile">
-      <a style="padding: 0.3rem 0.3rem;" class="hover" (click)="closeNav()">
-        <i class="fa fa-user-circle-o" style="font-size: 34px;"></i>
-        <span class="sr-only">(current)</span>
-      </a>
-    </li>
-    <li>
-      <img src="./../../assets/app_icon.png" class="logo img" alt="">
-    </li>
-    <li *ngIf="!home" class="d-profile">
-      <a style="padding: 0.3rem 0.3rem;" class="hover" (click)="closeNav()">
-        <i class="fa fa-bars" style="font-size:28px">
-        </i>
-        <span class="sr-only">(current)</span>
-      </a>
-    </li>
-    <li *ngIf="!home" class="d-bar">
-      <a data-toggle="tooltip" class="hover" data-placement="bottom" title="Logout" (click)="logout()">
-        <i class="fa fa-sign-out" style="font-size:28px"></i>
-        <span class="sr-only">(current)</span>
-      </a>
-    </li>
-    <li *ngIf="home">
-      <a data-toggle="modal" class="hover" data-target="#notification">
-        <i class=" fa fa-bell " style="font-size:28px "></i>
-        <span class="badge badge-secondary " *ngIf="message?.length!=0 ">{{message?.length}}</span>
-        <span class="sr-only ">(current)</span>
-      </a>
-    </li>
-  </div>
+    <div class="d-flex justify-content-between w-100 ">
+        <li *ngIf="!home" class="d-bar">
+            <a (click)="closeNav()" class="hover">
+                <i class="fa fa-bars" style="font-size:28px"></i>
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        <li *ngIf="!home" class="d-profile">
+            <a style="padding: 0.3rem 0.3rem;" class="hover" (click)="closeNav()">
+                <i class="fa fa-user-circle-o" style="font-size: 34px;"></i>
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        <li>
+            <img src="./../../assets/app_icon.png" class="logo img" alt="">
+        </li>
+        <li *ngIf="!home" class="d-profile">
+            <a style="padding: 0.3rem 0.3rem;" class="hover" (click)="closeNav()">
+                <i class="fa fa-bars" style="font-size:28px">
+                </i>
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        <li *ngIf="!home" class="d-bar">
+            <a data-toggle="tooltip" class="hover" data-placement="bottom" title="Logout" (click)="logout()">
+                <i class="fa fa-sign-out" style="font-size:28px"></i>
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        <li *ngIf="home">
+            <a data-toggle="modal" class="hover" data-target="#notification">
+                <i class=" fa fa-bell " style="font-size:28px "></i>
+                <span class="badge badge-secondary " *ngIf="message?.length!=0 ">{{message?.length}}</span>
+                <span class="sr-only ">(current)</span>
+            </a>
+        </li>
+    </div>
 </div>
 
 <div *ngIf="!home" id="mySidenav" class="sidenav  shadow-lg" [ngClass]="sideNav ? 'open' : 'close' ">
-  <div class="menu-header pl-3 pr-3 d-flex justify-content-between align-items-center text-white">
-    Menu
-    <a href="javascript:void(0)" class=" p-0" (click)="closeNav()">
-      <i class="fa fa-close"></i>
-    </a>
-  </div>
-  <div class="shadow-sm p-3">
-    <div class="d-flex">
-      <div class="my-2 mr-2">
-        <img [src]="image(user?.email) || 'assets/user.png'" class="rounded-circle" width="60">
-      </div>
-      <div class="d-flex flex-column justify-content-center">
-        <h5 class="py-1 pl-1">{{user?.username}}</h5>
+    <div class="menu-header pl-3 pr-3 d-flex justify-content-between align-items-center text-white">
+        Menu
+        <a href="javascript:void(0)" class=" p-0" (click)="closeNav()">
+            <i class="fa fa-close"></i>
+        </a>
+    </div>
+    <div class="shadow-sm p-3">
+        <div class="d-flex">
+            <div class="my-2 mr-2">
+                <img [src]="image(user?.email) || 'assets/user.png'" class="rounded-circle" width="60">
+            </div>
+            <div class="d-flex flex-column justify-content-center">
+                <h5 class="py-1 pl-1">{{user?.username}}</h5>
 
-        <div class="d-flex py-1 align-items-center">
-          <i class="fa fa-dot-circle-o  text-success w-20"></i>
-          <span>Online</span>
+                <div class="d-flex py-1 align-items-center">
+                    <i class="fa fa-dot-circle-o  text-success w-20"></i>
+                    <span>Online</span>
+                </div>
+            </div>
+
         </div>
-      </div>
-
+        <div class="d-flex align-items-center py-1">
+            <i class="fa fa-envelope w-20 " aria-hidden="true"></i>
+            <span>{{user?.email || 'N/A'}}</span>
+        </div>
     </div>
-    <div class="d-flex align-items-center py-1">
-      <i class="fa fa-envelope w-20 " aria-hidden="true"></i>
-      <span>{{user?.email || 'N/A'}}</span>
+    <div class="pl-3">
+        <div class="border-bottom p-2 d-flex justify-content-between profileMenu" *ngFor="let item of menuData" (click)="clickMenu(item.title)">
+            <div>
+                <i class="fa w-20 {{item.icon}}"></i>
+                <span class="pl-2">{{item.title | titlecase }}</span>
+            </div>
+            <label class="switch" *ngIf="item.title=='notification'" (click)="$event.stopPropagation()">
+                <input type="checkbox" checked (onValueChanged)="onChange($event)">
+                <span class="slider round"></span>
+            </label>
+        </div>
     </div>
-  </div>
-  <div class="pl-3">
-    <div class="border-bottom p-2 d-flex justify-content-between profileMenu" *ngFor="let item of menuData" (click)="clickMenu(item.title)">
-      <div>
-        <i class="fa w-20 {{item.icon}}"></i>
-        <span class="pl-2">{{item.title | titlecase }}</span>
-      </div>
-      <label class="switch" *ngIf="item.title=='notification'" (click)="$event.stopPropagation()">
-        <input type="checkbox" checked (onValueChanged)="onChange($event)">
-        <span class="slider round"></span>
-      </label>
-    </div>
-  </div>
 </div>
 
 
 <div class="modal fade" id="notification" tabindex="-1" role="dialog" aria-labelledby="notificationModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="notificationModalCenterTitle">Push Notification</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <button class="btn btn-secondary" (click)="generatePush()">Generate Push</button>
-        <br>
-        <pre *ngIf="message?.length!=0 ">{{message | json}}</pre>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notificationModalCenterTitle">Push Notification</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-secondary" (click)="generatePush()">Generate Push</button>
+                <br>
+                <pre *ngIf="message?.length!=0 ">{{message | json}}</pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

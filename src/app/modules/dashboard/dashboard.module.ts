@@ -7,18 +7,18 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent }
+    { path: '', component: DashboardComponent }
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    FormsModule,
-    RouterModule.forChild(routes)
-  ],
-  declarations: [
-    DashboardComponent,
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        FormsModule,
+        RouterModule.forChild(routes)
+    ],
+    declarations: [
+        DashboardComponent,
+    ]
 })
 export class DashboardModule { }
