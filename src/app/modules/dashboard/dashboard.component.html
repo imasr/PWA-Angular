@@ -14,13 +14,13 @@
   </div>
   <!-- right -->
   <div class="p-2 main">
-    <div class="col-md-12">
+    <div class="col-md-12 padd-sm">
       <h4>Users List</h4>
       <div class="card" *ngFor="let item of users; let id=index">
         <div class="card-body">
           <div class="d-flex">
-            <img class="rounded-circle border mr-5" [src]="image(item.email)" *ngIf="image(item.email)" alt="" width=60 height=60>
-            <img class="rounded-circle border mr-5" src="assets/user.png" *ngIf="!image(item.email)" alt="" width=60 height=60>
+            <img class="rounded-circle border mrg-sm-1" [src]="image(item.email)" *ngIf="image(item.email)" alt="" width=60 height=60>
+            <img class="rounded-circle border mrg-sm-1" src="assets/user.png" *ngIf="!image(item.email)" alt="" width=60 height=60>
             <div (click)="getusebyid(item)" data-toggle="modal" data-target="#exampleModalCenter">
               {{item.username}}
               <br> {{item.email}}

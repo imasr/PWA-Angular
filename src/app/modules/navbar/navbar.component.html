@@ -1,11 +1,13 @@
 <div class="navbar-light bg-dark p-2">
   <div class="d-flex justify-content-between w-100 ">
-    <li>
-      <a *ngIf="!home" class="hover d-bar" (click)="closeNav()">
+    <li *ngIf="!home" class="d-bar">
+      <a (click)="closeNav()" class="hover">
         <i class="fa fa-bars" style="font-size:28px"></i>
         <span class="sr-only">(current)</span>
       </a>
-      <a *ngIf="!home" class="hover d-profile" style="padding: 0.3rem 0.3rem;" (click)="closeNav()">
+    </li>
+    <li *ngIf="!home" class="d-profile">
+      <a style="padding: 0.3rem 0.3rem;" class="hover" (click)="closeNav()">
         <i class="fa fa-user-circle-o" style="font-size: 34px;"></i>
         <span class="sr-only">(current)</span>
       </a>
@@ -13,17 +15,21 @@
     <li>
       <img src="./../../assets/app_icon.png" class="logo img" alt="">
     </li>
-    <li>
-      <a *ngIf="!home" class="hover d-profile" style="padding: 0.3rem 0.3rem;" (click)="closeNav()">
+    <li *ngIf="!home" class="d-profile">
+      <a style="padding: 0.3rem 0.3rem;" class="hover" (click)="closeNav()">
         <i class="fa fa-bars" style="font-size:28px">
         </i>
         <span class="sr-only">(current)</span>
       </a>
-      <a *ngIf="!home" class="hover d-bar" data-toggle="tooltip" data-placement="bottom" title="Logout" (click)="logout()">
+    </li>
+    <li *ngIf="!home" class="d-bar">
+      <a data-toggle="tooltip" class="hover" data-placement="bottom" title="Logout" (click)="logout()">
         <i class="fa fa-sign-out" style="font-size:28px"></i>
         <span class="sr-only">(current)</span>
       </a>
-      <a *ngIf="home" class="hover" data-toggle="modal" data-target="#notification">
+    </li>
+    <li *ngIf="home">
+      <a data-toggle="modal" class="hover" data-target="#notification">
         <i class=" fa fa-bell " style="font-size:28px "></i>
         <span class="badge badge-secondary " *ngIf="message?.length!=0 ">{{message?.length}}</span>
         <span class="sr-only ">(current)</span>
@@ -48,21 +54,21 @@
         <h5 class="py-1 pl-1">{{user?.username}}</h5>
 
         <div class="d-flex py-1 align-items-center">
-          <i class="fa fa-dot-circle-o mr-1 text-center "></i>
+          <i class="fa fa-dot-circle-o  text-success w-20"></i>
           <span>Online</span>
         </div>
       </div>
 
     </div>
     <div class="d-flex align-items-center py-1">
-      <i class="fa fa-envelope  mr-1" aria-hidden="true"></i>
+      <i class="fa fa-envelope w-20 " aria-hidden="true"></i>
       <span>{{user?.email || 'N/A'}}</span>
     </div>
   </div>
   <div class="pl-3">
     <div class="border-bottom p-2 d-flex justify-content-between profileMenu" *ngFor="let item of menuData" (click)="clickMenu(item.title)">
       <div>
-        <i class="fa {{item.icon}}"></i>
+        <i class="fa w-20 {{item.icon}}"></i>
         <span class="pl-2">{{item.title | titlecase }}</span>
       </div>
       <label class="switch" *ngIf="item.title=='notification'" (click)="$event.stopPropagation()">

@@ -23,6 +23,16 @@ body {
   margin: auto;
   padding: 8px;
 }
+@media screen and (max-width: 650px) {
+  .justify-content-local {
+    justify-content: center !important;
+  }
+}
+.justify-content-local{
+  justify-content: flex-end;
+  height: 90vh;
+}
+
 
 .loader {
   border: 5px solid #f3f3f3;

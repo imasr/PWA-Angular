@@ -60,11 +60,6 @@ input[type=submit]:hover {
   padding: 8px 8px;
 }
 
-.justify-content {
-  justify-content: flex-end;
-  height: 100vh;
-}
-
 @media screen and (min-width: 400px) {
   .maxWidth {
     min-width: 350px;
@@ -75,8 +70,5 @@ input[type=submit]:hover {
   .col {
     width: 100%;
     margin-top: 0;
-  }
-  .justify-content {
-    justify-content: center !important;
   }
 }

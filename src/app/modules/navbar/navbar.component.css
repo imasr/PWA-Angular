@@ -73,6 +73,9 @@ li a.hover:hover {
   .d-bar{
     display: none !important;
   }
+  .bg-dark{
+    padding: 0.70rem !important;
+  }
 }
 @media (min-width:991px){
   .logo{
@@ -81,4 +84,7 @@ li a.hover:hover {
   .d-profile{
     display: none !important;
   }
+}
+.w-20{
+  width: 20px;
 }
