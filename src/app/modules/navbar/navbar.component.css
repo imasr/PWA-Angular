@@ -8,7 +8,7 @@ li a {
   color: white;
 }
 
-li.img {
+li .img {
   background: white;
   border-radius: 15%;
 }
@@ -22,7 +22,11 @@ li a.hover:hover {
   cursor: pointer;
 }
 
-
+.menu-header{
+  min-height: 66px;
+  background: #007bff;
+  font-size:20px;
+}
 .sidenav {
   height: 100%;
   width: 0;
@@ -30,10 +34,9 @@ li a.hover:hover {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color:white;
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
 }
 
 .sidenav a {
@@ -55,9 +58,27 @@ li a.hover:hover {
   width: 0px;
 }
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+  float: right;
+}
+.profileMenu:hover{
+  background: #e2e2e2;
+  cursor: pointer;
+}
+
+@media (max-width:991px){
+  .logo{
+    height: 44px !important;
+    width: 44px !important
+  }
+  .d-bar{
+    display: none !important;
+  }
+}
+@media (min-width:991px){
+  .logo{
+    height: 50px;
+  }
+  .d-profile{
+    display: none !important;
+  }
 }

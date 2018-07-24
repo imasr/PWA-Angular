@@ -6,11 +6,27 @@ import { BehaviorSubject, Subject } from '../../../node_modules/rxjs';
 })
 export class CommonService {
 
-  private dashboardStatus = new Subject();
-  dashboardStatus$ = this.dashboardStatus.asObservable();
-  constructor() { }
+  dashboardStatus: Subject<any>
+  overlayBody: Subject<any>
+
+  constructor() {
+    this.dashboardStatus = new Subject();
+    this.overlayBody = new Subject()
+  }
 
   dashboard(boolean) {
     this.dashboardStatus.next(boolean)
+  }
+
+  dashboardStatusChange() {
+    return this.dashboardStatus.asObservable();
+  }
+
+  overlay(boolean) {
+    this.overlayBody.next(boolean)
+  }
+
+  overlayBodyBackground() {
+    return this.overlayBody.asObservable();
   }
 }

@@ -3,7 +3,9 @@ import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest, HttpErrorResponse
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class IntercepterHttp implements HttpInterceptor {
   constructor(
   ) { }

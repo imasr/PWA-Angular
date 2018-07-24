@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { Router } from '@angular/router';
-import { PushService } from '../../push.service';
+import { PushMessagingService } from '../../services/pushMessaging.service';
 import { CommonService } from '../../services/common.service';
+import { ApiService } from '../../services/api.service';
+import { image_url } from './../../../config/config';
 
 @Component({
   selector: 'app-navbar',
@@ -13,30 +15,52 @@ export class NavbarComponent implements OnInit {
   home: boolean = true;
   message: any;
   showtoken: any;
+  user: any;
   sideNav: boolean = false;
+  menuData = [
+    { title: "setting", icon: 'fa-cog' },
+    { title: "notification", icon: 'fa-bell' },
+    { title: "about", icon: 'fa-info-circle' },
+    { title: "logout", icon: 'fa-unlock-alt' }
+  ]
   constructor(
     private localStorage: LocalStorageService,
     private router: Router,
-    private pushService: PushService,
+    private pushMessaging: PushMessagingService,
+    private apiService: ApiService,
     private commonService: CommonService
   ) {
-    this.message = this.pushService.currentMessage
+    this.pushMessaging.pushNotification().subscribe(res => {
+      this.message = res
+    })
   }
 
   ngOnInit() {
-    this.commonService.dashboardStatus$.subscribe(res => {
+
+    this.commonService.dashboardStatusChange().subscribe(res => {
       if (res) {
-        this.home = false
+        this.home = false;
+        this.apiService.getUserById(JSON.parse(localStorage.getItem('success')).user_id).subscribe(user => {
+          this.user = user.user;
+        })
       }
       else {
         this.home = true
       }
     })
-    this.showtoken = this.pushService.showtoken
   }
+  image(email) {
+    var patt = new RegExp("gmail");
+    var res = patt.exec(email)
+    if (res) {
+      return image_url + '/' + email;
+    } else {
+      return 'assets/user.png'
+    }
+  };
 
   generatePush() {
-    this.pushService.generatePush()
+    this.pushMessaging.generatePush()
       .subscribe(data => {
         console.log("Succesfully Posted")
       }, err =>
@@ -52,11 +76,12 @@ export class NavbarComponent implements OnInit {
 
   closeNav() {
     this.sideNav = !this.sideNav
+    this.commonService.overlay(this.sideNav)
   }
-  about() {
-
+  clickMenu(event) {
+    if (event == 'logout') {
+      this.logout()
+    }
+    this.closeNav()
   }
-  contact() { }
-  services() { }
-
 }

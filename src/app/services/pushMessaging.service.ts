@@ -1,20 +1,18 @@
 import { Injectable } from '@angular/core';
-import { take, map, catchError } from "rxjs/operators";
-import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { map, catchError } from "rxjs/operators";
+import * as firebase from 'firebase/app';
+import "firebase/messaging";
+import { throwError, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class PushService {
+export class PushMessagingService {
 
-  messaging = firebase.messaging()
-  currentMessage = new BehaviorSubject(null)
-  showtoken = new BehaviorSubject(null)
+  messaging: any;
+  currentMessage: Subject<any>;
   pushData: any = {
     "notification": {
       "title": "Hello Angular",
@@ -28,9 +26,10 @@ export class PushService {
 
   constructor(
     private http: HttpClient,
-    private db: AngularFireDatabase,
-    private afAuth: AngularFireAuth
-  ) { }
+  ) {
+    this.messaging = firebase.messaging()
+    this.currentMessage = new Subject()
+  }
 
   getPermission() {
     this.messaging.requestPermission()
@@ -39,9 +38,8 @@ export class PushService {
         return this.messaging.getToken()
       })
       .then(token => {
-        console.log('tokennnnnnnnnnn', token)
+        console.log('token', token)
         this.pushData.to = token
-        this.showtoken.next(token)
       })
       .catch((err) => {
         console.log('Unable to get permission to notify.', err);
@@ -55,6 +53,9 @@ export class PushService {
       this.currentMessage.next(this.pushNotice)
     });
 
+  }
+  pushNotification() {
+    return this.currentMessage.asObservable()
   }
 
   generatePush() {

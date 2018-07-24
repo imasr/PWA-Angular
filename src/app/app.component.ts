@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, ActivatedRouteSnapshot } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { PushService } from "./push.service";
+import { PushMessagingService } from "./services/pushMessaging.service";
+import { CommonService } from './services/common.service';
 
 @Component({
   selector: 'app-root',
@@ -10,17 +11,16 @@ import { PushService } from "./push.service";
 })
 
 export class AppComponent implements OnInit {
-
   constructor(
     private router: Router,
     private activateRoute: ActivatedRoute,
     private titleServive: Title,
-    private pushService: PushService
+    private pushMessagingService: PushMessagingService
   ) { }
 
   ngOnInit() {
-    this.pushService.getPermission()
-    this.pushService.receiveMessage()
+    this.pushMessagingService.getPermission()
+    this.pushMessagingService.receiveMessage()
 
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
