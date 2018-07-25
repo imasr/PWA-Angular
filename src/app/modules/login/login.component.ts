@@ -62,23 +62,15 @@ export class LoginComponent implements AfterViewInit {
                 'birthday': res.birthday
             };
             this.apiCall(fbdata, 'sociallogin');
-            console.log(res.error);
         });
     }
 
     onSignInFacebook() {
-        this.loader = true;
         FB.login((result) => {
             if (result.status === 'connected') {
+                this.loader = true;
                 this.facebookApi();
             }
-            let err = JSON.parse(JSON.stringify(result))
-            console.log(err);
-
-            if (err.status == "not_authorized") {
-                this.loader = false
-            }
-
         }, { scope: 'email' });
     }
 
@@ -108,10 +100,9 @@ export class LoginComponent implements AfterViewInit {
         }
     }
 
-    apiCall(data, Uri) {
-        this.api.authApi(data, Uri).subscribe(res => {
+    apiCall(data, uri) {
+        this.api.authApi(data, uri).subscribe(res => {
             this.loader = false;
-
             if (res.token) {
                 this.zone.run(() => {
                     this.storageService.setLocalStorage('accessToken', res.token)
@@ -126,5 +117,4 @@ export class LoginComponent implements AfterViewInit {
             this.message = err.error.message;
         })
     }
-
 }

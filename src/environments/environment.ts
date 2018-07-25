@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    baseUrl: 'https://localhost:3000',
+    baseUrl: 'http://localhost:3000',
     facebookConfig: {
         appId: '2154368044590850',
         cookie: true,
