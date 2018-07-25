@@ -3,6 +3,7 @@ import { NgForm } from "@angular/forms";
 import { ApiService } from '../../services/api.service';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 declare const FB: any;
 declare const gapi: any;
@@ -28,22 +29,13 @@ export class LoginComponent implements AfterViewInit {
     ) { }
 
     ngAfterViewInit() {
-        FB.init({
-            appId: '1987072331609874',
-            status: true,
-            cookie: true,
-            xfbml: true,
-            version: 'v2.4'
-        });
+        FB.init(environment.facebookConfig);
         FB.getLoginStatus((response) => {
             this.statusChangeCallback(response);
         });
 
         gapi.load('auth2', () => {
-            this.auth2 = gapi.auth2.init({
-                client_id: "855520535176-5cn6c7ns61peobb5957v3d78jvsvk2dc.apps.googleusercontent.com",
-                scope: 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/plus.me'
-            }).then((success) => {
+            this.auth2 = gapi.auth2.init(environment.googleConfig).then((success) => {
                 console.log('Libraries are initialized successfully');
             }).catch((error) => {
                 console.log(error)
@@ -70,10 +62,12 @@ export class LoginComponent implements AfterViewInit {
                 'birthday': res.birthday
             };
             this.apiCall(fbdata, 'sociallogin');
-        })
+            console.log(res.error);
+        });
     }
 
     onSignInFacebook() {
+        this.loader = true;
         FB.login((result) => {
             if (result.status === 'connected') {
                 this.facebookApi();
@@ -82,6 +76,7 @@ export class LoginComponent implements AfterViewInit {
     }
 
     onSignInGoogle() {
+        this.loader = true;
         let googleAuth = gapi.auth2.getAuthInstance()
         googleAuth.signIn().then(googleUser => {
             let profile = googleUser.getBasicProfile();
@@ -93,6 +88,7 @@ export class LoginComponent implements AfterViewInit {
             };
             this.apiCall(googleData, 'sociallogin');
         }).catch(error => {
+            this.loader = false;
             console.log(error)
         })
     }
