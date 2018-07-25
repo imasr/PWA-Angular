@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    baseUrl: 'http://localhost:3000',
+    baseUrl: 'http://node-login-api.us-east-2.elasticbeanstalk.com',
     facebookConfig: {
         appId: '1987072331609874',
         status: true,
