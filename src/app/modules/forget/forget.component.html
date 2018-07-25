@@ -2,8 +2,6 @@
     <div class="d-flex justify-content-local align-items-center">
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-2">
             <h5 class="text-center p-3 font-weight-bold text-white">Reset Password</h5>
-            <div *ngIf="errAlert" class="alert alert-danger">{{message |titlecase}}</div>
-            <div *ngIf="successAlert" class="alert alert-success">{{message |titlecase}}</div>
             <form #forgetForm="ngForm" class="needs-validation" (submit)="forgetForm.form.valid && forget(forgetForm)" novalidate>
                 <div class="form-group">
                     <input type="email" [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched),
@@ -23,3 +21,5 @@
         </div>
     </div>
 </div>
+<app-modal *ngIf="errAlert || successAlert" [message]="message"></app-modal>
+<app-loader *ngIf="loader"></app-loader>

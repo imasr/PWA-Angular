@@ -1,9 +1,7 @@
 <div class="container mainbody">
-    <div class="d-flex justify-content align-items-center">
+    <div class="d-flex justify-content-local align-items-center">
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-2">
             <h6 class="text-center p-3 font-weight-bold text-white">Enter New Password</h6>
-            <div *ngIf="errAlert" class="alert alert-danger">{{message |titlecase}}</div>
-            <div *ngIf="successAlert" class="alert alert-success">{{message |titlecase}}</div>
 
             <form #resetForm="ngForm" class="needs-validation" (submit)="resetForm.form.valid && reset(resetForm)" novalidate>
 
@@ -38,3 +36,5 @@
         </div>
     </div>
 </div>
+<app-modal *ngIf="errAlert || successAlert" [message]="message"></app-modal>
+<app-loader *ngIf="loader"></app-loader>

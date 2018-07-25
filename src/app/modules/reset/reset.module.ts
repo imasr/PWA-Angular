@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ResetComponent } from './reset.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { LoaderModule } from '../../common/loader/loader.module';
+import { ModalModule } from '../../common/modal/modal.module';
 
 const routes: Routes = [
     { path: '', component: ResetComponent }
@@ -12,6 +14,8 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         RouterModule,
+        LoaderModule,
+        ModalModule,
         RouterModule.forChild(routes),
     ],
     declarations: [

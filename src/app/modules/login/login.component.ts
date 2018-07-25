@@ -19,6 +19,7 @@ export class LoginComponent implements AfterViewInit {
     successAlert: boolean = false;
     errorMessage: String;
     message: any;
+    loader: boolean = false;
     constructor(
         private api: ApiService,
         private storageService: LocalStorageService,
@@ -97,6 +98,7 @@ export class LoginComponent implements AfterViewInit {
     }
 
     login(form: NgForm) {
+        this.loader = true;
         this.errAlert = false;
         if (form.value) {
             this.apiCall(form.value, 'login');
@@ -105,6 +107,8 @@ export class LoginComponent implements AfterViewInit {
 
     apiCall(data, Uri) {
         this.api.authApi(data, Uri).subscribe(res => {
+            this.loader = false;
+
             if (res.token) {
                 this.zone.run(() => {
                     this.storageService.setLocalStorage('accessToken', res.token)
@@ -115,6 +119,7 @@ export class LoginComponent implements AfterViewInit {
             }
         }, err => {
             this.errAlert = true;
+            this.loader = false
             this.message = err.error.message;
         })
     }

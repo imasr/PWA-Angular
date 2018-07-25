@@ -14,6 +14,7 @@ export class ForgetComponent implements OnInit {
     successAlert: boolean = false;
     errorMessage: String;
     message: any;
+    loader: boolean = false;
     constructor(
         private api: ApiService
     ) { }
@@ -21,11 +22,14 @@ export class ForgetComponent implements OnInit {
     forget(form: NgForm) {
         this.errAlert = false;
         if (form.value) {
+            this.loader = true
             this.api.authApi(form.value, 'forget').subscribe(res => {
+                this.loader = false
                 this.successAlert = true;
                 this.message = res.message;
                 form.resetForm()
             }, err => {
+                this.loader = false
                 this.errAlert = true;
                 this.message = err.error.message;
             })

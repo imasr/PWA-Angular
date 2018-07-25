@@ -14,6 +14,7 @@ export class ResetComponent implements OnInit {
     errorMessage: String;
     message: any;
     paramsKey: String;
+    loader: boolean = false;
     constructor(
         private api: ApiService,
         private activatedRoute: ActivatedRoute
@@ -22,16 +23,18 @@ export class ResetComponent implements OnInit {
     reset(form: NgForm) {
         this.errAlert = false;
         if (form.value.password == form.value.confirmPassword) {
+            this.loader = true;
             let body = {
                 newPassword: form.value.confirmPassword,
                 key: this.paramsKey
             }
             this.api.authApi(body, 'reset').subscribe(res => {
+                this.loader = false;
                 this.successAlert = true;
                 this.message = res.message;
                 form.resetForm()
             }, err => {
-                console.log(err.error.error);
+                this.loader = false;
                 this.errAlert = true;
                 this.message = err.error.error;
             })

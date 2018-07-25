@@ -14,15 +14,18 @@ export class RegisterComponent implements OnInit {
     successAlert: boolean = false;
     errorMessage: String;
     message: any;
+    loader: boolean = false;
 
     constructor(
         private api: ApiService
     ) { }
 
     register(form: NgForm) {
+        this.loader = true;
         this.errAlert = false;
         if (form.value) {
             this.api.authApi(form.value, 'register').subscribe(res => {
+                this.loader = false;
                 this.successAlert = true;
                 this.message = res.success;
                 setTimeout(() => {
@@ -30,6 +33,7 @@ export class RegisterComponent implements OnInit {
                     form.resetForm()
                 }, 5000)
             }, err => {
+                this.loader = false;
                 this.errAlert = true;
                 this.message = err.error.message;
             })

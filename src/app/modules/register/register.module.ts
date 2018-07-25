@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from "@angular/router";
 
 import { RegisterComponent } from './register.component';
+import { LoaderModule } from '../../common/loader/loader.module';
+import { ModalModule } from '../../common/modal/modal.module';
 
 const routes: Routes = [
     { path: '', component: RegisterComponent }
@@ -13,6 +15,8 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         RouterModule,
+        LoaderModule,
+        ModalModule,
         RouterModule.forChild(routes),
     ],
     declarations: [

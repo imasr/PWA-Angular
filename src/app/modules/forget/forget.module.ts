@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { ForgetComponent } from './forget.component';
+import { LoaderModule } from '../../common/loader/loader.module';
+import { ModalModule } from '../../common/modal/modal.module';
 
 const routes: Routes = [
     { path: '', component: ForgetComponent }
@@ -13,6 +15,8 @@ const routes: Routes = [
         CommonModule,
         RouterModule,
         FormsModule,
+        LoaderModule,
+        ModalModule,
         RouterModule.forChild(routes)
     ],
     declarations: [
