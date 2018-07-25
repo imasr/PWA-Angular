@@ -2,7 +2,7 @@ export const environment = {
     production: false,
     baseUrl: 'https://localhost:3000',
     facebookConfig: {
-        appId: '1987072331609874',
+        appId: '2154368044590850',
         cookie: true,
         xfbml: true,
         version: 'v2.4'

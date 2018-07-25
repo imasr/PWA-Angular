@@ -72,6 +72,13 @@ export class LoginComponent implements AfterViewInit {
             if (result.status === 'connected') {
                 this.facebookApi();
             }
+            let err = JSON.parse(JSON.stringify(result))
+            console.log(err);
+
+            if (err.status == "not_authorized") {
+                this.loader = false
+            }
+
         }, { scope: 'email' });
     }
 
