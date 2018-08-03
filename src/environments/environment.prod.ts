@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    baseUrl: 'http://node-env.jwmgyi8ctm.ap-south-1.elasticbeanstalk.com',
+    baseUrl: 'https://node-loginapp.herokuapp.com',
     facebookConfig: {
         appId: '1987072331609874',
         status: true,
