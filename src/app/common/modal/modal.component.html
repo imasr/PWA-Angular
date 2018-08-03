@@ -9,9 +9,13 @@
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body rounded">
-                <div class="p-3 text-center">{{message}}</div>
+                <div *ngIf="message?.error?.status===0" class="p-3 text-danger text-center">{{message?.error?.message | titlecase }}</div>
+                <div *ngIf="!message?.error" class="p-3 text-success text-center">{{message?.message | titlecase }}</div>
                 <div class="text-center">
-                    <button type="button" class="btn bg-light border rounded" style="width: 100px" data-dismiss="modal">OK</button>
+                    <button type="button" class="btn bg-light border rounded" style="width: 100px" data-dismiss="modal" (click)="close(message)">
+                        <span *ngIf="message.redirect">Back to Login</span>
+                        <span *ngIf="!message.redirect"> OK </span>
+                    </button>
                 </div>
             </div>
         </div>

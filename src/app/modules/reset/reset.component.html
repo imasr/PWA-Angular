@@ -36,5 +36,5 @@
         </div>
     </div>
 </div>
-<app-modal *ngIf="errAlert || successAlert" [message]="message"></app-modal>
+<app-modal *ngIf="alert" [message]="message"></app-modal>
 <app-loader *ngIf="loader"></app-loader>

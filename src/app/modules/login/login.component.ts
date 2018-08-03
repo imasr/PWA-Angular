@@ -16,9 +16,7 @@ declare const gapi: any;
 
 export class LoginComponent implements AfterViewInit {
     private auth2: any;
-    errAlert: boolean = false;
-    successAlert: boolean = false;
-    errorMessage: String;
+    alert: boolean = false;
     message: any;
     loader: boolean = false;
     constructor(
@@ -94,7 +92,7 @@ export class LoginComponent implements AfterViewInit {
 
     login(form: NgForm) {
         this.loader = true;
-        this.errAlert = false;
+        this.alert = false;
         if (form.value) {
             this.apiCall(form.value, 'login');
         }
@@ -112,9 +110,9 @@ export class LoginComponent implements AfterViewInit {
                 })
             }
         }, err => {
-            this.errAlert = true;
+            this.alert = true;
             this.loader = false
-            this.message = err.error.message;
+            this.message = err;
         })
     }
 }

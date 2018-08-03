@@ -9,9 +9,7 @@ import { NgForm } from '@angular/forms';
     styleUrls: ['./reset.component.css']
 })
 export class ResetComponent implements OnInit {
-    errAlert: boolean = false;
-    successAlert: boolean = false;
-    errorMessage: String;
+    alert: boolean = false;
     message: any;
     paramsKey: String;
     loader: boolean = false;
@@ -21,7 +19,7 @@ export class ResetComponent implements OnInit {
     ) { }
 
     reset(form: NgForm) {
-        this.errAlert = false;
+        this.alert = false;
         if (form.value.password == form.value.confirmPassword) {
             this.loader = true;
             let body = {
@@ -29,14 +27,15 @@ export class ResetComponent implements OnInit {
                 key: this.paramsKey
             }
             this.api.authApi(body, 'reset').subscribe(res => {
+                res.redirect = true
                 this.loader = false;
-                this.successAlert = true;
-                this.message = res.message;
+                this.alert = true;
+                this.message = res;
                 form.resetForm()
             }, err => {
                 this.loader = false;
-                this.errAlert = true;
-                this.message = err.error.error;
+                this.alert = true;
+                this.message = err;
             })
         } else {
             form.form.controls['confirmPassword'].setErrors({ 'incorrect': true });;

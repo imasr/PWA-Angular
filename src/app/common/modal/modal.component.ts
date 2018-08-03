@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Router } from '../../../../node_modules/@angular/router';
 
 @Component({
     selector: 'app-modal',
@@ -7,11 +8,17 @@ import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
     @ViewChild('openModalButton') openModal: ElementRef;
-    @Input() message = "";
-
-    constructor() { }
-
+    @Input() message;
+    constructor(private router: Router) {
+    }
     ngOnInit() {
         this.openModal.nativeElement.click()
+    }
+    close(message) {
+        console.log(message);
+
+        if (message.redirect) {
+            this.router.navigate(['login']);
+        }
     }
 }

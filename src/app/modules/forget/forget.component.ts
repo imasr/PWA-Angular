@@ -10,9 +10,7 @@ import { ApiService } from '../../services/api.service';
 })
 export class ForgetComponent implements OnInit {
 
-    errAlert: boolean = false;
-    successAlert: boolean = false;
-    errorMessage: String;
+    alert: boolean = false;
     message: any;
     loader: boolean = false;
     constructor(
@@ -20,18 +18,18 @@ export class ForgetComponent implements OnInit {
     ) { }
 
     forget(form: NgForm) {
-        this.errAlert = false;
+        this.alert = false;
         if (form.value) {
             this.loader = true
             this.api.authApi(form.value, 'forget').subscribe(res => {
                 this.loader = false
-                this.successAlert = true;
-                this.message = res.message;
+                this.alert = true;
+                this.message = res;
                 form.resetForm()
             }, err => {
                 this.loader = false
-                this.errAlert = true;
-                this.message = err.error.message;
+                this.alert = true;
+                this.message = err;
             })
         }
     }

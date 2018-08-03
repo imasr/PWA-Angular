@@ -10,9 +10,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-    errAlert: boolean = false;
-    successAlert: boolean = false;
-    errorMessage: String;
+    alert: boolean = false;
     message: any;
     loader: boolean = false;
 
@@ -22,20 +20,19 @@ export class RegisterComponent implements OnInit {
 
     register(form: NgForm) {
         this.loader = true;
-        this.errAlert = false;
+        this.alert = false;
         if (form.value) {
             this.api.authApi(form.value, 'register').subscribe(res => {
                 this.loader = false;
-                this.successAlert = true;
-                this.message = res.success;
+                this.alert = true;
+                this.message = res;
                 setTimeout(() => {
-                    this.successAlert = false;
                     form.resetForm()
-                }, 5000)
+                }, 10000)
             }, err => {
                 this.loader = false;
-                this.errAlert = true;
-                this.message = err.error.message;
+                this.alert = true;
+                this.message = err;
             })
         }
     }
