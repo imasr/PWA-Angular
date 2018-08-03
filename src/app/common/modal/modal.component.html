@@ -9,7 +9,6 @@
     <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-body rounded">
-                {{message|json}}
                 <div *ngIf="message?.error?.status===0" class="p-3 text-danger text-center">{{message?.error?.message | titlecase }}</div>
                 <div *ngIf="!message?.error" class="p-3 text-success text-center">{{message?.message | titlecase }}</div>
                 <div class="text-center">

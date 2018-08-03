@@ -101,8 +101,6 @@ export class LoginComponent implements AfterViewInit {
     apiCall(data, uri) {
         this.api.authApi(data, uri).subscribe(res => {
             this.loader = false;
-            console.log(res)
-
             if (res.token) {
                 this.zone.run(() => {
                     this.storageService.setLocalStorage('accessToken', res.token)
@@ -112,8 +110,6 @@ export class LoginComponent implements AfterViewInit {
                 })
             }
         }, err => {
-            console.log(err)
-
             this.alert = true;
             this.loader = false
             this.message = err;
