@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { image_url } from './../../../config/config';
 import { CommonService } from '../../services/common.service';
+import { EventManager } from '@angular/platform-browser';
+
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -14,10 +16,18 @@ export class DashboardComponent implements OnInit {
     users: any = []
     usersView: any;
     overlay: any
+    mobileView: boolean;
     constructor(
         private api: ApiService,
         private commonService: CommonService,
-    ) { }
+        private eventManager: EventManager,
+    ) {
+        this.eventManager.addGlobalEventListener('window', 'resize', this.onResize.bind(this));
+    }
+
+    private onResize(event: UIEvent) {
+        this.mobileView = window.screen.width < 700
+    }
 
     ngOnInit() {
         this.commonService.dashboard(true);

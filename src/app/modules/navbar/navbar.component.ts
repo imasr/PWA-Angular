@@ -84,4 +84,7 @@ export class NavbarComponent implements OnInit {
         }
         this.closeNav()
     }
+    sidemenuCloseOpen() {
+        this.commonService.sidemenuSetStaus()
+    }
 }

@@ -4,13 +4,16 @@
 <div class="d-flex flex-wrap mainbody">
     <!-- left -->
     <div class="p-2 side col-12 col-md-3 col-xl-2 bd-sidebar">
-        <nav class="nav flex-column">
-            <div class="w-100" *ngIf="sideData">
-                <a class="nav-link" [ngClass]="{'active':index+1==activeId}" (click)="active(item.title, index+1)" [routerLink]="" *ngFor="let item of sideData;let index=index">
-                    {{item.title | titlecase}}
-                </a>
-            </div>
-        </nav>
+        <div id="menuTooggle" class="show" [ngClass]="mobileView?'collapse':''">
+
+            <nav class="nav flex-column">
+                <div class="w-100" *ngIf="sideData">
+                    <a class="nav-link" [ngClass]="{'active':index+1==activeId}" (click)="active(item.title, index+1)" [routerLink]="" *ngFor="let item of sideData;let index=index">
+                        {{item.title | titlecase}}
+                    </a>
+                </div>
+            </nav>
+        </div>
     </div>
     <!-- right -->
     <div class="p-2 main">

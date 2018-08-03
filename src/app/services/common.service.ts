@@ -8,10 +8,12 @@ export class CommonService {
 
     dashboardStatus: Subject<any>
     overlayBody: Subject<any>
+    sidemenu: Subject<any>
 
     constructor() {
         this.dashboardStatus = new Subject();
         this.overlayBody = new Subject()
+        this.sidemenu = new Subject()
     }
 
     dashboard(boolean) {
@@ -25,5 +27,11 @@ export class CommonService {
     }
     overlayBodyBackground() {
         return this.overlayBody.asObservable();
+    }
+    sidemenuSetStaus() {
+        this.sidemenu.next()
+    }
+    sidemenuGetStatus() {
+        return this.sidemenu.asObservable();
     }
 }
