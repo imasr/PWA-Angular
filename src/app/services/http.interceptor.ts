@@ -36,7 +36,7 @@ export class IntercepterHttp implements HttpInterceptor {
                         const baseUrl = getUrl.protocol + '//' + getUrl.host + '/' + getUrl.pathname.split('/')[1];
                         window.location.replace(baseUrl);
                     }
-                    if (!response.status) {
+                    if (response.status === 0 || response.status === 504) {
                         response.error.status = 0,
                             response.error.message = "Network connection error"
                     }
