@@ -10,10 +10,10 @@ import { environment } from "./../../environments/environment";
 })
 
 export class ApiService {
-
     constructor(
         private http: HttpClient
     ) { }
+
     authApi(body, uri): Observable<any> {
         return this.http.post(`${environment.baseUrl}/${uri}`, body)
             .pipe(

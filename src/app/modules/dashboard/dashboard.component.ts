@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
     usersView: any;
     overlay: any
     mobileView: boolean;
+
     constructor(
         private api: ApiService,
         private commonService: CommonService,
@@ -28,7 +29,6 @@ export class DashboardComponent implements OnInit {
     private onResize(event: UIEvent) {
         this.mobileView = window.screen.width < 700
     }
-
     ngOnInit() {
         this.commonService.dashboard(true);
         this.getUsers()
@@ -39,39 +39,34 @@ export class DashboardComponent implements OnInit {
     ngOnDestroy() {
         this.commonService.dashboard(false);
     }
-
     active(item, id) {
         this.activeId = id
         if (item == 'users') {
             this.getUsers();
         }
     }
-
     getUsers() {
         this.api.allUsers().subscribe(res => {
-            this.users = res
+            this.users = res.data
         })
     }
-
     image(email) {
-        var patt = new RegExp("gmail");
-        var res = patt.exec(email)
+        var pattern = new RegExp("gmail");
+        var res = pattern.exec(email)
         if (res) {
             return image_url + '/' + email;
         } else {
             return false
         }
     };
-
     delete(id) {
-        this.api.deleteUser({ "id": id }).subscribe(res => {
+        this.api.deleteUser({ "id": id, role: "Admin" }).subscribe(res => {
             console.log(res);
             this.getUsers();
         }, err => {
             console.log(err);
         })
     }
-
     getusebyid(data) {
         this.usersView = data;
     }

@@ -34,14 +34,13 @@ export class NavbarComponent implements OnInit {
             this.message = res
         })
     }
-
     ngOnInit() {
-
         this.commonService.dashboardStatusChange().subscribe(res => {
             if (res) {
                 this.home = false;
-                this.apiService.getUserById(JSON.parse(localStorage.getItem('success')).user_id).subscribe(user => {
-                    this.user = user.user;
+                let userid = JSON.parse(localStorage.getItem('success')).user_id
+                this.apiService.getUserById(userid).subscribe(user => {
+                    this.user = user.data;
                 })
             }
             else {
@@ -58,7 +57,6 @@ export class NavbarComponent implements OnInit {
             return 'assets/user.png'
         }
     };
-
     generatePush() {
         this.pushMessaging.generatePush()
             .subscribe(data => {
@@ -67,13 +65,11 @@ export class NavbarComponent implements OnInit {
                     console.log(err)
             );
     }
-
     logout() {
         this.sideNav = false;
         this.localStorage.clearLocalStorage();
         this.router.navigate(['/login'])
     }
-
     closeNav() {
         this.sideNav = !this.sideNav
         this.commonService.overlay(this.sideNav)

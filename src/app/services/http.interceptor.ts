@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 export class IntercepterHttp implements HttpInterceptor {
     constructor(
     ) { }
+
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let cloneReq;
         if (request.urlWithParams.indexOf('fcm') > 0) {
