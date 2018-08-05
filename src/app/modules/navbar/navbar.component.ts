@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit {
     menuData = [
         { title: "setting", icon: 'fa-cog' },
         { title: "notification", icon: 'fa-bell' },
-        { title: "about", icon: 'fa-info-circle' },
+        { title: "about", icon: 'fa-info-circle', },
         { title: "logout", icon: 'fa-unlock-alt' }
     ]
     constructor(
@@ -80,11 +80,13 @@ export class NavbarComponent implements OnInit {
         this.sideNav = !this.sideNav
         this.commonService.overlay(this.sideNav)
     }
-    clickMenu(event) {
-        if (event == 'logout') {
-            this.logout()
-        }
+    clickMenu(title) {
         this.closeNav()
+        if (title == 'logout') {
+            this.logout()
+        } else {
+            this.router.navigate([title])
+        }
     }
     sidemenuCloseOpen() {
         this.commonService.sidemenuSetStaus()
