@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
     home: boolean = true;
     message: any;
     showtoken: any;
+    loader: boolean = true
     user: any;
     sideNav: boolean = false;
     menuData = [
@@ -32,6 +33,11 @@ export class NavbarComponent implements OnInit {
     ) {
         this.pushMessaging.pushNotification().subscribe(res => {
             this.message = res
+        })
+        this.commonService.loadingGet().subscribe(res => {
+            console.log(res);
+
+            this.loader = res
         })
     }
     ngOnInit() {

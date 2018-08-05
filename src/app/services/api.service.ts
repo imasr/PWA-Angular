@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from "rxjs/operators";
 
 import { environment } from "./../../environments/environment";
+import { CommonService } from './common.service';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,8 @@ import { environment } from "./../../environments/environment";
 
 export class ApiService {
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private commonService: CommonService
     ) { }
 
     authApi(body, uri): Observable<any> {
@@ -26,9 +28,11 @@ export class ApiService {
             )
     }
     allUsers(): Observable<any> {
+        this.commonService.loadingSet(true)
         return this.http.get(`${environment.baseUrl}/users`)
             .pipe(
                 map(res => {
+                    this.commonService.loadingSet(false)
                     return res;
                 }),
                 catchError(err => {
@@ -37,9 +41,11 @@ export class ApiService {
             )
     }
     deleteUser(body: any): Observable<any> {
+        this.commonService.loadingSet(true)
         return this.http.post(`${environment.baseUrl}/users/delete`, body)
             .pipe(
                 map(res => {
+                    this.commonService.loadingSet(false)
                     return res;
                 }),
                 catchError(err => {
@@ -48,9 +54,11 @@ export class ApiService {
             )
     }
     getUserById(id): Observable<any> {
+        this.commonService.loadingSet(true)
         return this.http.get(`${environment.baseUrl}/users/${id}`)
             .pipe(
                 map(res => {
+                    this.commonService.loadingSet(false)
                     return res;
                 }),
                 catchError(err => {

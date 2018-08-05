@@ -16,17 +16,14 @@
             <img src="./../../assets/app_icon.png" class="logo img" alt="">
         </li>
         <li *ngIf="!home" class="d-profile">
-            <a style="padding: 0.3rem 0.3rem;" class="hover" data-toggle="collapse" data-target="#menuTooggle">
+            <a style="padding: 0.3rem 0.3rem;" class="hover" (click)="closeNav()">
                 <i class="fa fa-bars" style="font-size:28px">
                 </i>
                 <span class="sr-only">(current)</span>
             </a>
         </li>
-        <li *ngIf="!home" class="d-bar">
-            <a data-toggle="tooltip" class="hover" data-placement="bottom" title="Logout" (click)="logout()">
-                <i class="fa fa-sign-out" style="font-size:28px"></i>
-                <span class="sr-only">(current)</span>
-            </a>
+        <li *ngIf="!home" class="d-bar" style="width: 50px">
+            <img src="assets/loader-48px.svg" *ngIf="loader" alt="">
         </li>
         <li *ngIf="home">
             <a data-toggle="modal" class="hover" data-target="#notification">
