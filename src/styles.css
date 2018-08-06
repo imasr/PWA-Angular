@@ -5,11 +5,23 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    height: 91vh;
-    background: url('./assets/bg.png') no-repeat center center fixed;
+    background: linear-gradient(40deg, #081623, #22a29d) !important;
     border-radius: 0;
     height: 100%;
-    background-size: cover;
+}
+.maxWidth{
+    max-width: 350px;
+    border: 1px solid gray;
+    background: white;
+    border-radius: 5px;
+}
+@media screen and (min-width: 400px) {
+    .maxWidth {
+        min-width: 350px;
+    }
+}
+.heightAuthPage{
+    height: calc(100vh - 66px);
 }
 .mainbody {
     margin-top: 66px;

@@ -1,7 +1,9 @@
 <div class="container mainbody">
-    <div class="d-flex justify-content-local align-items-center">
-        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-2">
-            <h5 class="text-center p-3 font-weight-bold text-white">Sign Up</h5>
+    <div class="d-flex justify-content-around align-items-center heightAuthPage">
+        <img src="./../../assets/app_icon.png" class="logo img rounded bg-white d-none d-md-block" alt="">
+
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-4">
+            <h5 class="text-center py-1 font-weight-bold">Sign Up</h5>
             <form #registerForm="ngForm" class="needs-validation" (submit)="registerForm.form.valid && register(registerForm)" novalidate>
                 <div class="form-group">
                     <input type="text" class="form-control" [ngClass]="{'is-invalid': username.invalid && (username.dirty || username.touched),
@@ -30,11 +32,11 @@
                     </div>
 
                 </div>
-                <button type="submit" class="btn btn-success" [disabled]="registerForm.invalid">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
             </form>
 
             <div class="text-center p-3">
-                <a href="#" class="text-white" [routerLink]="['/login']">Already User! Login</a>
+                <a href="#" [routerLink]="['/login']">Already User! Login</a>
             </div>
         </div>
     </div>

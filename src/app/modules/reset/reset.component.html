@@ -1,10 +1,10 @@
 <div class="container mainbody">
-    <div class="d-flex justify-content-local align-items-center">
-        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-2">
-            <h6 class="text-center p-3 font-weight-bold text-white">Enter New Password</h6>
+    <div class="d-flex justify-content-around align-items-center heightAuthPage">
+        <img src="./../../assets/app_icon.png" class="logo img rounded bg-white d-none d-md-block" alt="">
 
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-4">
+            <h6 class="text-center py-1 font-weight-bold">Enter New Password</h6>
             <form #resetForm="ngForm" class="needs-validation" (submit)="resetForm.form.valid && reset(resetForm)" novalidate>
-
                 <div class="form-group">
                     <input type="password" [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched),
               'is-valid': password.valid && (password.dirty || password.touched)}" class="form-control" name="password"
@@ -27,11 +27,11 @@
                     </div>
 
                 </div>
-                <button type="submit" class="btn btn-success" [disabled]="resetForm.invalid">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
             </form>
 
             <div class="text-center p-3">
-                <a href="#" class="text-white" [routerLink]="['/login']"> Back to Login</a>
+                <a href="#" [routerLink]="['/login']"> Back to Login</a>
             </div>
         </div>
     </div>

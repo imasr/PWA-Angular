@@ -2,24 +2,10 @@ h2 {
     color: white
 }
 
-.maxWidth {
-    max-width: 350px;
-    border: 1px solid gray;
-    background: rgba(0, 0, 0, 0.7411764705882353);
-    border-radius: 5px;
-}
-
 .btn {
     width: 100%;
-    padding: 12px;
-    border: none;
-    border-radius: 4px;
+    padding: 10px;
     margin: 5px 0;
-    opacity: 0.85;
-    display: inline-block;
-    font-size: 17px;
-    line-height: 20px;
-    text-decoration: none;
 }
 
 input:hover,
@@ -60,11 +46,7 @@ input[type=submit]:hover {
 }
 
 
-@media screen and (min-width: 400px) {
-    .maxWidth {
-        min-width: 350px;
-    }
-}
+
 
 @media screen and (max-width: 650px) {
     .col {
