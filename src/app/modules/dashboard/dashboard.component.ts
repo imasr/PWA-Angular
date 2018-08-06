@@ -47,7 +47,7 @@ export class DashboardComponent implements OnInit {
     }
     getUsers() {
         this.api.allUsers().subscribe(res => {
-            this.users = res.data
+            this.users = res.result
         })
     }
     image(email) {

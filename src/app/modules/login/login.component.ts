@@ -101,11 +101,11 @@ export class LoginComponent implements AfterViewInit {
     apiCall(data, uri) {
         this.api.authApi(data, uri).subscribe(res => {
             this.loader = false;
-            if (res.token) {
+            if (res.result.token) {
                 this.zone.run(() => {
-                    this.storageService.setLocalStorage('accessToken', res.token)
-                    this.storageService.setLocalStorage('login', res.success)
-                    this.storageService.setLocalStorage('success', JSON.stringify(res));
+                    this.storageService.setLocalStorage('accessToken', res.result.token)
+                    this.storageService.setLocalStorage('login', res.status)
+                    this.storageService.setLocalStorage('result', JSON.stringify(res.result));
                     this.router.navigate(['/dashboard']);
                 })
             }

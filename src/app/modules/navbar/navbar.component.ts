@@ -44,9 +44,9 @@ export class NavbarComponent implements OnInit {
         this.commonService.dashboardStatusChange().subscribe(res => {
             if (res) {
                 this.home = false;
-                let userid = JSON.parse(localStorage.getItem('success')).user_id
+                let userid = JSON.parse(localStorage.getItem('result'))._id
                 this.apiService.getUserById(userid).subscribe(user => {
-                    this.user = user.data;
+                    this.user = user.result;
                 })
             }
             else {
