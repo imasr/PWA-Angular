@@ -5,6 +5,7 @@ import { PushMessagingService } from '../../services/pushMessaging.service';
 import { CommonService } from '../../services/common.service';
 import { ApiService } from '../../services/api.service';
 import { image_url } from './../../../config/config';
+import { environment } from "./../../../environments/environment";
 
 @Component({
     selector: 'app-navbar',
@@ -54,12 +55,15 @@ export class NavbarComponent implements OnInit {
             }
         })
     }
-    image(email) {
-        var patt = new RegExp("gmail");
-        var res = patt.exec(email)
-        if (res) {
-            return image_url + '/' + email;
-        } else {
+    image(data) {
+        var emailPatt = new RegExp("gmail");
+        var pngPatt = new RegExp("png");
+        var res = emailPatt.exec(data)
+        if (emailPatt.exec(data)) {
+            return image_url + '/' + data;
+        } else if (pngPatt.exec(data)) {
+            return environment.baseUrl + '/' + data
+        } {
             return 'assets/user.png'
         }
     };

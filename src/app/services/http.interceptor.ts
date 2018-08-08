@@ -23,7 +23,7 @@ export class IntercepterHttp implements HttpInterceptor {
             })
         } else {
             cloneReq = request.clone({
-                headers: request.headers.set('Content-Type', 'application/json')
+                headers: request.headers
                     .set('Authorization', localStorage.getItem('accessToken') || '')
             })
         }
