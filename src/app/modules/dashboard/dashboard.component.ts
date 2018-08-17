@@ -36,9 +36,15 @@ export class DashboardComponent implements OnInit {
         this.commonService.overlayBodyBackground().subscribe(res => {
             this.overlay = res
         })
+        this.api.setUserStatus(`presence=yes`).subscribe(user => {
+            console.log(user.result);
+        })
     }
     ngOnDestroy() {
         this.commonService.dashboard(false);
+        this.api.setUserStatus(`presence=no`).subscribe(user => {
+            console.log(user.result);
+        })
     }
     active(item, id) {
         this.activeId = id

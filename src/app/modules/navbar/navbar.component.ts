@@ -6,7 +6,7 @@ import { CommonService } from '../../services/common.service';
 import { ApiService } from '../../services/api.service';
 import { image_url } from './../../../config/config';
 import { environment } from "./../../../environments/environment";
-
+import * as _ from "lodash";
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
@@ -18,6 +18,7 @@ export class NavbarComponent implements OnInit {
     showtoken: any;
     loader: boolean = true
     user: any;
+    status = { title: '', icon: '' }
     sideNav: boolean = false;
     menuData = [
         { title: "setting", icon: 'fa-cog' },
@@ -25,6 +26,12 @@ export class NavbarComponent implements OnInit {
         { title: "about", icon: 'fa-info-circle', },
         { title: "logout", icon: 'fa-unlock-alt' }
     ]
+    statusObj = [
+        { id: 1, title: 'Online', icon: "text-success" },
+        { id: 2, title: 'Do Not Disturb', icon: "text-danger" },
+        { id: 3, title: 'Away', icon: "text-warning" },
+        { id: 4, title: 'Invisible', icon: "text-muted" }
+    ];
     constructor(
         private localStorage: LocalStorageService,
         private router: Router,
@@ -48,6 +55,12 @@ export class NavbarComponent implements OnInit {
                 let userid = JSON.parse(localStorage.getItem('result'))._id
                 this.apiService.getUserById(userid).subscribe(user => {
                     this.user = user.result;
+                    this.status.title = this.user.userStatus.onlineStatus
+                    _.forEach(this.statusObj, (value, key) => {
+                        if (value.title == this.user.userStatus.onlineStatus) {
+                            this.status.icon = value.icon
+                        }
+                    })
                 })
             }
             else {
@@ -95,4 +108,13 @@ export class NavbarComponent implements OnInit {
     sidemenuCloseOpen() {
         this.commonService.sidemenuSetStaus()
     }
+    setStatus(status) {
+        this.status.title = status.title;
+        this.status.icon = status.icon
+        this.apiService.setUserStatus(`presence=yes&onlineStatus=${status.id}`).subscribe(user => {
+            console.log(user.result);
+
+        })
+    }
+
 }

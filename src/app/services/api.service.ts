@@ -79,4 +79,17 @@ export class ApiService {
                 })
             )
     }
+    setUserStatus(query): Observable<any> {
+        this.commonService.loadingSet(true)
+        return this.http.get(`${environment.baseUrl}/users/status/?${query}`)
+            .pipe(
+                map(res => {
+                    this.commonService.loadingSet(false)
+                    return res;
+                }),
+                catchError(err => {
+                    return throwError(err || 'Server error')
+                })
+            )
+    }
 }
