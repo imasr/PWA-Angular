@@ -43,8 +43,6 @@ export class NavbarComponent implements OnInit {
             this.message = res
         })
         this.commonService.loadingGet().subscribe(res => {
-            console.log(res);
-
             this.loader = res
         })
     }
@@ -69,12 +67,7 @@ export class NavbarComponent implements OnInit {
         })
     }
     image(data) {
-        var emailPatt = new RegExp("gmail");
-        var pngPatt = new RegExp("png");
-        var res = emailPatt.exec(data)
-        if (emailPatt.exec(data)) {
-            return image_url + '/' + data;
-        } else if (pngPatt.exec(data)) {
+        if (data) {
             return environment.baseUrl + '/' + data
         } {
             return 'assets/user.png'
@@ -84,9 +77,9 @@ export class NavbarComponent implements OnInit {
         this.pushMessaging.generatePush()
             .subscribe(data => {
                 console.log("Succesfully Posted")
-            }, err =>
-                    console.log(err)
-            );
+            }, (err) => {
+                console.log(err)
+            });
     }
     logout() {
         this.sideNav = false;
@@ -113,7 +106,6 @@ export class NavbarComponent implements OnInit {
         this.status.icon = status.icon
         this.apiService.setUserStatus(`presence=yes&onlineStatus=${status.id}`).subscribe(user => {
             console.log(user.result);
-
         })
     }
 
