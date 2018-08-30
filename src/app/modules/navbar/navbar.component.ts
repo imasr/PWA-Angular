@@ -5,108 +5,121 @@ import { PushMessagingService } from '../../services/firebase.push-messaging.ser
 import { CommonService } from '../../services/common.service';
 import { ApiService } from '../../services/api.service';
 import { image_url } from './../../../config/config';
-import { environment } from "./../../../environments/environment";
-import * as _ from "lodash";
+import { environment } from './../../../environments/environment';
+import * as _ from 'lodash';
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-    home: boolean = true;
+    home = true;
     message: any;
     showtoken: any;
-    loader: boolean = true
+    loader = true;
     user: any;
-    status = { title: '', icon: '' }
-    sideNav: boolean = false;
+    status = { title: '', icon: '' };
+    sideNav = false;
     menuData = [
-        { title: "setting", icon: 'fa-cog' },
-        { title: "notification", icon: 'fa-bell' },
-        { title: "about", icon: 'fa-info-circle', },
-        { title: "logout", icon: 'fa-unlock-alt' }
-    ]
-    statusObj = [
-        { id: 1, title: 'Online', icon: "text-success" },
-        { id: 2, title: 'Do Not Disturb', icon: "text-danger" },
-        { id: 3, title: 'Away', icon: "text-warning" },
-        { id: 4, title: 'Invisible', icon: "text-muted" }
+        { title: 'settings', icon: 'fa-cog' },
+        { title: 'notification', icon: 'fa-bell' },
+        { title: 'about', icon: 'fa-info-circle', },
+        { title: 'logout', icon: 'fa-unlock-alt' }
     ];
+    statusObj = [
+        { id: 1, title: 'Online', icon: 'text-success' },
+        { id: 2, title: 'Do Not Disturb', icon: 'text-danger' },
+        { id: 3, title: 'Away', icon: 'text-warning' },
+        { id: 4, title: 'Invisible', icon: 'text-muted' }
+    ];
+    profileImage: any;
     constructor(
         private localStorage: LocalStorageService,
         private router: Router,
         private pushMessaging: PushMessagingService,
         private apiService: ApiService,
-        private commonService: CommonService
+        private commonService: CommonService,
     ) {
         this.pushMessaging.pushNotification().subscribe(res => {
-            this.message = res
-        })
+            this.message = res;
+        });
         this.commonService.loadingGet().subscribe(res => {
-            this.loader = res
-        })
+            this.loader = res;
+        });
     }
     ngOnInit() {
         this.commonService.dashboardStatusChange().subscribe(res => {
             if (res) {
                 this.home = false;
-                let userid = JSON.parse(localStorage.getItem('result'))._id
-                this.apiService.getUserById(userid).subscribe(user => {
-                    this.user = user.result;
-                    this.status.title = this.user.userStatus.onlineStatus
-                    _.forEach(this.statusObj, (value, key) => {
-                        if (value.title == this.user.userStatus.onlineStatus) {
-                            this.status.icon = value.icon
-                        }
-                    })
-                })
+                this.getUsers();
+            } else {
+                this.home = true;
             }
-            else {
-                this.home = true
-            }
-        })
+        });
+    }
+    getUsers() {
+        const userid = JSON.parse(localStorage.getItem('result'))._id;
+        this.apiService.getUserById(userid).subscribe(user => {
+            this.user = user.result;
+            this.status.title = this.user.userStatus.onlineStatus;
+            _.forEach(this.statusObj, (value, key) => {
+                if (value.title === this.user.userStatus.onlineStatus) {
+                    this.status.icon = value.icon;
+                }
+            });
+        });
     }
     image(data) {
         if (data) {
-            return environment.baseUrl + '/' + data
+            return environment.baseUrl + '/' + data;
         } {
-            return 'assets/user.png'
+            return 'assets/user.png';
         }
-    };
+    }
     generatePush() {
         this.pushMessaging.generatePush()
             .subscribe(data => {
-                console.log("Succesfully Posted")
+                console.log('Succesfully Posted');
             }, (err) => {
-                console.log(err)
+                console.log(err);
             });
     }
     logout() {
         this.sideNav = false;
         this.localStorage.clearLocalStorage();
-        this.router.navigate(['/login'])
+        this.router.navigate(['/login']);
     }
     closeNav() {
-        this.sideNav = !this.sideNav
-        this.commonService.overlay(this.sideNav)
+        this.sideNav = !this.sideNav;
+        this.commonService.overlay(this.sideNav);
     }
     clickMenu(title) {
-        this.closeNav()
-        if (title == 'logout') {
-            this.logout()
+        this.closeNav();
+        if (title === 'logout') {
+            this.logout();
         } else {
-            this.router.navigate([title])
+            this.router.navigate([title]);
         }
     }
     sidemenuCloseOpen() {
-        this.commonService.sidemenuSetStaus()
+        this.commonService.sidemenuSetStaus();
     }
     setStatus(status) {
         this.status.title = status.title;
-        this.status.icon = status.icon
+        this.status.icon = status.icon;
         this.apiService.setUserStatus(`presence=yes&onlineStatus=${status.id}`).subscribe(user => {
             console.log(user.result);
-        })
+        });
+    }
+    onFileChanged(event) {
+        this.profileImage = event.target.files[0];
+        const uploadData = new FormData();
+        uploadData.append('image', this.profileImage, this.profileImage.name);
+        this.apiService.uploadProfileImage(uploadData).subscribe(res => {
+            this.getUsers();
+        }, err => {
+            console.log(err);
+        });
     }
 
 }

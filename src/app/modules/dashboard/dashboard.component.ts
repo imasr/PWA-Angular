@@ -17,7 +17,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     usersView: any;
     overlay: any;
     mobileView: boolean;
-    profileImage: any;
 
     constructor(
         private api: ApiService,
@@ -75,21 +74,4 @@ export class DashboardComponent implements OnInit, OnDestroy {
     getusebyid(data) {
         this.usersView = data;
     }
-    onFileChanged(event) {
-        this.profileImage = event.target.files[0];
-    }
-
-    onUpload() {
-        const uploadData = new FormData();
-        uploadData.append('image', this.profileImage, this.profileImage.name);
-        console.log(uploadData);
-
-        this.api.uploadProfileImage(uploadData).subscribe(res => {
-            console.log(res);
-            this.getUsers();
-        }, err => {
-            console.log(err);
-        });
-    }
-
 }

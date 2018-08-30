@@ -27,8 +27,8 @@
                 <div class="card-body d-flex">
                     <img class="rounded-circle border mrg-sm-1" [src]="image(item?.image)" width=60 height=60>
                     <div (click)="getusebyid(item)" data-toggle="modal" data-target="#exampleModalCenter">
-                        {{item.username}}
-                        <br> {{item.email}}
+                        {{item?.username}}
+                        <br> {{item?.email}}
                     </div>
                     <span class="delete" data-toggle="tooltip" data-placement="bottom" title="Delete User {{item.username}}" (click)="delete(item._id)">
                         <i class="fa fa-trash" aria-hidden="true"></i>
@@ -37,9 +37,7 @@
             </div>
         </div>
         <div>
-            <input type="file" (change)="onFileChanged($event)" #fileInput>
-            <button (click)="fileInput.click()">Select File</button>
-            <button (click)="onUpload()">Upload!</button>
+            
         </div>
     </div>
 </div>

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError } from "rxjs/operators";
+import { map, catchError } from 'rxjs/operators';
 
-import { environment } from "./../../environments/environment";
+import { environment } from './../../environments/environment';
 import { CommonService } from './common.service';
 
 @Injectable({
@@ -23,73 +23,73 @@ export class ApiService {
                     return res;
                 }),
                 catchError(err => {
-                    return throwError(err || 'Server error')
+                    return throwError(err || 'Server error');
                 })
-            )
+            );
     }
     allUsers(): Observable<any> {
-        this.commonService.loadingSet(true)
+        this.commonService.loadingSet(true);
         return this.http.get(`${environment.baseUrl}/users`)
             .pipe(
                 map(res => {
-                    this.commonService.loadingSet(false)
+                    this.commonService.loadingSet(false);
                     return res;
                 }),
                 catchError(err => {
-                    return throwError(err || 'Server error')
+                    return throwError(err || 'Server error');
                 })
-            )
+            );
     }
     deleteUser(body: any): Observable<any> {
-        this.commonService.loadingSet(true)
+        this.commonService.loadingSet(true);
         return this.http.post(`${environment.baseUrl}/users/delete`, body)
             .pipe(
                 map(res => {
-                    this.commonService.loadingSet(false)
+                    this.commonService.loadingSet(false);
                     return res;
                 }),
                 catchError(err => {
-                    return throwError(err || 'Server error')
+                    return throwError(err || 'Server error');
                 })
-            )
+            );
     }
     getUserById(id): Observable<any> {
-        this.commonService.loadingSet(true)
+        this.commonService.loadingSet(true);
         return this.http.get(`${environment.baseUrl}/users/${id}`)
             .pipe(
                 map(res => {
-                    this.commonService.loadingSet(false)
+                    this.commonService.loadingSet(false);
                     return res;
                 }),
                 catchError(err => {
-                    return throwError(err || 'Server error')
+                    return throwError(err || 'Server error');
                 })
-            )
+            );
     }
     uploadProfileImage(file): Observable<any> {
-        this.commonService.loadingSet(true)
+        this.commonService.loadingSet(true);
         return this.http.post(`${environment.baseUrl}/users/updateprofile`, file)
             .pipe(
                 map(res => {
-                    this.commonService.loadingSet(false)
+                    this.commonService.loadingSet(false);
                     return res;
                 }),
                 catchError(err => {
-                    return throwError(err || 'Server error')
+                    return throwError(err || 'Server error');
                 })
-            )
+            );
     }
     setUserStatus(query): Observable<any> {
-        this.commonService.loadingSet(true)
+        this.commonService.loadingSet(true);
         return this.http.get(`${environment.baseUrl}/users/status/?${query}`)
             .pipe(
                 map(res => {
-                    this.commonService.loadingSet(false)
+                    this.commonService.loadingSet(false);
                     return res;
                 }),
                 catchError(err => {
-                    return throwError(err || 'Server error')
+                    return throwError(err || 'Server error');
                 })
-            )
+            );
     }
 }
