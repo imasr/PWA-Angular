@@ -99,6 +99,9 @@ export class LoginComponent implements AfterViewInit {
     }
 
     apiCall(data, uri) {
+        if (localStorage.getItem("deviceToken")) {
+            data.deviceToken = localStorage.getItem("deviceToken")
+        }
         this.api.authApi(data, uri).subscribe(res => {
             this.loader = false;
             if (res.result.token) {

@@ -37,9 +37,10 @@ export class PushMessagingService {
                 console.log('Notification permission granted.');
                 return this.messaging.getToken()
             })
-            .then(token => {
-                console.log('token', token)
-                this.pushData.to = token
+            .then(deviceToken => {
+                console.log("deviceToken", deviceToken)
+                localStorage.setItem("deviceToken", deviceToken);
+                this.pushData.to = deviceToken
             })
             .catch((err) => {
                 console.log('Unable to get permission to notify.', err);

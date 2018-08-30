@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, ActivatedRouteSnapshot } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { PushMessagingService } from "./services/pushMessaging.service";
+import { PushMessagingService } from "./services/firebase.push-messaging.service";
 
 @Component({
     selector: 'app-root',

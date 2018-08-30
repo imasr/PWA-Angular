@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { Router } from '@angular/router';
-import { PushMessagingService } from '../../services/pushMessaging.service';
+import { PushMessagingService } from '../../services/firebase.push-messaging.service';
 import { CommonService } from '../../services/common.service';
 import { ApiService } from '../../services/api.service';
 import { image_url } from './../../../config/config';
