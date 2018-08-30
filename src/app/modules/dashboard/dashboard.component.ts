@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { image_url } from './../../../config/config';
+import { environment } from '../../../environments/environment';
 import { CommonService } from '../../services/common.service';
 import { EventManager } from '@angular/platform-browser';
 
@@ -10,12 +10,12 @@ import { EventManager } from '@angular/platform-browser';
     styleUrls: ['./dashboard.component.css']
 })
 
-export class DashboardComponent implements OnInit {
-    sideData: any = [{ title: 'users', id: 1 }, { title: 'admin', id: 2 }]
+export class DashboardComponent implements OnInit, OnDestroy {
+    sideData: any = [{ title: 'users', id: 1 }, { title: 'admin', id: 2 }];
     activeId = 1;
-    users: any = []
+    users: any = [];
     usersView: any;
-    overlay: any
+    overlay: any;
     mobileView: boolean;
     profileImage: any;
 
@@ -28,57 +28,55 @@ export class DashboardComponent implements OnInit {
     }
 
     private onResize(event: UIEvent) {
-        this.mobileView = window.screen.width < 700
+        this.mobileView = window.screen.width < 700;
     }
     ngOnInit() {
         this.commonService.dashboard(true);
-        this.getUsers()
+        this.getUsers();
         this.commonService.overlayBodyBackground().subscribe(res => {
-            this.overlay = res
-        })
+            this.overlay = res;
+        });
         this.api.setUserStatus(`presence=yes`).subscribe(user => {
             console.log(user.result);
-        })
+        });
     }
     ngOnDestroy() {
         this.commonService.dashboard(false);
         this.api.setUserStatus(`presence=no`).subscribe(user => {
             console.log(user.result);
-        })
+        });
     }
     active(item, id) {
-        this.activeId = id
-        if (item == 'users') {
+        this.activeId = id;
+        if (item === 'users') {
             this.getUsers();
         }
     }
     getUsers() {
         this.api.allUsers().subscribe(res => {
-            this.users = res.result
-        })
+            this.users = res.result;
+        });
     }
-    image(email) {
-        var pattern = new RegExp("gmail");
-        var res = pattern.exec(email)
-        if (res) {
-            return image_url + '/' + email;
-        } else {
-            return false
+    image(data) {
+        if (data) {
+            return environment.baseUrl + '/' + data;
+        } {
+            return 'assets/user.png';
         }
-    };
+    }
     delete(id) {
-        this.api.deleteUser({ "id": id, role: "Admin" }).subscribe(res => {
+        this.api.deleteUser({ 'id': id, role: 'Admin' }).subscribe(res => {
             console.log(res);
             this.getUsers();
         }, err => {
             console.log(err);
-        })
+        });
     }
     getusebyid(data) {
         this.usersView = data;
     }
     onFileChanged(event) {
-        this.profileImage = event.target.files[0]
+        this.profileImage = event.target.files[0];
     }
 
     onUpload() {
@@ -91,7 +89,7 @@ export class DashboardComponent implements OnInit {
             this.getUsers();
         }, err => {
             console.log(err);
-        })
+        });
     }
 
 }

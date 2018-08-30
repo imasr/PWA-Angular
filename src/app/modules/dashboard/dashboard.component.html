@@ -1,11 +1,9 @@
 <div [ngClass]="overlay?'bggray':'d-none'">
-
 </div>
 <div class="d-flex flex-wrap mainbody">
     <!-- left -->
     <div class="p-2 side col-12 col-md-4 col-xl-3 bd-sidebar">
         <div id="menuTooggle" class="show" [ngClass]="mobileView?'collapse':''">
-
             <nav class="nav flex-column">
                 <div class="w-100" *ngIf="sideData">
                     <a class="nav-link" [ngClass]="{'active':index+1==activeId}" (click)="active(item.title, index+1)" [routerLink]="" *ngFor="let item of sideData;let index=index">
@@ -20,26 +18,21 @@
         <div class="header-top p-2 border d-flex justify-content-between">
             <h4>Users List</h4>
             <form class=" form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search ">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
-        <div class="col-md-12 px-0 padd-sm mt-2 ">
-            <div class="card" *ngFor="let item of users; let id=index ">
+        <div class="col-md-12 px-0 padd-sm mt-2">
+            <div class="card" *ngFor="let item of users; let id=index">
                 <div class="card-body d-flex">
-                    <img class="rounded-circle border mrg-sm-1 " [src]="image(item.email) " *ngIf="image(item.email)
-                            " alt=" " width=60 height=60>
-                    <img class="rounded-circle border mrg-sm-1 " src="assets/user.png " *ngIf="!image(item.email)
-                            " alt=" " width=60 height=60>
-                    <div (click)="getusebyid(item) " data-toggle="modal " data-target="#exampleModalCenter ">
+                    <img class="rounded-circle border mrg-sm-1" [src]="image(item?.image)" width=60 height=60>
+                    <div (click)="getusebyid(item)" data-toggle="modal" data-target="#exampleModalCenter">
                         {{item.username}}
                         <br> {{item.email}}
                     </div>
-                    <span class="delete " data-toggle="tooltip " data-placement="bottom " title="Delete User {{item.username}}
-            " (click)="delete(item._id) ">
-                        <i class="fa fa-trash " aria-hidden="true "></i>
+                    <span class="delete" data-toggle="tooltip" data-placement="bottom" title="Delete User {{item.username}}" (click)="delete(item._id)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
                     </span>
-                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -48,38 +41,35 @@
             <button (click)="fileInput.click()">Select File</button>
             <button (click)="onUpload()">Upload!</button>
         </div>
-
     </div>
 </div>
 
 
 <!-- Modal -->
-<div class="modal fade " id="exampleModalCenter " tabindex="-1 " role="dialog " aria-labelledby="exampleModalCenterTitle
-            " aria-hidden="true ">
-    <div class="modal-dialog modal-dialog-centered " role="document ">
-        <div class="modal-content ">
-            <div class="modal-header ">
-                <h5 class="modal-title " *ngIf="usersView " id="exampleModalCenterTitle ">{{usersView.username}}</h5>
-                <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
-                    <span aria-hidden="true ">&times;</span>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle
+           " aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" *ngIf="usersView" id="exampleModalCenterTitle">{{usersView.username}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body " *ngIf="usersView ">
-                <img class="rounded-circle border mr-5 " [src]="image(usersView.email) " *ngIf="image(usersView.email)
-            " alt=" " width=60 height=60>
-                <img class="rounded-circle border mr-5 " src="assets/user.png " *ngIf="!image(usersView.email) " alt=" " width=60 height=60>
-                <p *ngIf="usersView.username ">Username: {{usersView.username}}</p>
-                <p *ngIf="usersView.gender ">Gender: {{usersView.gender}}</p>
-                <p *ngIf="usersView.birthday ">Birthday: {{usersView.birthday}}</p>
-                <p *ngIf="usersView.fb_id ">Facebookk Id: {{usersView.fb_id}}</p>
-                <p *ngIf="usersView.google_id ">Google Id: {{usersView.google_id}}</p>
-                <p *ngIf="usersView._id ">Mongo Id: {{usersView._id}}</p>
-                <p *ngIf="usersView.email ">Email:
-                    <a target="_blank " rel="noopener noreferrer " href="https://mail.google.com/mail/?view=cm&fs=1&to={{usersView.email}} ">{{usersView.email}}</a>
+            <div class="modal-body" *ngIf="usersView">
+                <img class="rounded-circle border mr-5" [src]="image(usersView.image)" width="60" height="60">
+                <p *ngIf="usersView.username">Username: {{usersView.username}}</p>
+                <p *ngIf="usersView.gender">Gender: {{usersView.gender}}</p>
+                <p *ngIf="usersView.birthday">Birthday: {{usersView.birthday}}</p>
+                <p *ngIf="usersView.fb_id">Facebookk Id: {{usersView.fb_id}}</p>
+                <p *ngIf="usersView.google_id">Google Id: {{usersView.google_id}}</p>
+                <p *ngIf="usersView._id">Mongo Id: {{usersView._id}}</p>
+                <p *ngIf="usersView.email">Email:
+                    <a target="_blank" rel="noopener noreferrer" href="https://mail.google.com/mail/?view=cm&fs=1&to={{usersView.email}}">{{usersView.email}}</a>
                 </p>
             </div>
-            <div class="modal-footer ">
-                <button type="button " class="btn btn-secondary " data-dismiss="modal ">Close</button>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

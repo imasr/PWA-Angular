@@ -6,32 +6,32 @@ import { BehaviorSubject, Subject } from '../../../node_modules/rxjs';
 })
 export class CommonService {
 
-    dashboardStatus: Subject<any>
-    overlayBody: Subject<any>
-    sidemenu: Subject<any>
-    loader: Subject<any>
+    dashboardStatus: Subject<any>;
+    overlayBody: Subject<any>;
+    sidemenu: Subject<any>;
+    loader: Subject<any>;
 
     constructor() {
         this.dashboardStatus = new Subject();
-        this.overlayBody = new Subject()
-        this.sidemenu = new Subject()
-        this.loader = new Subject()
+        this.overlayBody = new Subject();
+        this.sidemenu = new Subject();
+        this.loader = new Subject();
     }
 
     dashboard(boolean) {
-        this.dashboardStatus.next(boolean)
+        this.dashboardStatus.next(boolean);
     }
     dashboardStatusChange() {
         return this.dashboardStatus.asObservable();
     }
     overlay(boolean) {
-        this.overlayBody.next(boolean)
+        this.overlayBody.next(boolean);
     }
     overlayBodyBackground() {
         return this.overlayBody.asObservable();
     }
     sidemenuSetStaus() {
-        this.sidemenu.next()
+        this.sidemenu.next();
     }
     sidemenuGetStatus() {
         return this.sidemenu.asObservable();
@@ -40,6 +40,6 @@ export class CommonService {
         return this.loader.asObservable();
     }
     loadingSet(boolean) {
-        this.loader.next(boolean)
+        this.loader.next(boolean);
     }
 }
