@@ -71,8 +71,8 @@ export class NavbarComponent implements OnInit {
     }
     image(data) {
         if (data) {
-            return environment.baseUrl + '/' + data;
-        } {
+            return `${environment.baseUrl}/${data}`;
+        } else {
             return 'assets/user.png';
         }
     }
@@ -86,8 +86,10 @@ export class NavbarComponent implements OnInit {
     }
     logout() {
         this.sideNav = false;
-        this.localStorage.clearLocalStorage();
-        this.router.navigate(['/login']);
+        this.apiService.setStatusDestroy().then(res => {
+            this.localStorage.clearLocalStorage();
+            this.router.navigate(['/login']);
+        });
     }
     closeNav() {
         this.sideNav = !this.sideNav;

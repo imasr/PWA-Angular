@@ -11,7 +11,8 @@ export class CommonService {
     sidemenu: Subject<any>;
     loader: Subject<any>;
 
-    constructor() {
+    constructor(
+    ) {
         this.dashboardStatus = new Subject();
         this.overlayBody = new Subject();
         this.sidemenu = new Subject();
@@ -42,4 +43,5 @@ export class CommonService {
     loadingSet(boolean) {
         this.loader.next(boolean);
     }
+
 }

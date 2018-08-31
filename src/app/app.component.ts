@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, ActivatedRouteSnapshot } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { PushMessagingService } from "./services/firebase.push-messaging.service";
+import { ApiService } from './services/api.service';
 
 @Component({
     selector: 'app-root',
@@ -9,12 +10,13 @@ import { PushMessagingService } from "./services/firebase.push-messaging.service
     styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
     constructor(
         private router: Router,
         private activateRoute: ActivatedRoute,
         private titleServive: Title,
-        private pushMessagingService: PushMessagingService
+        private pushMessagingService: PushMessagingService,
+        private apiService: ApiService
     ) { }
 
     ngOnInit() {
@@ -35,5 +37,9 @@ export class AppComponent implements OnInit {
             title = this.getTitle(routeSnapshot.firstChild, title);
         }
         return title;
+    }
+    ngOnDestroy() {
+        this.apiService.setStatusDestroy().then(res => {
+        });
     }
 }

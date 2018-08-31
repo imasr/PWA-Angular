@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { environment } from '../../../environments/environment';
 import { CommonService } from '../../services/common.service';
@@ -10,7 +10,7 @@ import { EventManager } from '@angular/platform-browser';
     styleUrls: ['./dashboard.component.css']
 })
 
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardComponent implements OnInit {
     sideData: any = [{ title: 'users', id: 1 }, { title: 'admin', id: 2 }];
     activeId = 1;
     users: any = [];
@@ -36,12 +36,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
             this.overlay = res;
         });
         this.api.setUserStatus(`presence=yes`).subscribe(user => {
-            console.log(user.result);
-        });
-    }
-    ngOnDestroy() {
-        this.commonService.dashboard(false);
-        this.api.setUserStatus(`presence=no`).subscribe(user => {
             console.log(user.result);
         });
     }

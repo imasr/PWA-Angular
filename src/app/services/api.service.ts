@@ -68,7 +68,7 @@ export class ApiService {
     }
     uploadProfileImage(file): Observable<any> {
         this.commonService.loadingSet(true);
-        return this.http.post(`${environment.baseUrl}/users/updateprofile`, file)
+        return this.http.post(`${environment.baseUrl}/users/uploadProfileIphoto`, file)
             .pipe(
                 map(res => {
                     this.commonService.loadingSet(false);
@@ -91,5 +91,13 @@ export class ApiService {
                     return throwError(err || 'Server error');
                 })
             );
+    }
+    setStatusDestroy() {
+        return new Promise((resolve, reject) => {
+            this.setUserStatus(`presence=no`).subscribe(user => {
+                resolve(true)
+            });
+        })
+
     }
 }
