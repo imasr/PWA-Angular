@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { PushMessagingService } from '../../services/firebase.push-messaging.service';
 import { CommonService } from '../../services/common.service';
 import { ApiService } from '../../services/api.service';
-import { image_url } from './../../../config/config';
+import { config } from './../../../config/config';
 import { environment } from './../../../environments/environment';
 import * as _ from 'lodash';
 @Component({
@@ -20,18 +20,8 @@ export class NavbarComponent implements OnInit {
     user: any;
     status = { title: '', icon: '' };
     sideNav = false;
-    menuData = [
-        { title: 'settings', icon: 'fa-cog' },
-        { title: 'notification', icon: 'fa-bell' },
-        { title: 'about', icon: 'fa-info-circle', },
-        { title: 'logout', icon: 'fa-unlock-alt' }
-    ];
-    statusObj = [
-        { id: 1, title: 'Online', icon: 'text-success' },
-        { id: 2, title: 'Do Not Disturb', icon: 'text-danger' },
-        { id: 3, title: 'Away', icon: 'text-warning' },
-        { id: 4, title: 'Invisible', icon: 'text-muted' }
-    ];
+    statusObj = config.statusObj;
+    menuData = config.menuData;
     profileImage: any;
     constructor(
         private localStorage: LocalStorageService,
@@ -60,13 +50,13 @@ export class NavbarComponent implements OnInit {
     getUsers() {
         const userid = JSON.parse(localStorage.getItem('result'))._id;
         this.apiService.getUserById(userid).subscribe(user => {
-            this.user = user.result;
-            this.status.title = this.user.userStatus.onlineStatus;
-            _.forEach(this.statusObj, (value, key) => {
-                if (value.title === this.user.userStatus.onlineStatus) {
+            this.status.title = user.result.userStatus.onlineStatus;
+            this.statusObj.map((value, key) => {
+                if (value.title === this.status.title) {
                     this.status.icon = value.icon;
                 }
             });
+            this.user = user.result;
         });
     }
     image(data) {

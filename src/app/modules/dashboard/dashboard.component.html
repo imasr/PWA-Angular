@@ -25,7 +25,10 @@
         <div class="col-md-12 px-0 padd-sm mt-2">
             <div class="card" *ngFor="let item of users; let id=index">
                 <div class="card-body d-flex">
-                    <img class="rounded-circle border mrg-sm-1" [src]="image(item?.image)" width=60 height=60>
+                    <div class="position-relative mrg-sm-1">
+                        <img class="rounded-circle border" [src]="image(item?.image)" width=60 height=60>
+                        <img [src]="imageStatus(item?.userStatus?.onlineStatus)" class="position-absolute mrb--5" alt="" width="30" height="30">
+                    </div>
                     <div (click)="getusebyid(item)" data-toggle="modal" data-target="#exampleModalCenter">
                         {{item?.username}}
                         <br> {{item?.email}}
@@ -37,7 +40,7 @@
             </div>
         </div>
         <div>
-            
+
         </div>
     </div>
 </div>

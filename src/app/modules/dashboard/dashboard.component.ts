@@ -3,6 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { environment } from '../../../environments/environment';
 import { CommonService } from '../../services/common.service';
 import { EventManager } from '@angular/platform-browser';
+import { config } from './../../../config/config';
 
 @Component({
     selector: 'app-dashboard',
@@ -17,7 +18,7 @@ export class DashboardComponent implements OnInit {
     usersView: any;
     overlay: any;
     mobileView: boolean;
-
+    statusObj = config.statusObj;
     constructor(
         private api: ApiService,
         private commonService: CommonService,
@@ -31,12 +32,11 @@ export class DashboardComponent implements OnInit {
     }
     ngOnInit() {
         this.commonService.dashboard(true);
-        this.getUsers();
         this.commonService.overlayBodyBackground().subscribe(res => {
             this.overlay = res;
         });
         this.api.setUserStatus(`presence=yes`).subscribe(user => {
-            console.log(user.result);
+            this.getUsers();
         });
     }
     active(item, id) {
@@ -67,5 +67,16 @@ export class DashboardComponent implements OnInit {
     }
     getusebyid(data) {
         this.usersView = data;
+    }
+    imageStatus(title) {
+        console.log(title);
+
+        let icon;
+        this.statusObj.map((value, key) => {
+            if (value.title == title) {
+                icon = value.icon;
+            }
+        });
+        return icon;
     }
 }

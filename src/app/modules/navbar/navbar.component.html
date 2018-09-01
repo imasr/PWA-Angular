@@ -45,17 +45,17 @@
     <div class="shadow-sm p-3">
         <div class="my-2 mr-auto text-center">
             <input type="file" accept="image/*" class="d-none" (change)="onFileChanged($event)" #fileInput>
-            <img class="rounded-circle" [src]="image(user?.image)" (click)="fileInput.click()" width="100" height="100">
+            <img class="rounded-circle border" [src]="image(user?.image)" (click)="fileInput.click()" width="100" height="100">
         </div>
         <div class="d-flex flex-column align-items-center">
-            <div class="d-flex py-0 align-items-center">
-                <i class="fa fa-dot-circle-o w-20 {{status?.icon}}"></i>
-                <div class="dropdown">
-                    <span class="dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{status?.title}}
-                    </span>
-                    <div class="dropdown-menu z-index-100" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button" *ngFor="let item of statusObj" (click)="setStatus(item)">{{item.title}}</button>
+            <div class="dropdown font-size-14px">
+                <div class="d-flex py-0 align-items-center dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <img [src]="status?.icon" alt="" width="30" height="30"> {{status?.title}}
+                    <div class="dropdown-menu z-index-100 font-size-14px" aria-labelledby="dropdownMenu2">
+                        <button class="dropdown-item p-0" type="button" *ngFor="let item of statusObj" (click)="setStatus(item)">
+                            <img [src]="item?.icon" alt="" width="30" height="30">{{item.title}}
+                        </button>
                     </div>
                 </div>
             </div>
