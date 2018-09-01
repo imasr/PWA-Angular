@@ -6,7 +6,7 @@ import { ApiService } from '../../services/api.service';
 @Component({
     selector: 'app-forget',
     templateUrl: './forget.component.html',
-    styleUrls: ['./forget.component.css']
+    styleUrls: ['./forget.component.scss']
 })
 export class ForgetComponent implements OnInit {
 

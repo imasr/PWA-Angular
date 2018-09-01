@@ -10,10 +10,9 @@ import * as _ from 'lodash';
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.css']
+    styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-    home = true;
     message: any;
     showtoken: any;
     loader = true;
@@ -26,28 +25,17 @@ export class NavbarComponent implements OnInit {
     constructor(
         private localStorage: LocalStorageService,
         private router: Router,
-        private pushMessaging: PushMessagingService,
         private apiService: ApiService,
         private commonService: CommonService,
     ) {
-        this.pushMessaging.pushNotification().subscribe(res => {
-            this.message = res;
-        });
         this.commonService.loadingGet().subscribe(res => {
             this.loader = res;
         });
     }
     ngOnInit() {
-        this.commonService.dashboardStatusChange().subscribe(res => {
-            if (res) {
-                this.home = false;
-                this.getUsers();
-            } else {
-                this.home = true;
-            }
-        });
+        this.getProfile();
     }
-    getUsers() {
+    getProfile() {
         const userid = JSON.parse(localStorage.getItem('result'))._id;
         this.apiService.getUserById(userid).subscribe(user => {
             this.status.title = user.result.userStatus.onlineStatus;
@@ -66,14 +54,7 @@ export class NavbarComponent implements OnInit {
             return 'assets/user.png';
         }
     }
-    generatePush() {
-        this.pushMessaging.generatePush()
-            .subscribe(data => {
-                console.log('Succesfully Posted');
-            }, (err) => {
-                console.log(err);
-            });
-    }
+
     logout() {
         this.sideNav = false;
         this.apiService.setStatusDestroy().then(res => {
@@ -85,11 +66,13 @@ export class NavbarComponent implements OnInit {
         this.sideNav = !this.sideNav;
         this.commonService.overlay(this.sideNav);
     }
-    clickMenu(title) {
+    selectMenu(title) {
         this.closeNav();
         if (title === 'logout') {
             this.logout();
         } else {
+            console.log(title);
+
             this.router.navigate([title]);
         }
     }
@@ -108,7 +91,7 @@ export class NavbarComponent implements OnInit {
         const uploadData = new FormData();
         uploadData.append('image', this.profileImage, this.profileImage.name);
         this.apiService.uploadProfileImage(uploadData).subscribe(res => {
-            this.getUsers();
+            this.getProfile();
         }, err => {
             console.log(err);
         });

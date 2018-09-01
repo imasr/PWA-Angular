@@ -1,6 +1,7 @@
 export const config = {
     image_url: "https://pikmail.herokuapp.com",
     menuData: [
+        { title: 'dashboard', icon: 'fa-home' },
         { title: 'settings', icon: 'fa-cog' },
         { title: 'notification', icon: 'fa-bell' },
         { title: 'about', icon: 'fa-info-circle', },

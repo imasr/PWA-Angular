@@ -1,0 +1,13 @@
+<div class="position-fixed right-bottom-corner shadow">
+  <div class="border border-primary border-bottom-0">
+    <button class="bg-primary text-white pointer px-2 py-1 border-0 w-100 text-left" role="button" (click)="showContacts=!showContacts">Chat
+      <i class="fa fa-close float-right mt-1"></i>
+    </button>
+    <div *ngIf="showContacts" class="bg-white ">
+      <div *ngFor="let contact of contactList" class="d-flex px-2 justify-content-between align-items-center font-size-14px hover pointer">
+        <span>{{contact?.username | titlecase}}</span>
+        <img [src]="imageStatus(contact?.userStatus?.onlineStatus)" alt="" width="30" height="30">
+      </div>
+    </div>
+  </div>
+</div>

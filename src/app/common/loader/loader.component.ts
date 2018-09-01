@@ -4,7 +4,7 @@ import { $ } from '../../../../node_modules/protractor';
 @Component({
     selector: 'app-loader',
     templateUrl: './loader.component.html',
-    styleUrls: ['./loader.component.css']
+    styleUrls: ['./loader.component.scss']
 })
 export class LoaderComponent implements OnInit {
     @ViewChild('openModalButton') openModalButton: ElementRef;

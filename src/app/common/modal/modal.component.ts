@@ -4,7 +4,7 @@ import { Router } from '../../../../node_modules/@angular/router';
 @Component({
     selector: 'app-modal',
     templateUrl: './modal.component.html',
-    styleUrls: ['./modal.component.css']
+    styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
     @ViewChild('openModalButton') openModal: ElementRef;

@@ -10,7 +10,7 @@ export const appRoutes: Routes = [
     { path: 'forget', loadChildren: 'src/app/modules/forget/forget.module#ForgetModule', data: { title: 'Forget Password' } },
     { path: 'reset/:id', loadChildren: 'src/app/modules/reset/reset.module#ResetModule', data: { title: 'Reset Password' } },
     { path: 'dashboard', canActivate: [AuthGuardService], loadChildren: 'src/app/modules/dashboard/dashboard.module#DashboardModule', data: { title: 'Welcome to Dashboard' } },
-    { path: 'setting', canActivate: [AuthGuardService], loadChildren: 'src/app/modules/settings/settings.module#SettingsModule', data: { title: 'Setting' } },
+    { path: 'settings', canActivate: [AuthGuardService], loadChildren: 'src/app/modules/settings/settings.module#SettingsModule', data: { title: 'Setting' } },
     { path: 'camera', loadChildren: 'src/app/modules/camera-open-page/cmx-camera-open-page.module#CmxCameraOpenPageModule', data: { title: 'camera' } },
     { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];

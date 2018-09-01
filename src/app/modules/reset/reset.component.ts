@@ -6,7 +6,7 @@ import { NgForm } from '@angular/forms';
 @Component({
     selector: 'app-reset',
     templateUrl: './reset.component.html',
-    styleUrls: ['./reset.component.css']
+    styleUrls: ['./reset.component.scss']
 })
 export class ResetComponent implements OnInit {
     alert: boolean = false;

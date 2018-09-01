@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
-import { NavbarComponent } from '../navbar/navbar.component';
 import { FormsModule } from '@angular/forms';
+import { NavbarModule } from '../navbar/navbar.module';
+import { ChatModule } from '../chat/chat.module';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent }
@@ -15,6 +16,8 @@ const routes: Routes = [
         CommonModule,
         RouterModule,
         FormsModule,
+        NavbarModule,
+        ChatModule,
         RouterModule.forChild(routes)
     ],
     declarations: [

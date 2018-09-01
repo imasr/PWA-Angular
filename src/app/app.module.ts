@@ -8,7 +8,6 @@ import { IntercepterHttp } from './services/http.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { NavbarComponent } from './modules/navbar/navbar.component';
 import { firebaseConfig } from '../environments/firebase.config';
 import * as firebase from 'firebase/app';
 import 'firebase/messaging';
@@ -17,7 +16,6 @@ firebase.initializeApp(firebaseConfig);
 @NgModule({
     declarations: [
         AppComponent,
-        NavbarComponent
     ],
     imports: [
         BrowserModule,

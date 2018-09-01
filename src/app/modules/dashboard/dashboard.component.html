@@ -1,8 +1,10 @@
-<div [ngClass]="overlay?'bggray':'d-none'">
+<div [ngClass]="overlay?'bg-overlay':'d-none'">
 </div>
+<app-navbar class="fixed"></app-navbar>
+
 <div class="d-flex flex-wrap mainbody">
     <!-- left -->
-    <div class="p-2 side col-12 col-md-4 col-xl-3 bd-sidebar">
+    <div class="p-2 side col-12 col-md-4 col-xl-3 bg-sidebar">
         <div id="menuTooggle" class="show" [ngClass]="mobileView?'collapse':''">
             <nav class="nav flex-column">
                 <div class="w-100" *ngIf="sideData">
@@ -75,3 +77,4 @@
         </div>
     </div>
 </div>
+<chat></chat>

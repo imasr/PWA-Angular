@@ -3,7 +3,7 @@ import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/co
 @Component({
     selector: 'app-cmx-camera-open-page',
     templateUrl: './cmx-camera-open-page.component.html',
-    styleUrls: ['./cmx-camera-open-page.component.css']
+    styleUrls: ['./cmx-camera-open-page.component.scss']
 })
 export class CmxCameraOpenPageComponent implements OnInit, OnDestroy {
     public captures: Array<any>;

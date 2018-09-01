@@ -100,4 +100,12 @@ export class ApiService {
         })
 
     }
+    setStatusOnline() {
+        return new Promise((resolve, reject) => {
+            this.setUserStatus(`presence=yes`).subscribe(user => {
+                resolve(true)
+            });
+        })
+
+    }
 }

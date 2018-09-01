@@ -8,7 +8,7 @@ import { config } from './../../../config/config';
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.css']
+    styleUrls: ['./dashboard.component.scss']
 })
 
 export class DashboardComponent implements OnInit {
@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
         this.commonService.overlayBodyBackground().subscribe(res => {
             this.overlay = res;
         });
-        this.api.setUserStatus(`presence=yes`).subscribe(user => {
+        this.api.setStatusOnline().then(user => {
             this.getUsers();
         });
     }
@@ -69,8 +69,6 @@ export class DashboardComponent implements OnInit {
         this.usersView = data;
     }
     imageStatus(title) {
-        console.log(title);
-
         let icon;
         this.statusObj.map((value, key) => {
             if (value.title == title) {
