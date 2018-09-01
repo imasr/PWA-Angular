@@ -9,6 +9,7 @@ import { config } from './../../../config/config';
 })
 export class ChatComponent implements OnInit {
   contactList: any;
+    showContacts=false;
   statusObj = config.statusObj;
   constructor(
     private api: ApiService
