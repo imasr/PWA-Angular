@@ -2,14 +2,19 @@
     <div class="d-flex justify-content-around align-items-center heightAuthPage">
         <img src="./../../assets/app_icon.png" class="logo img rounded bg-white d-none d-md-block" alt="">
 
-        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-4">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-4 ">
+            <div class="text-center d-block d-sm-none">
+                <img src="./../../assets/app_icon.png" class="logo img rounded" width="60" alt="">
+            </div>
             <h5 class="text-center py-1 font-weight-bold">Sign In</h5>
-            <form #loginForm="ngForm" class="needs-validation" (submit)="loginForm.form.valid && login(loginForm)" novalidate>
+            <form #loginForm="ngForm" class="needs-validation" (submit)="loginForm.form.valid && login(loginForm)"
+                novalidate>
 
                 <div class="form-group">
                     <input type="email" [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched),
-            'is-valid': email.valid && (email.dirty || email.touched)}" class="form-control" name="email" autoComplete="off"
-                        placeholder="Email" [(ngModel)]="loginForm.email" #email="ngModel" required pattern="^[a-z0-9](\.?[a-z0-9_-]){0,}@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$">
+            'is-valid': email.valid && (email.dirty || email.touched)}"
+                        class="form-control" name="email" autoComplete="off" placeholder="Email" [(ngModel)]="loginForm.email"
+                        #email="ngModel" required pattern="^[a-z0-9](\.?[a-z0-9_-]){0,}@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$">
                     <div class="invalid-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
                         <p *ngIf="email.errors.required">Email is required</p>
                         <p *ngIf="email.errors.pattern">Email is Invalid</p>
@@ -17,8 +22,9 @@
                 </div>
                 <div class="form-group">
                     <input type="password" [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched),
-          'is-valid': password.valid && (password.dirty || password.touched)}" class="form-control" name="password" autoComplete="off"
-                        [(ngModel)]="loginForm.password" placeholder="Password" required minlength=3 #password="ngModel">
+          'is-valid': password.valid && (password.dirty || password.touched)}"
+                        class="form-control" name="password" autoComplete="off" [(ngModel)]="loginForm.password"
+                        placeholder="Password" required minlength=3 #password="ngModel">
                     <div class="invalid-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
                         <p *ngIf="password.errors.required">Password is required</p>
                         <p *ngIf="password.errors.minlength">Password should be min 3 character long</p>
@@ -31,11 +37,11 @@
             <div class="text-center">
                 <a href="#" [routerLink]="['/forget']">Forgot password?</a>
             </div>
-            <div class="text-center p-3">
+            <div class="text-center p-1">
                 <a href="#" [routerLink]="['/register']">Register New User</a>
             </div>
 
-            <div class="vl mt-3 mb-3">
+            <div class="vl my-2">
                 <span class="vl-innertext">OR</span>
             </div>
             <a class="fb btn text-white" (click)="onSignInFacebook()">
