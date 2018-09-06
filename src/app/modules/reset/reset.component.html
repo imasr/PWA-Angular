@@ -1,8 +1,11 @@
-<div class="container mainbody">
-    <div class="d-flex justify-content-around align-items-center heightAuthPage">
+<div class="container ">
+    <div class="d-flex justify-content-around align-items-center height-100vh">
         <img src="./../../assets/app_icon.png" class="logo img rounded bg-white d-none d-md-block" alt="">
 
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-4">
+            <div class="text-center d-block d-sm-none">
+                <img src="./../../assets/app_icon.png" class="logo img rounded" width="80" alt="">
+            </div>
             <h6 class="text-center py-1 font-weight-bold">Enter New Password</h6>
             <form #resetForm="ngForm" class="needs-validation" (submit)="resetForm.form.valid && reset(resetForm)"
                 novalidate>
