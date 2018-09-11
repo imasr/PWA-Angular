@@ -11,6 +11,7 @@ import { ApiService } from './services/api.service';
 })
 
 export class AppComponent implements OnInit, OnDestroy {
+    splashScreen = true
     constructor(
         private router: Router,
         private activateRoute: ActivatedRoute,
@@ -45,6 +46,9 @@ export class AppComponent implements OnInit, OnDestroy {
             title = this.getTitle(routeSnapshot.firstChild, title);
         }
         return title;
+    }
+    onActivateRoute(event) {
+        this.splashScreen = false
     }
     ngOnDestroy() {
         this.apiService.setStatusDestroy().then(res => {

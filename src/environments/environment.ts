@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    baseUrl: 'https://node-loginapp.herokuapp.com',
+    baseUrl: 'http://localhost:8080',
     facebookConfig: {
         appId: '2154368044590850',
         cookie: true,

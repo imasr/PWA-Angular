@@ -1,7 +1,5 @@
 <div class="container ">
     <div class="d-flex justify-content-around align-items-center height-100vh">
-        <img src="./../../assets/app_icon.png" class="logo img rounded bg-white d-none d-md-block" alt="">
-
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-4">
             <div class="text-center d-block d-sm-none">
                 <img src="./../../assets/app_icon.png" class="logo img rounded" width="80" alt="">
@@ -12,17 +10,17 @@
                 <div class="form-group">
                     <input type="email" [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched),
             'is-valid': email.valid && (email.dirty || email.touched)}"
-                        class="form-control" name="email" autoComplete="off" placeholder="Email" [(ngModel)]="forgetForm.email"
-                        #email="ngModel" required pattern="^[a-z0-9](\.?[a-z0-9_-]){0,}@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$">
+                        class="form-control font-size-14px" name="email" autoComplete="off" placeholder="Email"
+                        [(ngModel)]="forgetForm.email" #email="ngModel" required pattern="^[a-z0-9](\.?[a-z0-9_-]){0,}@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$">
                     <div class="invalid-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
                         <p *ngIf="email.errors.required">Email is required</p>
                         <p *ngIf="email.errors.pattern">Email is Invalid</p>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success font-size-14px">Submit</button>
             </form>
 
-            <div class="text-center p-1">
+            <div class="text-center p-1 font-size-14px">
                 <a href="#" [routerLink]="['/login']"> Back to Login</a>
             </div>
         </div>
