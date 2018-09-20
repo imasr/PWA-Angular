@@ -11,7 +11,7 @@ import { ApiService } from './services/api.service';
 })
 
 export class AppComponent implements OnInit, OnDestroy {
-    splashScreen = true
+    splashScreen = true;
     constructor(
         private router: Router,
         private activateRoute: ActivatedRoute,

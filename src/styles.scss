@@ -7,7 +7,9 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
-    background: linear-gradient(40deg, #081623, #22a29d) !important;
+    // background: linear-gradient(40deg, #081623, #22a29d) !important;
+    background-image: url("./assets/hd.jpg");
+    background-size: cover;
     border-radius: 0;
     height: 100%;
 }
@@ -53,7 +55,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background:linear-gradient(40deg, #081623, #22a29d) !important;
+    // background:linear-gradient(40deg, #081623, #22a29d) !important;
+    background-image: url("./assets/hd.jpg");
+    background-size: cover;
 }
 
 .loader {

@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { NavbarModule } from '../navbar/navbar.module';
+import { ContactsModule } from '../contacts/contacts.module';
 import { ChatModule } from '../chat/chat.module';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
         RouterModule,
         FormsModule,
         NavbarModule,
+        ContactsModule,
         ChatModule,
         RouterModule.forChild(routes)
     ],

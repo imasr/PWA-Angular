@@ -8,7 +8,8 @@
         <div id="menuTooggle" class="show" [ngClass]="mobileView?'collapse':''">
             <nav class="nav flex-column">
                 <div class="w-100" *ngIf="sideData">
-                    <a class="nav-link" [ngClass]="{'active':index+1==activeId}" (click)="active(item.title, index+1)" [routerLink]="" *ngFor="let item of sideData;let index=index">
+                    <a class="nav-link" [ngClass]="{'active':index+1==activeId}" (click)="active(item.title, index+1)"
+                        [routerLink]="" *ngFor="let item of sideData;let index=index">
                         {{item.title | titlecase}}
                     </a>
                 </div>
@@ -29,13 +30,15 @@
                 <div class="card-body d-flex">
                     <div class="position-relative mrg-sm-1">
                         <img class="rounded-circle border" [src]="image(item?.image)" width=60 height=60>
-                        <img [src]="imageStatus(item?.userStatus?.onlineStatus)" class="position-absolute mrb--5" alt="" width="30" height="30">
+                        <img [src]="imageStatus(item?.userStatus?.onlineStatus)" class="position-absolute mrb--5" alt=""
+                            width="30" height="30">
                     </div>
                     <div (click)="getusebyid(item)" data-toggle="modal" data-target="#exampleModalCenter">
                         {{item?.username}}
                         <br> {{item?.email}}
                     </div>
-                    <span class="delete" data-toggle="tooltip" data-placement="bottom" title="Delete User {{item.username}}" (click)="delete(item._id)">
+                    <span class="delete" data-toggle="tooltip" data-placement="bottom" title="Delete User {{item.username}}"
+                        (click)="delete(item._id)">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </span>
                 </div>
@@ -50,7 +53,8 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle
-           " aria-hidden="true">
+           "
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -77,4 +81,5 @@
         </div>
     </div>
 </div>
-<chat></chat>
+<chat-app></chat-app>
+<contacts-app></contacts-app>
