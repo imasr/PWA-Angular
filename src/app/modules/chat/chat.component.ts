@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'chat-app',
@@ -9,30 +10,26 @@ import { ChatService } from '../../services/chat.service';
 export class ChatComponent implements OnInit {
     message: any;
     messages: any[] = [];
-    @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
+    connection: Subscription
     constructor(
         private chatService: ChatService
     ) { }
 
     ngOnInit() {
-        this.chatService.getMessages().subscribe(newMessage => {
+        this.connection = this.chatService.getMessages().subscribe(newMessage => {
             this.messages.push(newMessage);
-            this.scrollToBottom()
         });
     }
 
-    sendMessage() {
-        this.message = "hi ashish"
-        this.chatService.sendMessage(this.message);
-        this.message = '';
-        this.scrollToBottom()
-    }
-    ngAfterViewInit() {
-        this.scrollToBottom()
-    }
-    scrollToBottom(): void {
-        window.scrollBy(0, this.myScrollContainer.nativeElement.scrollHeight);
+    ngOnDestroy() {
+        this.connection.unsubscribe();
     }
 
+    sendMessage() {
+        if (!this.message)
+            return
+        this.chatService.sendMessage(this.message);
+        this.message = '';
+    }
 }

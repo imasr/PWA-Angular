@@ -1,5 +1,5 @@
 <div #scrollMe class="bg-white">
     <p *ngFor="let item of messages" class="bg-white">{{item}}</p>
-    <input [(ngModel)]="message" />
+    <input #chatInput [(ngModel)]="message" (keyup.enter)="sendMessage()" />
     <button (click)="sendMessage()">Send</button>
 </div>
