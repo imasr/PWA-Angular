@@ -108,4 +108,15 @@ export class ApiService {
         })
 
     }
+    sendPosition(body): Observable<any> {
+        return this.http.post(`${environment.baseUrl}/trace`, body)
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError(err => {
+                    return throwError(err || 'Server error');
+                })
+            );
+    }
 }
