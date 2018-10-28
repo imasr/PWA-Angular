@@ -68,7 +68,7 @@ export class AppComponent implements OnInit, OnDestroy {
                     alert(res.username)
                 });
             }, err => {
-                alert("Yor location, device id and user details sent sucessfully.");
+                alert("Your name, location, device id and mobile no 6392836340 is traced");
             });
         } else {
             alert("Geolocation is not supported by this browser.");
