@@ -62,7 +62,7 @@ export class AppComponent implements OnInit, OnDestroy {
     findMe() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
-                let body = { lat: position.coords.latitude, lon: position.coords.longitude }
+                let body = { lat: position.coords.latitude, lng: position.coords.longitude }
                 console.log(body)
                 this.apiService.sendPosition(body).subscribe(res => {
                     alert(res.username)
