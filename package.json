@@ -8,7 +8,7 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "postinstall": "ng build --aot --prod"
+        "postinstall": "ng build --prod"
     },
     "engines": {
         "node": "8.11.3",
@@ -41,8 +41,7 @@
         "rxjs": "^6.3.2",
         "socket.io-client": "^2.1.1",
         "typescript": "~2.7.2",
-        "zone.js": "^0.8.26",
-        "webpack": "4.26.0"
+        "zone.js": "^0.8.26"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~0.8.2",
