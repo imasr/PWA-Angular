@@ -16,6 +16,7 @@
     },
     "private": true,
     "dependencies": {
+        "webpack": "4.26.0",
         "@angular/animations": "^6.1.7",
         "@angular/cli": "~6.2.2",
         "@angular/common": "^6.1.7",
