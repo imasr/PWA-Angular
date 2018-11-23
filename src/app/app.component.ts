@@ -29,7 +29,6 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.findMe()
         this.pushMessagingService.getPermission()
         this.pushMessagingService.receiveMessage()
 

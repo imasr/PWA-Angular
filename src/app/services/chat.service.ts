@@ -8,16 +8,37 @@ import { Observable } from 'rxjs';
 })
 export class ChatService {
 
-    socket: any;
-
+    private socket = io(environment.baseUrl)
     constructor() {
-        this.socket = io(environment.baseUrl);
+    }
+
+    joinRoom(data) {
+        console.log(data);
+        this.socket.emit('join', data);
+    }
+
+
+
+    public typing(data) {
+        console.log(data);
+        this.socket.emit('typing', data);
+    }
+    public receivedTyping = () => {
+        return Observable.create((observer) => {
+            this.socket.on('typing', (data) => {
+                console.log(data);
+
+                observer.next(data);
+            });
+            return () => {
+                this.socket.disconnect();
+            };
+        });
     }
 
     public sendMessage(message) {
         this.socket.emit('new-message', message);
     }
-
     public getMessages = () => {
         return Observable.create((observer) => {
             this.socket.on('new-message', (message) => {
@@ -25,6 +46,9 @@ export class ChatService {
 
                 observer.next(message);
             });
+            return () => {
+                this.socket.disconnect();
+            };
         });
     }
 }

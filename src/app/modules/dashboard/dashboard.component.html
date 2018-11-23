@@ -1,5 +1,5 @@
-<div [ngClass]="overlay?'bg-overlay':'d-none'">
-</div>
+<!-- <div [ngClass]="overlay?'bg-overlay':'d-none'">
+</div> -->
 <app-navbar class="fixed"></app-navbar>
 
 <div class="d-flex flex-wrap mainbody">
@@ -52,8 +52,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle
-           "
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -81,5 +80,5 @@
         </div>
     </div>
 </div>
-<chat-app></chat-app>
+<chat-app class="fixed-bottom" style="width:260px;"></chat-app>
 <contacts-app></contacts-app>

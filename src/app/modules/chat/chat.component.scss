@@ -2,3 +2,19 @@
     overflow-x: hidden;
     overflow-y: visible;
   }
+.chat-window{
+  overflow-y: auto;
+  max-height: 300px;
+  min-height: 300px;
+  background: #e9ecef;
+}
+.chat-window :nth-child(even){
+  background-color: #dcdcdc;
+  margin-bottom: 0rem !important;
+  padding: 1vh ;
+}
+.chat-window :nth-child(odd){
+  background-color: #aaaaaa;
+  margin-bottom: 0rem !important;
+  padding: 1vh ;
+}

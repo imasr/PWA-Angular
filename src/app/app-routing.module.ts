@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './services/auth-guard.service';
 
 export const appRoutes: Routes = [
-    { path: '', redirectTo: '', pathMatch: 'full' },
+    { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'register', loadChildren: 'src/app/modules/register/register.module#RegisterModule', data: { title: 'Registration' } },
     { path: 'login', loadChildren: 'src/app/modules/login/login.module#LoginModule', data: { title: 'Login' } },
     { path: 'forget', loadChildren: 'src/app/modules/forget/forget.module#ForgetModule', data: { title: 'Forget Password' } },
