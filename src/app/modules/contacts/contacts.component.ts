@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { config } from './../../../config/config';
 import { ApiService } from '../../services/api.service';
 
@@ -12,6 +12,7 @@ export class ContactsComponent implements OnInit {
     contactList: any;
     showContacts = false;
     statusObj = config.statusObj;
+    @Output() openChatRoom: EventEmitter<any> = new EventEmitter()
     constructor(
         private api: ApiService
     ) { }
@@ -34,5 +35,7 @@ export class ContactsComponent implements OnInit {
         return icon;
     }
 
-
+    openChat(event) {
+        this.openChatRoom.emit(event)
+    }
 }

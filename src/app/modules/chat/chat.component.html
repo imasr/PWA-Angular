@@ -1,14 +1,14 @@
 <div #scrollMe class="bg-white border border-primary border-bottom-0">
     <button class="bg-primary text-white pointer px-2 py-1 border-0 w-100 text-left" role="button" (click)="showChats=!showChats">
-        {{loggedInuser?.username}}
-        <i class="fa fa-close float-right mt-1"></i>
+        {{chatData?.username}}
+        <i class="fa fa-close float-right mt-1" (click)="close()"></i>
         <i *ngIf="isTyping" class="text-success">typing...</i>
     </button>
     <div *ngIf="showChats">
         <div class="chat-window">
-            <p *ngFor="let item of messages">{{item}}</p>
+            <p *ngFor="let item of messages">{{item.message}}</p>
         </div>
-        <div class="d-inline-flex ">
+        <div class="d-inline-flex">
             <input #chatInput (keypress)="typing()" [(ngModel)]="message" (keyup.enter)="sendMessage()" />
             <button (click)="sendMessage()" class="btn btn-primary rounded-0" style="width:84px">Send</button>
         </div>

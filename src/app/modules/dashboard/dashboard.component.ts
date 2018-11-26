@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
     overlay: any;
     mobileView: boolean;
     statusObj = config.statusObj;
+    showChats: any
     constructor(
         private api: ApiService,
         private commonService: CommonService,
@@ -76,5 +77,12 @@ export class DashboardComponent implements OnInit {
             }
         });
         return icon;
+    }
+    openChatRoom(event) {
+        this.showChats = event
+        console.log(this.showChats);
+    }
+    closeRoom(event) {
+        this.showChats = ""
     }
 }

@@ -1,6 +1,10 @@
 <!-- <div [ngClass]="overlay?'bg-overlay':'d-none'">
 </div> -->
 <app-navbar class="fixed"></app-navbar>
+<div class="d-flex position-fixed left-bottom-corner shadow" *ngIf="showChats">
+    <chat-app class="mx-1 min-width-250" (closeRoom)="closeRoom($event)" [chatData]="showChats"></chat-app>
+</div>
+<contacts-app (openChatRoom)="openChatRoom($event)"></contacts-app>
 
 <div class="d-flex flex-wrap mainbody">
     <!-- left -->
@@ -51,6 +55,8 @@
 </div>
 
 
+
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
@@ -80,5 +86,3 @@
         </div>
     </div>
 </div>
-<chat-app class="fixed-bottom" style="width:260px;"></chat-app>
-<contacts-app></contacts-app>
