@@ -13,18 +13,28 @@ export class ChatComponent implements OnInit {
     messages: any[] = [];
     showChats: boolean = true
     isTyping: boolean
-    @Input() chatData: any
-    @Output() closeRoom: EventEmitter<any> = new EventEmitter()
     connection: Subscription
     chatroom: any
+
+    @Input() chatData: any
+    @Output() closeRoom: EventEmitter<any> = new EventEmitter()
+
     constructor(
         private chatService: ChatService,
         private storageService: LocalStorageService
-    ) { }
+    ) {
+        this.connection = this.chatService.getMessages().subscribe(new_message => {
+            this.messages.push(new_message);
+            this.isTyping = false;
+        });
+        this.chatService.receivedTyping().subscribe(bool => {
+            this.isTyping = bool.isTyping;
+        });
+    }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log(changes.chatData.currentValue);
         this.getDatDForChatroom(changes.chatData.currentValue)
+        this.messages = []
     }
 
     getDatDForChatroom(data) {
@@ -39,33 +49,28 @@ export class ChatComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.connection = this.chatService.getMessages().subscribe(new_message => {
-            this.messages.push(new_message);
-            this.isTyping = false;
-        });
-        this.chatService.receivedTyping().subscribe(bool => {
-            this.isTyping = bool.isTyping;
-        });
+
     }
 
     ngOnDestroy() {
-        this.connection.unsubscribe();
+
     }
+
     close() {
         this.closeRoom.emit(this.chatData)
     }
 
     typing() {
-        this.chatService.typing(this.chatData)
+        this.chatService.typing({ room: this.chatroom })
     }
 
 
-    sendMessage() {
-        if (!this.message)
+    sendMessage(message) {
+        if (!message)
             return
         this.chatService.sendMessage({
             room: this.chatroom,
-            message: this.message,
+            message: message,
             timestamp: Date.now()
         });
         this.message = '';

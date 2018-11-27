@@ -9,8 +9,8 @@
             <p *ngFor="let item of messages">{{item.message}}</p>
         </div>
         <div class="d-inline-flex">
-            <input #chatInput (keypress)="typing()" [(ngModel)]="message" (keyup.enter)="sendMessage()" />
-            <button (click)="sendMessage()" class="btn btn-primary rounded-0" style="width:84px">Send</button>
+            <input #chatInput (keypress)="typing()" [(ngModel)]="message" (keyup.enter)="sendMessage(message)" />
+            <button (click)="sendMessage(message)" class="btn btn-primary rounded-0" style="width:84px">Send</button>
         </div>
     </div>
 </div>

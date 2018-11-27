@@ -13,21 +13,17 @@ export class ChatService {
     }
 
     joinRoom(data) {
-        console.log(data);
         this.socket.emit('join', data);
     }
 
 
 
     public typing(data) {
-        console.log(data);
         this.socket.emit('typing', data);
     }
     public receivedTyping = () => {
         return Observable.create((observer) => {
             this.socket.on('typing', (data) => {
-                console.log(data);
-
                 observer.next(data);
             });
             return () => {
@@ -36,10 +32,12 @@ export class ChatService {
         });
     }
 
-    public sendMessage(message) {
+    sendMessage(message) {
+        console.log(message);
+
         this.socket.emit('new-message', message);
     }
-    public getMessages = () => {
+    getMessages = () => {
         return Observable.create((observer) => {
             this.socket.on('new-message', (message) => {
                 console.log(message);
