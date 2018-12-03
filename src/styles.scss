@@ -4,6 +4,11 @@
 * {
     box-sizing: border-box;
 }
+
+body {
+    background: url('./assets/hd.jpg') no-repeat center center fixed ;
+    background-size: cover;
+}
 .splash-screen {
     position: fixed;
     left: 0;
@@ -18,13 +23,7 @@
     // background: url('./assets/hd.jpg') no-repeat;
     // background-size: cover;
 }
-.bg {
-    width: 100%;
-    position: fixed;
-    height: 100%;
-    background: url('./assets/hd.jpg') no-repeat center center fixed ;
-    background-size: cover;
-}
+
 .maxWidth{
     max-width: 350px;
     background: white;
