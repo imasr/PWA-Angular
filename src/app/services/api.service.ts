@@ -119,4 +119,15 @@ export class ApiService {
                 })
             );
     }
+    getChat(room) {
+        return this.http.get(`${environment.baseUrl}/users/chats/${room}`)
+            .pipe(
+                map(res => {
+                    return res;
+                }),
+                catchError(err => {
+                    return throwError(err || 'Server error');
+                })
+            );
+    }
 }

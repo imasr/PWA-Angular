@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@
 import { ChatService } from '../../services/chat.service';
 import { Subscription } from "rxjs";
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
     selector: 'chat-app',
@@ -15,12 +16,14 @@ export class ChatComponent implements OnInit {
     isTyping: boolean
     connection: Subscription
     chatroom: any
+    currentUser: any
 
     @Input() chatData: any
     @Output() closeRoom: EventEmitter<any> = new EventEmitter()
 
     constructor(
         private chatService: ChatService,
+        private apiService: ApiService,
         private storageService: LocalStorageService
     ) {
         this.connection = this.chatService.getMessages().subscribe(new_message => {
@@ -35,16 +38,23 @@ export class ChatComponent implements OnInit {
     ngOnChanges(changes: SimpleChanges) {
         this.getDatDForChatroom(changes.chatData.currentValue)
         this.messages = []
+        this.apiService.getChat(this.chatroom).subscribe(res => {
+            this.messages = res[0].messages;
+        }, err => {
+            console.log(err);
+        })
     }
 
     getDatDForChatroom(data) {
         const user = data._id;
-        const currentUser = this.storageService.getLocalStorage('result')._id
-        if (currentUser < user) {
-            this.chatroom = currentUser.concat('_' + user);
+        this.currentUser = this.storageService.getLocalStorage('result')._id
+        if (this.currentUser < user) {
+            this.chatroom = this.currentUser.concat('_' + user);
         } else {
-            this.chatroom = user.concat('_' + currentUser);
+            this.chatroom = user.concat('_' + this.currentUser);
         }
+        console.log(this.chatroom);
+
         this.chatService.joinRoom({ username: this.storageService.getLocalStorage('result').username, room: this.chatroom })
     }
 
@@ -71,6 +81,7 @@ export class ChatComponent implements OnInit {
         this.chatService.sendMessage({
             room: this.chatroom,
             message: message,
+            senderId: this.currentUser,
             timestamp: Date.now()
         });
         this.message = '';

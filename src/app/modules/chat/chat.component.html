@@ -6,7 +6,9 @@
     </button>
     <div *ngIf="showChats">
         <div class="chat-window">
-            <p *ngFor="let item of messages">{{item.message}}</p>
+            <p *ngFor="let item of messages" [ngClass]="item.senderId==currentUser ? 'text-right' : 'text-left'">
+                {{item.message}}
+            </p>
         </div>
         <div class="d-inline-flex">
             <input #chatInput (keypress)="typing()" [(ngModel)]="message" (keyup.enter)="sendMessage(message)" />

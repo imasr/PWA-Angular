@@ -87,7 +87,18 @@ export class NavbarComponent implements OnInit {
         });
     }
     onFileChanged(event) {
-        this.profileImage = event.target.files[0];
+        let files = event.target.files
+        this.message = ""
+        if (files.length === 0)
+            return;
+
+        var mimeType = files[0].type;
+        if (mimeType.match(/image\/*/) == null) {
+            this.message = "Only images are supported.";
+            return;
+        }
+
+        this.profileImage = files[0];
         const uploadData = new FormData();
         uploadData.append('image', this.profileImage, this.profileImage.name);
         this.apiService.uploadProfileImage(uploadData).subscribe(res => {
