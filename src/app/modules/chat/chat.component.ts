@@ -72,7 +72,6 @@ export class ChatComponent implements OnInit {
         } else {
             this.chatroom = this.remoteUser.concat('_' + this.currentUser);
         }
-        console.log(this.chatroom);
 
         this.chatService.joinRoom({ username: this.storageService.getLocalStorage('result').username, room: this.chatroom })
     }
@@ -97,6 +96,7 @@ export class ChatComponent implements OnInit {
         this.chatService.sendMessage({
             room: this.chatroom,
             message: message,
+            senderName: this.storageService.getLocalStorage('result').username,
             senderId: this.currentUser,
             receiverId: this.remoteUser,
             timestamp: Date.now()
