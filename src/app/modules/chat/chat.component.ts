@@ -66,11 +66,11 @@ export class ChatComponent implements OnInit {
 
     getDatDForChatroom(data) {
         this.remoteUser = data._id;
-        this.currentUser = this.storageService.getLocalStorage('result')._id
-        if (this.currentUser < this.remoteUser) {
-            this.chatroom = this.currentUser.concat('_' + this.remoteUser);
+        this.currentUser = this.storageService.getLocalStorage('result')
+        if (this.currentUser._id < this.remoteUser) {
+            this.chatroom = this.currentUser._id.concat('_' + this.remoteUser);
         } else {
-            this.chatroom = this.remoteUser.concat('_' + this.currentUser);
+            this.chatroom = this.remoteUser.concat('_' + this.currentUser._id);
         }
 
         this.chatService.joinRoom({ username: this.storageService.getLocalStorage('result').username, room: this.chatroom })
@@ -96,8 +96,8 @@ export class ChatComponent implements OnInit {
         this.chatService.sendMessage({
             room: this.chatroom,
             message: message,
-            senderName: this.storageService.getLocalStorage('result').username,
-            senderId: this.currentUser,
+            senderName: this.currentUser.username,
+            senderId: this.currentUser._id,
             receiverId: this.remoteUser,
             timestamp: Date.now()
         });
