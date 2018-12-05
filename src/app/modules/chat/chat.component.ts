@@ -17,6 +17,7 @@ export class ChatComponent implements OnInit {
     connection: Subscription
     chatroom: any
     currentUser: any
+    remoteUser: any
 
     @Input() chatData: any
     @Output() closeRoom: EventEmitter<any> = new EventEmitter()
@@ -64,12 +65,12 @@ export class ChatComponent implements OnInit {
     }
 
     getDatDForChatroom(data) {
-        const user = data._id;
+        this.remoteUser = data._id;
         this.currentUser = this.storageService.getLocalStorage('result')._id
-        if (this.currentUser < user) {
-            this.chatroom = this.currentUser.concat('_' + user);
+        if (this.currentUser < this.remoteUser) {
+            this.chatroom = this.currentUser.concat('_' + this.remoteUser);
         } else {
-            this.chatroom = user.concat('_' + this.currentUser);
+            this.chatroom = this.remoteUser.concat('_' + this.currentUser);
         }
         console.log(this.chatroom);
 
@@ -97,6 +98,7 @@ export class ChatComponent implements OnInit {
             room: this.chatroom,
             message: message,
             senderId: this.currentUser,
+            receiverId: this.remoteUser,
             timestamp: Date.now()
         });
         this.message = '';
