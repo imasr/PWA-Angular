@@ -1,13 +1,13 @@
-<div #scrollMe class="bg-white border border-primary border-bottom-0">
+<div class="bg-white border border-primary border-bottom-0">
     <button class="bg-primary text-white pointer px-2 py-1 border-0 w-100 text-left" role="button" (click)="showChats=!showChats">
         {{chatData?.username}}
         <i class="fa fa-close float-right mt-1" (click)="close()"></i>
         <i *ngIf="isTyping" class="text-success">typing...</i>
     </button>
     <div *ngIf="showChats">
-        <div class="chat-window">
+        <div class="chat-window" #scrollMe>
             <p *ngFor="let item of messages" [ngClass]="item.senderId==currentUser ? 'text-right' : 'text-left'">
-                {{item.message}}
+                {{item?.message}}
             </p>
         </div>
         <div class="d-inline-flex">

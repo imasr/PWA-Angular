@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { ChatService } from '../../services/chat.service';
 import { Subscription } from "rxjs";
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -20,6 +20,7 @@ export class ChatComponent implements OnInit {
 
     @Input() chatData: any
     @Output() closeRoom: EventEmitter<any> = new EventEmitter()
+    @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
     constructor(
         private chatService: ChatService,
@@ -35,11 +36,28 @@ export class ChatComponent implements OnInit {
         });
     }
 
+
+
+    ngOnInit() {
+        this.scrollToBottom();
+    }
+
+    ngAfterViewChecked() {
+        this.scrollToBottom();
+    }
+
+    scrollToBottom(): void {
+        try {
+            this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+        } catch (err) { }
+    }
+
     ngOnChanges(changes: SimpleChanges) {
         this.getDatDForChatroom(changes.chatData.currentValue)
         this.messages = []
         this.apiService.getChat(this.chatroom).subscribe(res => {
-            this.messages = res[0].messages;
+            if (res[0].messages)
+                this.messages = res[0].messages;
         }, err => {
             console.log(err);
         })
@@ -58,9 +76,6 @@ export class ChatComponent implements OnInit {
         this.chatService.joinRoom({ username: this.storageService.getLocalStorage('result').username, room: this.chatroom })
     }
 
-    ngOnInit() {
-
-    }
 
     ngOnDestroy() {
 
