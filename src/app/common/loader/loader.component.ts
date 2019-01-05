@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, Input, ElementRef } from '@angular/core';
-import { $ } from '../../../../node_modules/protractor';
 
 @Component({
     selector: 'app-loader',
