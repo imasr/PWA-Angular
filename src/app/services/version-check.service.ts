@@ -63,9 +63,9 @@ export class VersionCheckService {
    * @returns {boolean}
    */
   private hasHashChanged(currentHash, newHash) {
-    // if (!currentHash || currentHash === '{{POST_BUILD_ENTERS_HASH_HERE}}') {
-    //   return false;
-    // }
+    if (!currentHash || currentHash === '{{POST_BUILD_ENTERS_HASH_HERE}}') {
+      // return false;
+    }
 
     return currentHash !== newHash;
   }
