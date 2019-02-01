@@ -31,7 +31,7 @@ export class VersionCheckService {
             // If new version, do something
             if (hashChanged) {
               // ENTER YOUR CODE TO DO SOMETHING UPON VERSION CHANGE
-              alert('Update latest version of app its mendotary')
+              alert('Update latest version of app chat')
               location.reload();
             }
             // store the new hash so we wouldn't trigger versionChange again
