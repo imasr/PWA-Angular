@@ -1,5 +1,5 @@
 export const environment = {
-    versionCheckURL: '../../dist/version.json',
+    versionCheckURL: '../../dist/chat-app/version.json',
     production: false,
     baseUrl: 'http://localhost:8080',
     facebookConfig: {
