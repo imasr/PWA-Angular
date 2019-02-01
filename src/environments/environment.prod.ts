@@ -1,5 +1,5 @@
 export const environment = {
-    versionCheckURL: '../../dist/version.json',
+    versionCheckURL: 'version.json',
     production: true,
     baseUrl: 'https://api-chatapp-node.herokuapp.com',
     facebookConfig: {
