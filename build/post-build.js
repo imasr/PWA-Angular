@@ -23,7 +23,7 @@ readDir(path.join(__dirname, '../dist/chat-app/'))
         // console.log("filte=====", files, mainBundleRegexp)
         mainBundleFile = files.find(f => mainBundleRegexp.test(f));
         if (mainBundleFile) {
-            // console.log("mainBundleFile=====", mainBundleFile)
+            console.log("mainBundleFile=====", mainBundleFile)
 
             let matchHash = mainBundleFile.match(mainBundleRegexp);
             // if it has a hash in it's name, mark it down
