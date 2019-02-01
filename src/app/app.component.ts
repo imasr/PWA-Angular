@@ -3,6 +3,8 @@ import { ActivatedRoute, Router, NavigationEnd, ActivatedRouteSnapshot } from '@
 import { Title } from '@angular/platform-browser';
 import { PushMessagingService } from "./services/firebase.push-messaging.service";
 import { ApiService } from './services/api.service';
+import { VersionCheckService } from './services/version-check.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
     selector: 'app-root',
@@ -17,7 +19,8 @@ export class AppComponent implements OnInit, OnDestroy {
         private activateRoute: ActivatedRoute,
         private titleServive: Title,
         private pushMessagingService: PushMessagingService,
-        private apiService: ApiService
+        private apiService: ApiService,
+        private versionCheckService: VersionCheckService
     ) {
         if (this.isMobile()) {
             console.log('mobile')
@@ -29,6 +32,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+
+        this.versionCheckService.initVersionCheck(environment.versionCheckURL);
+
         this.pushMessagingService.getPermission()
         this.pushMessagingService.receiveMessage()
 
