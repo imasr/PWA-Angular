@@ -16,7 +16,7 @@ import { VersionCheckService } from './services/version-check.service';
 firebase.initializeApp(firebaseConfig);
 @NgModule({
     declarations: [
-        AppComponent,
+        AppComponent
     ],
     imports: [
         BrowserModule,

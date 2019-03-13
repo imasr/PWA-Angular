@@ -9,13 +9,19 @@
   background: #e9ecef;
 }
 .text-left{
-  background-color: #dcdcdc;
   margin-bottom: 0rem !important;
-  padding: 1vh ;
 }
 .text-right{
-  background-color: #aaaaaa;
   margin-bottom: 0rem !important;
-  padding: 1vh ;
+}
+.bg-right{
+  background: #aaaaaa;
+  padding: 0px 5px 0px 5px;
+  border-radius: 5px;
+}
+.bg-left{
+  background: #dcdcdc;
+  padding: 0px 5px 0px 5px;
+  border-radius: 5px;
 }
 

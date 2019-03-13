@@ -1,14 +1,19 @@
 <div class="bg-white border border-primary border-bottom-0">
-    <button class="bg-primary text-white pointer px-2 py-1 border-0 w-100 text-left" role="button" (click)="showChats=!showChats">
+    <button class="bg-primary text-white pointer px-2 py-1 border-0 w-100 text-left" role="button"
+        (click)="showChats=!showChats">
         {{chatData?.username}}
         <i class="fa fa-close float-right mt-1" (click)="close()"></i>
         <i *ngIf="isTyping" class="text-success">typing...</i>
     </button>
     <div *ngIf="showChats">
         <div class="chat-window" #scrollMe>
-            <p *ngFor="let item of messages" [ngClass]="item.senderId==currentUser ? 'text-right' : 'text-left'">
-                {{item?.message}}
-            </p>
+            <div *ngFor="let item of messages"
+                [ngClass]="item.senderId == currentUser._id ? 'text-right' : 'text-left'">
+                <span [ngClass]="item.senderId == currentUser._id ? 'bg-right' : 'bg-left'">{{item?.message}}</span>
+                <div *ngIf="item.timestamp" style="font-size:12px;">
+                    <i class="fa fa-time"></i>{{item.timestamp | timeago}}
+                </div>
+            </div>
         </div>
         <div class="d-inline-flex">
             <input #chatInput (keypress)="typing()" [(ngModel)]="message" (keyup.enter)="sendMessage(message)" />
