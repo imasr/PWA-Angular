@@ -9,7 +9,7 @@
 <div class="d-flex flex-wrap mainbody">
     <!-- left -->
     <div class="p-2 side col-12 col-md-12 col-xl-12 bg-sidebar">
-        <sidemenu-app [menu]="menuList" (getUsers)="getUsers($event)"></sidemenu-app>
+        <sidemenu-app [mobileView]="mobileView" [menu]="menuList" (getUsers)="getUsers($event)"></sidemenu-app>
     </div>
     <!-- right -->
     <div class="p-1 main">

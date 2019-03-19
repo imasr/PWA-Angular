@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
             this.getUsers();
         });
     }
-    getUsers() {
+    getUsers(event?) {
         this.api.allUsers().subscribe(res => {
             this.users = res.result;
         });
