@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, NavigationEnd, ActivatedRouteSnapshot } from '@
 import { Title } from '@angular/platform-browser';
 import { PushMessagingService } from "./services/firebase.push-messaging.service";
 import { ApiService } from './services/api.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
     selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
         private activateRoute: ActivatedRoute,
         private titleServive: Title,
         private pushMessagingService: PushMessagingService,
-        private apiService: ApiService
+        private apiService: ApiService,
     ) {
         if (this.isMobile()) {
             console.log('mobile')
@@ -29,10 +30,8 @@ export class AppComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.findMe()
         this.pushMessagingService.getPermission()
         this.pushMessagingService.receiveMessage()
-
         this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
                 let title = this.getTitle(this.activateRoute.snapshot.root)

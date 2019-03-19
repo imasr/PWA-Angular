@@ -38,13 +38,15 @@
     </div>
     <div class="shadow-sm p-3">
         <div class="my-2 mr-auto text-center">
+            <span style="color:red;" *ngIf="message">{{message}}</span>
             <input type="file" accept="image/*" class="d-none" (change)="onFileChanged($event)" #fileInput>
-            <img class="rounded-circle border" [src]="image(user?.image)" (click)="fileInput.click()" width="100" height="100">
+            <img class="rounded-circle border" [src]="image(user?.image)" (click)="fileInput.click()" width="100"
+                height="100">
         </div>
         <div class="d-flex flex-column align-items-center">
             <div class="dropdown font-size-14px">
-                <div class="d-flex py-0 align-items-center dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
+                <div class="d-flex py-0 align-items-center dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
                     <img [src]="status?.icon" alt="" width="30" height="30"> {{status?.title}}
                     <div class="dropdown-menu  font-size-14px" aria-labelledby="dropdownMenu2">
                         <button class="dropdown-item p-0" type="button" *ngFor="let item of statusObj" (click)="setStatus(item)">
@@ -53,7 +55,8 @@
                     </div>
                 </div>
             </div>
-            <p class="font-size-10px mb-0" *ngIf="status.title !=='Online' && user?.userStatus?.lastSeenOnlineAt">Last seen:
+            <p class="font-size-10px mb-0" *ngIf="status.title !=='Online' && user?.userStatus?.lastSeenOnlineAt">Last
+                seen:
                 {{user?.userStatus?.lastSeenOnlineAt}}
             </p>
         </div>

@@ -1,1 +1,10 @@
 <app-navbar class="fixed"></app-navbar>
+<div class="d-flex flex-wrap">
+    <div class="p-2 side col-12 col-md-12 col-xl-12 bg-sidebar">
+        <sidemenu-app [menu]="menuList" (getUsers)="click($event)"></sidemenu-app>
+    </div>
+    <div class="p-1 main">
+        <router-outlet></router-outlet>
+
+    </div>
+</div>

@@ -8,23 +8,45 @@ import { Observable } from 'rxjs';
 })
 export class ChatService {
 
-    socket: any;
-
+    private socket = io(environment.baseUrl)
     constructor() {
-        this.socket = io(environment.baseUrl);
     }
 
-    public sendMessage(message) {
+    joinRoom(data) {
+        this.socket.emit('join', data);
+    }
+
+
+
+    public typing(data) {
+        this.socket.emit('typing', data);
+    }
+    public receivedTyping = () => {
+        return Observable.create((observer) => {
+            this.socket.on('typing', (data) => {
+                observer.next(data);
+            });
+            return () => {
+                this.socket.disconnect();
+            };
+        });
+    }
+
+    sendMessage(message) {
+        console.log(message);
+
         this.socket.emit('new-message', message);
     }
-
-    public getMessages = () => {
+    getMessages = () => {
         return Observable.create((observer) => {
             this.socket.on('new-message', (message) => {
                 console.log(message);
 
                 observer.next(message);
             });
+            return () => {
+                this.socket.disconnect();
+            };
         });
     }
 }

@@ -15,7 +15,7 @@ import 'firebase/messaging';
 firebase.initializeApp(firebaseConfig);
 @NgModule({
     declarations: [
-        AppComponent,
+        AppComponent
     ],
     imports: [
         BrowserModule,

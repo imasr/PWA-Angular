@@ -12,13 +12,14 @@ import { config } from './../../../config/config';
 })
 
 export class DashboardComponent implements OnInit {
-    sideData: any = [{ title: 'users', id: 1 }, { title: 'admin', id: 2 }];
+    menuList: any = [{ title: 'users', id: 1 }, { title: 'admin', id: 2 }];
     activeId = 1;
     users: any = [];
     usersView: any;
     overlay: any;
     mobileView: boolean;
     statusObj = config.statusObj;
+    showChats: any
     constructor(
         private api: ApiService,
         private commonService: CommonService,
@@ -39,17 +40,12 @@ export class DashboardComponent implements OnInit {
             this.getUsers();
         });
     }
-    active(item, id) {
-        this.activeId = id;
-        if (item === 'users') {
-            this.getUsers();
-        }
-    }
-    getUsers() {
+    getUsers(event?) {
         this.api.allUsers().subscribe(res => {
             this.users = res.result;
         });
     }
+
     image(data) {
         if (data) {
             return environment.baseUrl + '/' + data;
@@ -76,5 +72,12 @@ export class DashboardComponent implements OnInit {
             }
         });
         return icon;
+    }
+    openChatRoom(event) {
+        this.showChats = event
+        console.log(this.showChats);
+    }
+    closeRoom(event) {
+        this.showChats = ""
     }
 }
