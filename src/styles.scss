@@ -34,15 +34,54 @@ body {
         min-width: 350px;
     }
 }
+
+.main {
+    flex: 80%;
+    background-color: white;
+    padding: 20px;
+}
+.side {
+    flex: 20%;
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+.bg-sidebar {
+    position: sticky;
+    top: 66px;
+    border-right: 1px solid rgba(0, 0, 0, .1);
+    order: 0;
+    z-index: 1;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+.fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10000;
+}
+.mainbody {
+      margin-top: 66px;
+}
+@media screen and (min-width: 700px) {
+    .bg-sidebar {
+        height: calc(100vh - 66px);
+    }
+}
+@media screen and (max-width: 700px) {
+    .mainbody {
+        flex-direction: column;
+    }
+    .bd-sidebar {
+        height: auto !important;
+    }
+}
 .heightAuthPage{
     height: calc(100vh - 66px);
 }
 .height-100vh{
     height: 100vh;
 }
-.mainbody {
-    margin-top: 66px;
-}
+
 .loaderBody {
     width: 50px;
     margin: auto;

@@ -8,17 +8,8 @@
 
 <div class="d-flex flex-wrap mainbody">
     <!-- left -->
-    <div class="p-2 side col-12 col-md-4 col-xl-3 bg-sidebar">
-        <div id="menuTooggle" class="show" [ngClass]="mobileView?'collapse':''">
-            <nav class="nav flex-column">
-                <div class="w-100" *ngIf="sideData">
-                    <a class="nav-link" [ngClass]="{'active':index+1==activeId}" (click)="active(item.title, index+1)"
-                        [routerLink]="" *ngFor="let item of sideData;let index=index">
-                        {{item.title | titlecase}}
-                    </a>
-                </div>
-            </nav>
-        </div>
+    <div class="p-2 side col-12 col-md-12 col-xl-12 bg-sidebar">
+        <sidemenu-app [menu]="menuList" (getUsers)="getUsers($event)"></sidemenu-app>
     </div>
     <!-- right -->
     <div class="p-1 main">
@@ -41,8 +32,8 @@
                         {{item?.username}}
                         <br> {{item?.email}}
                     </div>
-                    <span class="delete" data-toggle="tooltip" data-placement="bottom" title="Delete User {{item.username}}"
-                        (click)="delete(item._id)">
+                    <span class="delete" data-toggle="tooltip" data-placement="bottom"
+                        title="Delete User {{item.username}}" (click)="delete(item._id)">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </span>
                 </div>
@@ -77,7 +68,8 @@
                 <p *ngIf="usersView.google_id">Google Id: {{usersView.google_id}}</p>
                 <p *ngIf="usersView._id">Mongo Id: {{usersView._id}}</p>
                 <p *ngIf="usersView.email">Email:
-                    <a target="_blank" rel="noopener noreferrer" href="https://mail.google.com/mail/?view=cm&fs=1&to={{usersView.email}}">{{usersView.email}}</a>
+                    <a target="_blank" rel="noopener noreferrer"
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to={{usersView.email}}">{{usersView.email}}</a>
                 </p>
             </div>
             <div class="modal-footer">

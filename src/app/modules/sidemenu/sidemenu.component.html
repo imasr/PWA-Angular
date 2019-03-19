@@ -1,0 +1,12 @@
+<div>
+  <div id="menuTooggle" class="show" [ngClass]="mobileView?'collapse':''">
+    <nav class="nav flex-column">
+      <div class="w-100" *ngIf="menu">
+        <a class="nav-link" [ngClass]="{'active': index+1 == activeId}" *ngFor="let item of menu;let index=index"
+          (click)="callAction(item.title, index+1)">
+          {{item.title | titlecase}}
+        </a>
+      </div>
+    </nav>
+  </div>
+</div>

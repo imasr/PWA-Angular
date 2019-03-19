@@ -1,0 +1,20 @@
+
+.nav {
+    max-height: calc(100vh - 9rem);
+    overflow-y: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.nav-link {
+    width: 100%; 
+}
+
+.nav-link:hover {
+    background: white;
+}
+
+.nav-link.active,
+.nav-link:active {
+    background: #007bff !important;
+    color: white !important;
+}

@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { NavbarModule } from '../navbar/navbar.module';
 import { ContactsModule } from '../contacts/contacts.module';
 import { ChatModule } from '../chat/chat.module';
+import { SidemenuModule } from '../sidemenu/sidemenu.module';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent }
@@ -20,6 +21,7 @@ const routes: Routes = [
         NavbarModule,
         ContactsModule,
         ChatModule,
+        SidemenuModule,
         RouterModule.forChild(routes)
     ],
     declarations: [

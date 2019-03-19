@@ -8,10 +8,11 @@
     <div *ngIf="showChats">
         <div class="chat-window" #scrollMe>
             <div *ngFor="let item of messages"
-                [ngClass]="item.senderId == currentUser._id ? 'text-right' : 'text-left'">
-                <span [ngClass]="item.senderId == currentUser._id ? 'bg-right' : 'bg-left'">{{item?.message}}</span>
-                <div *ngIf="item.timestamp" style="font-size:12px;">
-                    <i class="fa fa-time"></i>{{item.timestamp | timeago}}
+                [ngClass]="item.senderId == currentUser._id ? 'text-right bg-right' : 'text-left bg-left'">
+                {{item?.message}}
+                <div *ngIf="item.timestamp" style="font-size:12px" class="text-muted">
+                    <img src="https://img.icons8.com/windows/32/000000/watch.png" width="12">
+                    {{item.timestamp | timeago}}
                 </div>
             </div>
         </div>

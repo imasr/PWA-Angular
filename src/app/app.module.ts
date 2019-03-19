@@ -11,7 +11,6 @@ import { environment } from '../environments/environment';
 import { firebaseConfig } from '../environments/firebase.config';
 import * as firebase from 'firebase/app';
 import 'firebase/messaging';
-import { VersionCheckService } from './services/version-check.service';
 
 firebase.initializeApp(firebaseConfig);
 @NgModule({
@@ -30,8 +29,7 @@ firebase.initializeApp(firebaseConfig);
             provide: HTTP_INTERCEPTORS,
             useClass: IntercepterHttp,
             multi: true
-        },
-        VersionCheckService
+        }
     ],
     bootstrap: [AppComponent]
 })

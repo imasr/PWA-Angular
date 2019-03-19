@@ -1,5 +1,4 @@
 export const environment = {
-    versionCheckURL: 'version.json',
     production: false,
     baseUrl: 'http://localhost:8080',
     facebookConfig: {
