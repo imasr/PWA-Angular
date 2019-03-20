@@ -40,6 +40,19 @@ export class ApiService {
                 })
             );
     }
+    search(body): Observable<any> {
+        this.commonService.loadingSet(true);
+        return this.http.post(`${environment.baseUrl}/users/search`, body)
+            .pipe(
+                map(res => {
+                    this.commonService.loadingSet(false);
+                    return res;
+                }),
+                catchError(err => {
+                    return throwError(err || 'Server error');
+                })
+            );
+    }
     deleteUser(body: any): Observable<any> {
         this.commonService.loadingSet(true);
         return this.http.post(`${environment.baseUrl}/users/delete`, body)

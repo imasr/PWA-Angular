@@ -19,7 +19,8 @@ export class DashboardComponent implements OnInit {
     overlay: any;
     mobileView: boolean;
     statusObj = config.statusObj;
-    showChats: any
+    showChats: any;
+    filterData: any;
     constructor(
         private api: ApiService,
         private commonService: CommonService,
@@ -42,6 +43,12 @@ export class DashboardComponent implements OnInit {
     }
     getUsers(event?) {
         this.api.allUsers().subscribe(res => {
+            this.users = res.result;
+        });
+    }
+
+    search() {
+        this.api.search({ email: this.filterData }).subscribe(res => {
             this.users = res.result;
         });
     }
