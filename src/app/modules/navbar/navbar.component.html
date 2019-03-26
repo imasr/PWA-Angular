@@ -49,7 +49,8 @@
                     aria-haspopup="true" aria-expanded="false">
                     <img [src]="status?.icon" alt="" width="30" height="30"> {{status?.title}}
                     <div class="dropdown-menu  font-size-14px" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item p-0" type="button" *ngFor="let item of statusObj" (click)="setStatus(item)">
+                        <button class="dropdown-item p-0" type="button" *ngFor="let item of statusObj"
+                            (click)="setStatus(item)">
                             <img [src]="item?.icon" alt="" width="30" height="30">{{item.title}}
                         </button>
                     </div>
@@ -57,7 +58,7 @@
             </div>
             <p class="font-size-10px mb-0" *ngIf="status.title !=='Online' && user?.userStatus?.lastSeenOnlineAt">Last
                 seen:
-                {{user?.userStatus?.lastSeenOnlineAt}}
+                {{user?.userStatus?.lastOnlineTimestamp | date:'medium'}}
             </p>
         </div>
         <div class="d-flex flex-column justify-content-center py-1">
@@ -66,7 +67,8 @@
         </div>
     </div>
     <div class="pl-3">
-        <div class="border-bottom p-2 d-flex justify-content-between hover" *ngFor="let item of menuData" (click)="selectMenu(item.title)">
+        <div class="border-bottom p-2 d-flex justify-content-between hover" *ngFor="let item of menuData"
+            (click)="selectMenu(item.title)">
             <div>
                 <i class="fa w-20 {{item.icon}}"></i>
                 <span class="pl-2">{{item.title | titlecase }}</span>
