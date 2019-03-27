@@ -27,7 +27,6 @@ body {
 .maxWidth{
     max-width: 350px;
     background: white;
-    border-radius: 5px;
 }
 @media screen and (min-width: 400px) {
     .maxWidth {
@@ -183,6 +182,9 @@ body {
 }
 .font-size-14px{
     font-size:14px
+}
+.font-size-18px{
+    font-size:18px
 }
 .pointer{
     cursor: pointer;

@@ -2,54 +2,66 @@
     <div class="d-flex justify-content-around align-items-center height-100vh">
 
         <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-12 maxWidth p-4 ">
-            <div class="text-center">
-                <img src="./../../assets/app_icon.png" class="logo img rounded" width="80" alt="">
+            <div class="">
+                <img src="./../../assets/app_icon.png" class="logo img rounded" width="60" alt="">
             </div>
-            <h5 class="text-center py-1 font-weight-bold">Sign In with chat</h5>
-            <form #loginForm="ngForm" class="needs-validation" (submit)="loginForm.form.valid && login(loginForm)"
-                novalidate>
+            <h5 class="py-2">Sign In</h5>
+            <div>
+                <form #loginForm="ngForm" class="needs-validation" (submit)="loginForm.form.valid && login(loginForm)"
+                    novalidate>
 
-                <div class="form-group">
-                    <input type="email" [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched),
-            'is-valid': email.valid && (email.dirty || email.touched)}"
-                        class="form-control font-size-14px" name="email" autoComplete="off" placeholder="Email"
-                        [(ngModel)]="loginForm.email" #email="ngModel" required pattern="^[a-z0-9](\.?[a-z0-9_-]){0,}@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$">
-                    <div class="invalid-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
-                        <p *ngIf="email.errors.required ">Email is required</p>
-                        <p *ngIf="email.errors.pattern">Email is Invalid</p>
+                    <div class="form-group">
+                        <input type="email" [ngClass]="{'is-invalid': email.invalid && (email.dirty || email.touched),
+            'is-valid border-primary': email.valid && (email.dirty || email.touched)}"
+                            class="form-control font-size-14px  rounded-0" name="email" autoComplete="off"
+                            placeholder="Email" [(ngModel)]="loginForm.email" #email="ngModel" required
+                            pattern="^[a-z0-9](\.?[a-z0-9_-]){0,}@[a-z0-9-]+\.([a-z]{1,6}\.)?[a-z]{2,6}$">
+                        <div class="invalid-feedback" *ngIf="email.errors && (email.dirty || email.touched)">
+                            <p *ngIf="email.errors.required ">Email is required</p>
+                            <p *ngIf="email.errors.pattern">Email is Invalid</p>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <input type="password" [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched),
-          'is-valid': password.valid && (password.dirty || password.touched)}"
-                        class="form-control font-size-14px" name="password" autoComplete="off" [(ngModel)]="loginForm.password"
-                        placeholder="Password" required minlength=3 #password="ngModel">
-                    <div class="invalid-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
-                        <p *ngIf="password.errors.required">Password is required</p>
-                        <p *ngIf="password.errors.minlength">Password should be min 3 character long</p>
+                    <div class="form-group">
+                        <input type="password" [ngClass]="{'is-invalid': password.invalid && (password.dirty || password.touched),
+          'is-valid border-primary': password.valid && (password.dirty || password.touched)}"
+                            class="form-control font-size-14px  rounded-0" name="password" autoComplete="off"
+                            [(ngModel)]="loginForm.password" placeholder="Password" required minlength=3
+                            #password="ngModel">
+                        <div class="invalid-feedback" *ngIf="password.errors && (password.dirty || password.touched)">
+                            <p *ngIf="password.errors.required">Password is required</p>
+                            <p *ngIf="password.errors.minlength">Password should be min 3 character long</p>
+                        </div>
+
                     </div>
-
-                </div>
-                <button type="submit" class="btn btn-success font-size-14px">Submit</button>
-            </form>
-
-            <div class="text-center font-size-14px">
-                <a href="#" [routerLink]="['/forget']">Forgot password?</a>
+                    <div class="font-size-14px">
+                        <a href="#" [routerLink]="['/forget']">Forgot password?</a>
+                    </div>
+                    <div class="py-2 font-size-14px">
+                        <a href="#" [routerLink]="['/register']">New User?</a>
+                    </div>
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary rounded-0 font-size-14px">Submit</button>
+                    </div>
+                </form>
             </div>
-            <div class="text-center p-2 font-size-14px">
-                <a href="#" [routerLink]="['/register']">Register New User</a>
-            </div>
 
-            <div class="vl my-2 ">
+
+
+            <!-- <div class="vl my-2 ">
                 <span class="vl-innertext">OR</span>
+            </div> -->
+            <div class="d-flex">
+                <a class="fb text-white rounded-circle mr-1 p-2 pointer" data-toggle="tooltip" data-placement="top"
+                    title="Facebook login" (click)="onSignInFacebook()">
+                    <i class="fa fa-facebook fa-fw font-size-18px"></i>
+                </a>
+
+                <a (click)="onSignInGoogle()" class="google rounded-circle text-white p-2 pointer" data-toggle="tooltip"
+                    data-placement="top" title="Google Login" id="googleBtn">
+                    <i class="fa fa-google fa-fw font-size-18px">
+                    </i>
+                </a>
             </div>
-            <a class="fb btn text-white font-size-14px" (click)="onSignInFacebook()">
-                <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-            </a>
-            <a (click)="onSignInGoogle()" class="google btn text-white font-size-14px" id="googleBtn">
-                <i class="fa fa-google fa-fw">
-                </i> Login with Google+
-            </a>
         </div>
     </div>
 </div>

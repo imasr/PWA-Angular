@@ -1,6 +1,7 @@
 export const environment = {
     production: false,
-    baseUrl: 'http://localhost:8080',
+    baseUrl: 'https://api-chatapp-node.herokuapp.com',
+    // baseUrl: 'http://localhost:8080',
     facebookConfig: {
         appId: '2154368044590850',
         cookie: true,
