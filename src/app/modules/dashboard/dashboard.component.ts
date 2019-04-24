@@ -54,11 +54,13 @@ export class DashboardComponent implements OnInit {
     }
 
     image(data) {
-        if (data) {
-            return environment.baseUrl + '/' + data;
-        } {
-            return 'assets/user.png';
+        if (data && data.image_url && data.image_url.indexOf('http') != -1) {
+            return data.image_url
         }
+        if (data && data.image) {
+            return environment.baseUrl + '/' + data.image;
+        }
+        return 'assets/user.png';
     }
     delete(id) {
         this.api.deleteUser({ 'id': id, role: 'Admin' }).subscribe(res => {

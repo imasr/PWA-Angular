@@ -25,7 +25,7 @@
             <div class="card" *ngFor="let item of users; let id=index">
                 <div class="card-body d-flex">
                     <div class="position-relative mrg-sm-1">
-                        <img class="rounded-circle border" [src]="image(item?.image)" width=60 height=60>
+                        <img class="rounded-circle border" [src]="image(item)" width=60 height=60>
                         <img [src]="imageStatus(item?.userStatus?.onlineStatus)" class="position-absolute mrb--5" alt=""
                             width="30" height="30">
                     </div>
@@ -61,7 +61,7 @@
                 </button>
             </div>
             <div class="modal-body" *ngIf="usersView">
-                <img class="rounded-circle border mr-5" [src]="image(usersView.image)" width="60" height="60">
+                <img class="rounded-circle border mr-5" [src]=" image(usersView)" width="120" height="120">
                 <p *ngIf="usersView.username">Username: {{usersView.username}}</p>
                 <p *ngIf="usersView.gender">Gender: {{usersView.gender}}</p>
                 <p *ngIf="usersView.birthday">Birthday: {{usersView.birthday}}</p>
