@@ -8,6 +8,7 @@ import { NavbarModule } from '../navbar/navbar.module';
 import { ContactsModule } from '../contacts/contacts.module';
 import { ChatModule } from '../chat/chat.module';
 import { SidemenuModule } from '../sidemenu/sidemenu.module';
+import { LoaderModule } from 'src/app/common/loader/loader.module';
 
 const routes: Routes = [
     { path: '', component: DashboardComponent }
@@ -20,6 +21,7 @@ const routes: Routes = [
         FormsModule,
         NavbarModule,
         ContactsModule,
+        LoaderModule,
         ChatModule,
         SidemenuModule,
         RouterModule.forChild(routes)

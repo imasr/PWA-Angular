@@ -36,6 +36,7 @@ export class ApiService {
                     return res;
                 }),
                 catchError(err => {
+                    this.commonService.loadingSet(false);
                     return throwError(err || 'Server error');
                 })
             );
@@ -49,6 +50,7 @@ export class ApiService {
                     return res;
                 }),
                 catchError(err => {
+                    this.commonService.loadingSet(false);
                     return throwError(err || 'Server error');
                 })
             );
@@ -62,6 +64,7 @@ export class ApiService {
                     return res;
                 }),
                 catchError(err => {
+                    this.commonService.loadingSet(false);
                     return throwError(err || 'Server error');
                 })
             );
@@ -75,6 +78,7 @@ export class ApiService {
                     return res;
                 }),
                 catchError(err => {
+                    this.commonService.loadingSet(false);
                     return throwError(err || 'Server error');
                 })
             );
@@ -88,6 +92,7 @@ export class ApiService {
                     return res;
                 }),
                 catchError(err => {
+                    this.commonService.loadingSet(false);
                     return throwError(err || 'Server error');
                 })
             );

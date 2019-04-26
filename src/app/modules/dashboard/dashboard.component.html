@@ -15,10 +15,11 @@
     <div class="p-1 main">
         <div class="header-top p-2 border d-flex justify-content-between">
             <h4>Users List</h4>
-            <form class=" form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="filterData" placeholder="Search" aria-label="Search">
-                <button class="btn btn-success my-2 my-sm-0" (click)="search()">Search</button>
+            <form class="form-inline my-2 my-lg-0" #form="ngForm" (submit)="search()" novalidate>
+                <input required class="form-control mr-sm-2" autocomplete="off" [(ngModel)]="filterData" name="email"
+                    #email="ngModel" placeholder="Search" aria-label="Search">
+                <button type="submit" [disabled]="form.invalid" class="btn btn-success mx-1">Search</button>
+                <button type="button" class="btn btn-default mx-1" (click)="form.reset() ;getUsers()">Reset</button>
             </form>
         </div>
         <div class="col-md-12 px-0 padd-sm mt-2">
@@ -79,3 +80,5 @@
         </div>
     </div>
 </div>
+
+<app-loader *ngIf="loader"></app-loader>

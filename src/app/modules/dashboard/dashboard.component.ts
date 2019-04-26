@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { environment } from '../../../environments/environment';
 import { CommonService } from '../../services/common.service';
 import { EventManager } from '@angular/platform-browser';
 import { config } from './../../../config/config';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-dashboard',
@@ -21,6 +22,8 @@ export class DashboardComponent implements OnInit {
     statusObj = config.statusObj;
     showChats: any;
     filterData: any;
+    loader: boolean = true
+    @ViewChild('form') form: NgForm
     constructor(
         private api: ApiService,
         private commonService: CommonService,
@@ -32,6 +35,7 @@ export class DashboardComponent implements OnInit {
     private onResize(event: UIEvent) {
         this.mobileView = window.screen.width < 700;
     }
+
     ngOnInit() {
         this.commonService.dashboard(true);
         this.commonService.overlayBodyBackground().subscribe(res => {
@@ -44,13 +48,17 @@ export class DashboardComponent implements OnInit {
     getUsers(event?) {
         this.api.allUsers().subscribe(res => {
             this.users = res.result;
+            this.loader = false
+
         });
     }
 
     search() {
-        this.api.search({ email: this.filterData }).subscribe(res => {
-            this.users = res.result;
-        });
+        this.filterData = this.filterData.trim()
+        if (this.filterData && this.form.valid)
+            this.api.search({ email: this.filterData }).subscribe(res => {
+                this.users = res.result;
+            });
     }
 
     image(data) {
