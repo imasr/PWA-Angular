@@ -6,7 +6,7 @@ import * as moment from "moment";
     pure: false
 })
 export class TimeAgoPipe implements PipeTransform {
-    newValue: any;
+    timeMessage: any;
 
     constructor(
         private cdRef: ChangeDetectorRef,
@@ -18,20 +18,20 @@ export class TimeAgoPipe implements PipeTransform {
         if (value == null || !(value instanceof Date)) {
             return '';
         }
-        if (this.newValue == undefined || this.newValue == '' || this.newValue == null) {
-            this.newValue = moment(new Date(value)).fromNow()
+        if (this.timeMessage == undefined || this.timeMessage == '' || this.timeMessage == null) {
+            this.timeMessage = moment(new Date(value)).fromNow()
         } else if (this.hasChanged(value)) {
             this.ngZone.runOutsideAngular(() => {
                 this.ngZone.run(() => {
-                    this.newValue = moment(new Date(value)).fromNow()
+                    this.timeMessage = moment(new Date(value)).fromNow()
                     this.cdRef.detectChanges()
                 });
             })
         }
-        if (this.newValue === "a few seconds ago") {
-            this.newValue = "just now"
+        if (this.timeMessage === "a few seconds ago") {
+            this.timeMessage = "just now"
         }
-        return this.newValue
+        return this.timeMessage
     }
 
     hasChanged(value) {
@@ -39,7 +39,7 @@ export class TimeAgoPipe implements PipeTransform {
         if (currentText === "a few seconds ago") {
             currentText = "just now"
         }
-        if (this.newValue !== currentText) {
+        if (this.timeMessage !== currentText) {
             return true;
         } else {
             return false;
