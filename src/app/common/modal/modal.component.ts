@@ -10,7 +10,7 @@ export class ModalComponent implements OnInit {
     @ViewChild('openModalButton') openModal: ElementRef;
     @ViewChild('closeModalButton') closeModalButton: ElementRef;
 
-    @Input() message: string = 'Unknown Error';
+    @Input() message;
     @Input() button: boolean = true;
 
     constructor(private router: Router) {
