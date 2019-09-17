@@ -45,11 +45,15 @@ export class DashboardComponent implements OnInit {
             this.getUsers();
         });
     }
+
     getUsers(event?) {
         this.api.allUsers().subscribe(res => {
+            console.table(res.result)
             this.users = res.result;
             this.loader = false
-
+        }, err => {
+            console.error(err)
+            this.loader = false
         });
     }
 
@@ -57,6 +61,7 @@ export class DashboardComponent implements OnInit {
         this.filterData = this.filterData.trim()
         if (this.filterData && this.form.valid)
             this.api.search({ email: this.filterData }).subscribe(res => {
+                console.table(res.result)
                 this.users = res.result;
             });
     }
@@ -70,6 +75,7 @@ export class DashboardComponent implements OnInit {
         }
         return 'assets/user.png';
     }
+
     delete(id) {
         this.api.deleteUser({ 'id': id, role: 'Admin' }).subscribe(res => {
             console.log(res);
@@ -78,9 +84,11 @@ export class DashboardComponent implements OnInit {
             console.log(err);
         });
     }
+
     getusebyid(data) {
         this.usersView = data;
     }
+
     imageStatus(title) {
         let icon;
         this.statusObj.map((value, key) => {
@@ -90,10 +98,12 @@ export class DashboardComponent implements OnInit {
         });
         return icon;
     }
+
     openChatRoom(event) {
         this.showChats = event
         console.log(this.showChats);
     }
+
     closeRoom(event) {
         this.showChats = ""
     }

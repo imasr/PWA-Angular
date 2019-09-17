@@ -48,5 +48,5 @@
         </div>
     </div>
 </div>
-<app-modal *ngIf="alert" [message]="message"></app-modal>
+<app-modal #modal *ngIf="alert" [message]="message" [button]="!!message?.error"></app-modal>
 <app-loader *ngIf="loader"></app-loader>
